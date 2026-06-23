@@ -292,18 +292,59 @@
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background: var(--teal);
+    background: #ccc;
     border: 2px solid var(--white);
-    box-shadow: 0 0 0 3px var(--teal-light);
+    box-shadow: 0 0 0 2px #ddd;
   }
 
-  .timeline-item.highlight::before {
-    background: var(--gold);
-    box-shadow: 0 0 0 3px var(--gold-light);
+  /* Attractions / main activities - teal */
+  .timeline-item.attraction::before {
+    background: var(--teal);
+    box-shadow: 0 0 0 3px var(--teal-light);
     width: 14px;
     height: 14px;
     right: -28px;
     top: 6px;
+  }
+
+  /* Travel / driving - small gray */
+  .timeline-item.drive::before {
+    background: #999;
+    box-shadow: 0 0 0 2px #ccc;
+    width: 7px;
+    height: 7px;
+    right: -24px;
+    top: 11px;
+  }
+
+  .timeline-item.drive {
+    margin-bottom: 14px;
+  }
+
+  .timeline-item.drive h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #888;
+  }
+
+  .timeline-item.drive p {
+    font-size: 13px;
+    color: #aaa;
+  }
+
+  /* Meals - warm gold */
+  .timeline-item.meal::before {
+    background: var(--gold);
+    box-shadow: 0 0 0 3px var(--gold-light);
+  }
+
+  .timeline-img {
+    width: 100%;
+    max-height: 160px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-top: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
   }
 
   .time-label {
@@ -867,6 +908,20 @@
     <div class="section-title">
       <h2>התוכנית - יום אחר יום</h2>
       <p>כל יום הוא הרפתקה חדשה</p>
+      <div style="display: flex; gap: 28px; justify-content: center; margin-top: 16px; flex-wrap: wrap;">
+        <span style="display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--text-light);">
+          <span style="width: 14px; height: 14px; border-radius: 50%; background: var(--teal); display: inline-block; flex-shrink: 0;"></span>
+          אטרקציה / פעילות
+        </span>
+        <span style="display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--text-light);">
+          <span style="width: 10px; height: 10px; border-radius: 50%; background: var(--gold); display: inline-block; flex-shrink: 0;"></span>
+          ארוחה
+        </span>
+        <span style="display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--text-light);">
+          <span style="width: 7px; height: 7px; border-radius: 50%; background: #999; display: inline-block; flex-shrink: 0;"></span>
+          נסיעה
+        </span>
+      </div>
     </div>
 
     <div class="day-card">
@@ -879,22 +934,22 @@
       </div>
       <div class="day-body">
         <div class="timeline">
-          <div class="timeline-item">
+          <div class="timeline-item drive">
             <div class="time-label">13:10</div>
             <h4>טיסת ישראייר 6H753 מנתב"ג</h4>
             <p>3 שעות ו-40 דקות טיסה ישירה</p>
           </div>
-          <div class="timeline-item highlight">
+          <div class="timeline-item drive">
             <div class="time-label">15:50</div>
             <h4>נחיתה בלובליאנה!</h4>
             <p>איסוף רכבים בשדה התעופה, 20 דקות נסיעה למלון</p>
           </div>
-          <div class="timeline-item">
+          <div class="timeline-item attraction">
             <div class="time-label">18:00</div>
             <h4>הליכת היכרות על הנהר</h4>
             <p>טיילת Ljubljanica - גשרים מוארים, בתי קפה, אווירה קסומה. בלובליאנה אין מכוניות במרכז העיר - הכל רגלי!</p>
           </div>
-          <div class="timeline-item">
+          <div class="timeline-item meal">
             <div class="time-label">20:00</div>
             <h4>ארוחת ערב ראשונה יחד</h4>
             <p>מסעדה על הנהר - האוכל הסלובני מפתיע לטובה!</p>
@@ -914,44 +969,45 @@
       </div>
       <div class="day-body">
         <div class="timeline">
-          <div class="timeline-item highlight">
+          <div class="timeline-item attraction">
             <div class="time-label">09:30</div>
             <h4><a href="https://www.ljubljanskigrad.si/en/" target="_blank">טירת לובליאנה + רכבל</a></h4>
             <p>רכבל מודרני למעלה, תצפית 360 על העיר וההרים, מוזיאון ומגדל תצפית</p>
             <span class="tag tag-price">EUR 19 / מבוגר, EUR 8 / ילד</span>
             <span class="tag tag-time">1.5 שעה</span>
             <span class="tag tag-access">נגיש - רכבל + מעלית</span>
+            <img class="timeline-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Ljubljana_castle_%2814893821451%29.jpg/640px-Ljubljana_castle_%2814893821451%29.jpg" alt="טירת לובליאנה" loading="lazy">
           </div>
-          <div class="timeline-item">
+          <div class="timeline-item attraction">
             <div class="time-label">11:00</div>
             <h4>סיור ב-Old Town</h4>
             <p>כיכר Preseren, הגשר המשולש, <a href="https://www.visitljubljana.com/en/visitors/attractions/dragon-bridge/" target="_blank">גשר הדרקונים</a> המפורסם, שוק מרכזי</p>
           </div>
-          <div class="timeline-item">
+          <div class="timeline-item meal">
             <div class="time-label">12:30</div>
             <h4>ארוחת צהריים על הנהר</h4>
             <p>מסעדה על גדות ה-Ljubljanica. אוכל סלובני טרי, ביטולות, שניצלים ודגי נהר.</p>
           </div>
-          <div class="timeline-item highlight">
+          <div class="timeline-item attraction">
             <div class="time-label">14:00</div>
             <h4><a href="https://www.visitljubljana.com/en/visitors/activities/boat-rides/" target="_blank">שיט על נהר Ljubljanica</a></h4>
             <p>שעה של שיט בסירה מקורה, עוברים מתחת לגשרים, מדריך מספר על ההיסטוריה</p>
             <span class="tag tag-price">~EUR 15 / אדם</span>
             <span class="tag tag-time">1 שעה</span>
           </div>
-          <div class="timeline-item">
+          <div class="timeline-item drive">
             <div class="time-label">15:00</div>
             <h4>נסיעה ל-BTC City</h4>
             <p>10 דקות נסיעה מהמרכז, יציאה מזרחית מהעיר</p>
           </div>
-          <div class="timeline-item highlight">
+          <div class="timeline-item attraction">
             <div class="time-label">15:15</div>
             <h4><a href="https://www.btc-city.com/en" target="_blank">BTC City / Citypark - קניות!</a></h4>
             <p>מהמרכזים המסחריים הגדולים באירופה - 450+ חנויות! Zara, H&M, Ralph Lauren, Hugo Boss, Primark, Tommy Hilfiger ועוד.</p>
             <span class="tag tag-time">2 שעות</span>
             <span class="tag tag-tip">על הדרך לבלד!</span>
           </div>
-          <div class="timeline-item">
+          <div class="timeline-item drive">
             <div class="time-label">17:15</div>
             <h4>נסיעה לבלד</h4>
             <p>45 דקות מ-BTC City ישר לבלד (הקניון על הדרך, חוסך נסיעה!)</p>
@@ -961,7 +1017,7 @@
             <h4>צ'ק-אין + התארגנות</h4>
             <p>Rikli Balance Hotel על שפת האגם. שחרור מזוודות, רגע של מנוחה.</p>
           </div>
-          <div class="timeline-item">
+          <div class="timeline-item meal">
             <div class="time-label">19:00</div>
             <h4>ארוחת ערב בבלד</h4>
             <p>מסעדה עם נוף לאגם - הכרות ראשונה עם הפנינה של סלובניה</p>
@@ -985,33 +1041,34 @@
       </div>
       <div class="day-body">
         <div class="timeline">
-          <div class="timeline-item highlight">
+          <div class="timeline-item attraction">
             <div class="time-label">09:30</div>
             <h4><a href="https://www.bled.si/en/what-to-see-do/activities/16/pletna-boat/" target="_blank">סירת Pletna לאי בלד</a></h4>
             <p>סירת עץ מסורתית חוצה את האגם הכחול אל האי עם הכנסייה. אחד הנופים הכי מצולמים בעולם!</p>
             <span class="tag tag-price">EUR 18 / אדם</span>
             <span class="tag tag-time">1.5 שעה</span>
             <span class="tag tag-access">הסירה נגישה לכולם</span>
+            <img class="timeline-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Bled_%2818%29_%283897534112%29.jpg/640px-Bled_%2818%29_%283897534112%29.jpg" alt="סירת Pletna באגם בלד" loading="lazy">
           </div>
-          <div class="timeline-item">
+          <div class="timeline-item drive">
             <div class="time-label">11:00</div>
             <h4>נסיעה לטירת בלד</h4>
             <p>5 דקות נסיעה מהאגם למעלה לחניון הטירה</p>
           </div>
-          <div class="timeline-item highlight">
+          <div class="timeline-item attraction">
             <div class="time-label">11:15</div>
             <h4><a href="https://www.bfreled.si/en/" target="_blank">טירת בלד</a></h4>
             <p>טירה מימי הביניים על צוק מעל האגם - נוף שעוצר את הנשימה!</p>
             <span class="tag tag-price">EUR 15 / מבוגר, EUR 7 / ילד</span>
             <span class="tag tag-time">1 שעה</span>
           </div>
-          <div class="timeline-item">
+          <div class="timeline-item meal">
             <div class="time-label">12:15</div>
             <h4>ירידה לעיירה + Kremsnita</h4>
             <p>5 דק' נסיעה בחזרה למטה. חובה לטעום את עוגת הקרם המפורסמת של בלד! שכבות קרם וניל, קצפת ובצק פריך. Park Hotel Cafe או Cafe Belvedere.</p>
             <span class="tag tag-tip">חוויה סלובנית קלאסית</span>
           </div>
-          <div class="timeline-item">
+          <div class="timeline-item meal">
             <div class="time-label">13:00</div>
             <h4>ארוחת צהריים</h4>
             <p>מסעדה בעיירת בלד עם נוף לאגם</p>
@@ -1053,12 +1110,12 @@
       </div>
       <div class="day-body">
         <div class="timeline">
-          <div class="timeline-item">
+          <div class="timeline-item drive">
             <div class="time-label">09:00</div>
             <h4>נסיעה מבלד ל-Bohinj</h4>
             <p>30 דקות דרך כפרים אלפיניים ציוריים</p>
           </div>
-          <div class="timeline-item highlight">
+          <div class="timeline-item attraction">
             <div class="time-label">09:30</div>
             <h4><a href="https://vogel.si/en/" target="_blank">רכבל Vogel</a></h4>
             <p>עולים ל-1,535 מטר! נוף פנורמי על אגם Bohinj, הרי האלפים היוליאניים ועמקים ירוקים. למעלה יש מסעדה, שבילי הליכה, ורכבל כסאות נוסף.</p>
@@ -1066,13 +1123,14 @@
             <span class="tag tag-time">2 שעות</span>
             <span class="tag tag-tip">למעלה 15&#176;C - לקחת סוודר!</span>
             <span class="tag tag-access">נגיש - גונדולה גדולה</span>
+            <img class="timeline-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Bohinj_%2814448069152%29.jpg/640px-Bohinj_%2814448069152%29.jpg" alt="נוף מ-Vogel על אגם Bohinj" loading="lazy">
           </div>
-          <div class="timeline-item">
+          <div class="timeline-item drive">
             <div class="time-label">11:30</div>
             <h4>ירידה מ-Vogel + נסיעה לחוף האגם</h4>
             <p>10 דקות נסיעה מתחנת הרכבל לחוף הרחצה</p>
           </div>
-          <div class="timeline-item">
+          <div class="timeline-item meal">
             <div class="time-label">12:00</div>
             <h4>ארוחת צהריים + שחייה באגם Bohinj</h4>
             <p>מים צלולים ב-21 מעלות, כניסה חינם, מוקף הרים. אחד האגמות הכי יפים באירופה!</p>
@@ -1114,12 +1172,12 @@
       </div>
       <div class="day-body">
         <div class="timeline">
-          <div class="timeline-item">
+          <div class="timeline-item drive">
             <div class="time-label">08:30</div>
             <h4>צ'ק-אאוט מבלד, נסיעה ל-Postojna</h4>
             <p>כשעה נסיעה דרומה</p>
           </div>
-          <div class="timeline-item highlight">
+          <div class="timeline-item attraction">
             <div class="time-label">10:00</div>
             <h4><a href="https://www.postojnska-jama.eu/en/" target="_blank">מערת Postojna - המערה הכי מפורסמת באירופה!</a></h4>
             <p>רכבת חשמלית 3.7 ק"מ בתוך מערה ענקית, ואז הליכה מודרכת בין אולמות מוארים עם נטיפים ענקיים. 150 שנה של תיירות - 39 מיליון מבקרים!</p>
@@ -1127,26 +1185,28 @@
             <span class="tag tag-time">1.5 שעה</span>
             <span class="tag tag-tip">10&#176;C בפנים - חובה ז'קט!</span>
             <span class="tag tag-access">הרכבת - נגישה לכולם!</span>
+            <img class="timeline-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Postojnska_jama_%2812%29.jpg/640px-Postojnska_jama_%2812%29.jpg" alt="מערת Postojna מבפנים" loading="lazy">
           </div>
-          <div class="timeline-item">
+          <div class="timeline-item drive">
             <div class="time-label">11:30</div>
             <h4>נסיעה לטירת Predjama</h4>
             <p>10 דקות נסיעה מהמערה דרך כפרים ירוקים</p>
           </div>
-          <div class="timeline-item highlight">
+          <div class="timeline-item attraction">
             <div class="time-label">11:45</div>
             <h4><a href="https://www.postojnska-jama.eu/en/predjama-castle/" target="_blank">טירת Predjama - הטירה בתוך הצוק</a></h4>
             <p>טירה בנויה בתוך פתח מערה בצוק של 123 מטר! אחד המראות הכי ייחודיים באירופה.</p>
             <span class="tag tag-tip">כרטיס משולב חוסך 25%!</span>
             <span class="tag tag-time">45 דקות</span>
+            <img class="timeline-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/H%C3%B6hlenburg_Predjama_in_Slovenien.jpg/640px-H%C3%B6hlenburg_Predjama_in_Slovenien.jpg" alt="טירת Predjama בתוך הצוק" loading="lazy">
           </div>
-          <div class="timeline-item">
+          <div class="timeline-item meal">
             <div class="time-label">12:30</div>
             <h4>ארוחת צהריים ליד Postojna</h4>
             <p>מסעדה באזור - מטבח סלובני ביתי, שטרודל תפוחים מקומי</p>
             <span class="tag tag-time">1 שעה</span>
           </div>
-          <div class="timeline-item">
+          <div class="timeline-item drive">
             <div class="time-label">13:30</div>
             <h4>נוסעים לטריאסט, איטליה!</h4>
             <p>50 דקות נסיעה, חוצים את הגבול סלובניה-איטליה. ברוכים הבאים לאיטליה!</p>
@@ -1156,12 +1216,12 @@
             <h4>צ'ק-אין בטריאסט</h4>
             <p>ארמון Savoia Excelsior מול המפרץ. הליכה ל-<a href="https://www.trieste.green/en/piazza-unita-ditalia/" target="_blank">Piazza Unita d'Italia</a> - הכיכר הכי גדולה באירופה הפונה לים!</p>
           </div>
-          <div class="timeline-item">
+          <div class="timeline-item attraction">
             <div class="time-label">15:30</div>
             <h4>שוטטות ב-<a href="https://www.trieste.green/en/piazza-unita-ditalia/" target="_blank">העיר העתיקה</a></h4>
             <p>טריאסט = בירת הקפה של איטליה. Illy נולדה כאן! בתי קפה מלכותיים מהמאה ה-19, חנויות איטלקיות ברחובות Via del Teatro ו-Corso Italia.</p>
           </div>
-          <div class="timeline-item">
+          <div class="timeline-item meal">
             <div class="time-label">19:30</div>
             <h4>ארוחת ערב איטלקית על התעלה</h4>
             <p>Canal Grande - פסטה, דגים טריים, Prosecco, שקיעה על המפרץ</p>
@@ -1181,18 +1241,19 @@
       </div>
       <div class="day-body">
         <div class="timeline">
-          <div class="timeline-item">
+          <div class="timeline-item drive">
             <div class="time-label">08:45</div>
             <h4>יציאה מהמלון</h4>
             <p>15 דקות נסיעה ל-Miramare לאורך המפרץ</p>
           </div>
-          <div class="timeline-item highlight">
+          <div class="timeline-item attraction">
             <div class="time-label">09:00</div>
             <h4><a href="https://miramare.cultura.gov.it/en/visit/" target="_blank">טירת Miramare</a></h4>
             <p>טירה לבנה של הבסבורגים בנויה ישירות על הים. גנים מרהיבים, חדרים מרוהטים, נוף על מפרץ טריאסט. אחת הטירות הכי יפות באירופה!</p>
             <span class="tag tag-price">חינם מתחת ל-18! מבוגרים ~EUR 12</span>
             <span class="tag tag-time">2 שעות</span>
             <span class="tag tag-access">גנים שטוחים - מושלם לכולם</span>
+            <img class="timeline-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Castello_di_Miramare_%28Trieste%29_%287%29.jpg/640px-Castello_di_Miramare_%28Trieste%29_%287%29.jpg" alt="טירת Miramare מעל הים" loading="lazy">
           </div>
         </div>
         <p style="text-align: center; color: var(--teal-dark); margin-top: 24px; font-weight: 700; font-size: 16px;">אחרי Miramare - בחרו את שלכם:</p>
@@ -1221,12 +1282,12 @@
           </div>
         </div>
         <div class="timeline" style="margin-top: 20px; padding-top: 16px; border-top: 1px dashed #ddd;">
-          <div class="timeline-item">
+          <div class="timeline-item meal">
             <div class="time-label">17:30</div>
             <h4>כולם מתאחדים - ג'לטו על הטיילת</h4>
             <p>הליכה לאורך המפרץ, גלידה איטלקית, שקיעה מעל הים (20:30)</p>
           </div>
-          <div class="timeline-item">
+          <div class="timeline-item meal">
             <div class="time-label">19:30</div>
             <h4>ארוחת ערב אחרונה באיטליה</h4>
             <p>על התעלה או על הכיכר. להיפרד מאיטליה בסטייל!</p>
@@ -1293,12 +1354,12 @@
       </div>
       <div class="day-body">
         <div class="timeline">
-          <div class="timeline-item">
+          <div class="timeline-item drive">
             <div class="time-label">בוקר</div>
             <h4>נסיעה לשדה התעופה בלובליאנה</h4>
             <p>מפיראן: 1.5 שעות נסיעה. מטריאסט: 1:15 שעות. יש לצאת בהתאם לשעת הטיסה.</p>
           </div>
-          <div class="timeline-item highlight">
+          <div class="timeline-item drive">
             <div class="time-label">&#9992;</div>
             <h4>טיסת ישראייר חזרה לנתב"ג</h4>
             <p>טיסה ישירה, 3:40 שעות. נוחתים בארץ ועם מזוודה מלאה בזיכרונות!</p>

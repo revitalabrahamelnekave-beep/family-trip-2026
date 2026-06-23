@@ -339,31 +339,37 @@
   }
 
   .timeline-img {
-    display: block;
-    width: 200px;
-    height: 140px;
+    float: left;
+    width: 170px;
+    height: 120px;
     object-fit: cover;
     border-radius: 2px;
-    margin: 14px auto 6px 0;
-    padding: 6px 6px 28px 6px;
+    margin: 2px 16px 8px 0;
+    padding: 5px 5px 22px 5px;
     background: var(--white);
-    box-shadow: 3px 4px 14px rgba(0,0,0,0.15), 0 1px 4px rgba(0,0,0,0.08);
-    transform: rotate(-1.5deg);
+    box-shadow: 3px 4px 12px rgba(0,0,0,0.14);
+    transform: rotate(-2deg);
     border: 1px solid #e0e0e0;
     transition: transform 0.3s;
   }
 
   .timeline-img:hover {
-    transform: rotate(0deg) scale(1.05);
+    transform: rotate(0deg) scale(1.08);
+    z-index: 2;
   }
 
   .day-card:nth-child(even) .timeline-img {
-    transform: rotate(2deg);
-    margin: 14px 0 6px auto;
+    transform: rotate(1.5deg);
   }
 
   .day-card:nth-child(even) .timeline-img:hover {
-    transform: rotate(0deg) scale(1.05);
+    transform: rotate(0deg) scale(1.08);
+  }
+
+  .timeline-item::after {
+    content: '';
+    display: table;
+    clear: both;
   }
 
   .time-label {
@@ -383,12 +389,11 @@
   .day-body a,
   .alt-box a,
   .option-card a {
-    color: var(--teal);
+    color: #1558b0;
     text-decoration: underline;
-    text-decoration-color: var(--teal-light);
+    text-decoration-color: #7abaff;
     text-underline-offset: 3px;
     text-decoration-thickness: 2px;
-    font-weight: 700;
     transition: all 0.2s;
   }
 
@@ -396,8 +401,8 @@
   .day-body a:hover,
   .alt-box a:hover,
   .option-card a:hover {
-    color: var(--teal-dark);
-    text-decoration-color: var(--teal-dark);
+    color: #0d47a1;
+    text-decoration-color: #0d47a1;
   }
 
   .timeline-item p {
@@ -645,17 +650,17 @@
   }
 
   .hotel-info h4 a {
-    color: var(--teal);
+    color: #1558b0;
     text-decoration: underline;
-    text-decoration-color: var(--teal-light);
+    text-decoration-color: #7abaff;
     text-underline-offset: 3px;
     text-decoration-thickness: 2px;
     transition: all 0.2s;
   }
 
   .hotel-info h4 a:hover {
-    color: var(--teal-dark);
-    text-decoration-color: var(--teal-dark);
+    color: #0d47a1;
+    text-decoration-color: #0d47a1;
   }
 
   .hotel-info p {
@@ -756,17 +761,17 @@
   }
 
   .shop-info h4 a {
-    color: var(--teal);
+    color: #1558b0;
     text-decoration: underline;
-    text-decoration-color: var(--teal-light);
+    text-decoration-color: #7abaff;
     text-underline-offset: 3px;
     text-decoration-thickness: 2px;
     transition: all 0.2s;
   }
 
   .shop-info h4 a:hover {
-    color: var(--teal-dark);
-    text-decoration-color: var(--teal-dark);
+    color: #0d47a1;
+    text-decoration-color: #0d47a1;
   }
 
   .shop-info p {
@@ -991,8 +996,8 @@
           <div class="timeline-item attraction">
             <div class="time-label">18:00</div>
             <h4>הליכת היכרות על הנהר</h4>
-            <p>טיילת Ljubljanica - גשרים מוארים, בתי קפה, אווירה קסומה. בלובליאנה אין מכוניות במרכז העיר - הכל רגלי!</p>
             <img class="timeline-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Dragons_Bridge%2C_Ljubljana_2.jpg/960px-Dragons_Bridge%2C_Ljubljana_2.jpg" alt="גשר הדרקונים, לובליאנה" loading="lazy">
+            <p>טיילת Ljubljanica - גשרים מוארים, בתי קפה, אווירה קסומה. בלובליאנה אין מכוניות במרכז העיר - הכל רגלי!</p>
           </div>
           <div class="timeline-item meal">
             <div class="time-label">20:00</div>
@@ -1017,11 +1022,11 @@
           <div class="timeline-item attraction">
             <div class="time-label">09:30</div>
             <h4><a href="https://www.ljubljanskigrad.si/en/" target="_blank">טירת לובליאנה + רכבל</a></h4>
+            <img class="timeline-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Ljubljana_old_town_with_excursion_boat.JPG/960px-Ljubljana_old_town_with_excursion_boat.JPG" alt="שיט על נהר Ljubljanica" loading="lazy">
             <p>רכבל מודרני למעלה, תצפית 360 על העיר וההרים, מוזיאון ומגדל תצפית</p>
             <span class="tag tag-price">EUR 19 / מבוגר, EUR 8 / ילד</span>
             <span class="tag tag-time">1.5 שעה</span>
             <span class="tag tag-access">נגיש - רכבל + מעלית</span>
-            <img class="timeline-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Ljubljana_old_town_with_excursion_boat.JPG/960px-Ljubljana_old_town_with_excursion_boat.JPG" alt="שיט על נהר Ljubljanica" loading="lazy">
           </div>
           <div class="timeline-item attraction">
             <div class="time-label">11:00</div>
@@ -1070,7 +1075,7 @@
         </div>
         <div class="alt-box">
           <h5>חלופה למי שמעדיף תוכנית רגועה</h5>
-          <p>במקום הקניות: <a href="https://www.visitljubljana.com/en/visitors/attractions/tivoli-park/" target="_blank" style="color: var(--teal-dark);">פארק טיבולי</a> - הפארק הכי גדול בלובליאנה, שבילים ירוקים ומשחקי ילדים. או <a href="https://www.visitljubljana.com/en/visitors/attractions/metelkova-mesto/" target="_blank" style="color: var(--teal-dark);">Metelkova</a> - רובע אמנות אלטרנטיבי עם גרפיטי צבעוני (חינם, מעניין לנוער!)</p>
+          <p>במקום הקניות: <a href="https://www.visitljubljana.com/en/visitors/attractions/tivoli-park/" target="_blank" style="color: #1558b0;">פארק טיבולי</a> - הפארק הכי גדול בלובליאנה, שבילים ירוקים ומשחקי ילדים. או <a href="https://www.visitljubljana.com/en/visitors/attractions/metelkova-mesto/" target="_blank" style="color: #1558b0;">Metelkova</a> - רובע אמנות אלטרנטיבי עם גרפיטי צבעוני (חינם, מעניין לנוער!)</p>
         </div>
       </div>
     </div>
@@ -1089,11 +1094,11 @@
           <div class="timeline-item attraction">
             <div class="time-label">09:30</div>
             <h4><a href="https://www.bled.si/en/what-to-see-do/activities/16/pletna-boat/" target="_blank">סירת Pletna לאי בלד</a></h4>
+            <img class="timeline-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Lake_Bled_from_the_Mountain.jpg/960px-Lake_Bled_from_the_Mountain.jpg" alt="אגם בלד מלמעלה" loading="lazy">
             <p>סירת עץ מסורתית חוצה את האגם הכחול אל האי עם הכנסייה. אחד הנופים הכי מצולמים בעולם!</p>
             <span class="tag tag-price">EUR 18 / אדם</span>
             <span class="tag tag-time">1.5 שעה</span>
             <span class="tag tag-access">הסירה נגישה לכולם</span>
-            <img class="timeline-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Lake_Bled_from_the_Mountain.jpg/960px-Lake_Bled_from_the_Mountain.jpg" alt="אגם בלד מלמעלה" loading="lazy">
           </div>
           <div class="timeline-item drive">
             <div class="time-label">11:00</div>
@@ -1125,9 +1130,9 @@
             <span class="option-label">הרפתקאות</span>
             <h4>מגלשת הרים + קניון</h4>
             <ul>
-              <li><strong>14:30</strong> - <a href="https://www.straza-bled.si/en/summer/" target="_blank" style="color: var(--teal-dark);">Straza Alpine Coaster</a> - 5 דק' נסיעה. רכבל כסאות למעלה, מגלשת הרים 520 מ' ב-40 קמ"ש! (EUR 15/מבוגר, 1 שעה)</li>
+              <li><strong>14:30</strong> - <a href="https://www.straza-bled.si/en/summer/" target="_blank" style="color: #1558b0;">Straza Alpine Coaster</a> - 5 דק' נסיעה. רכבל כסאות למעלה, מגלשת הרים 520 מ' ב-40 קמ"ש! (EUR 15/מבוגר, 1 שעה)</li>
               <li><strong>15:30</strong> - נסיעה לקניון Vintgar (10 דק')</li>
-              <li><strong>15:45</strong> - <a href="https://www.vintgar.si/en/" target="_blank" style="color: var(--teal-dark);">קניון Vintgar</a> - 1.6 ק"מ שבילי עץ מעל קניון, מפלים וברכות טורקיז (EUR 13/מבוגר, 1.5 שעה)</li>
+              <li><strong>15:45</strong> - <a href="https://www.vintgar.si/en/" target="_blank" style="color: #1558b0;">קניון Vintgar</a> - 1.6 ק"מ שבילי עץ מעל קניון, מפלים וברכות טורקיז (EUR 13/מבוגר, 1.5 שעה)</li>
               <li><strong>17:15</strong> - חזרה למלון (10 דק'), מנוחה</li>
             </ul>
           </div>
@@ -1163,12 +1168,12 @@
           <div class="timeline-item attraction">
             <div class="time-label">09:30</div>
             <h4><a href="https://vogel.si/en/" target="_blank">רכבל Vogel</a></h4>
+            <img class="timeline-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Lake_Bohinj.jpg/960px-Lake_Bohinj.jpg" alt="אגם Bohinj" loading="lazy">
             <p>עולים ל-1,535 מטר! נוף פנורמי על אגם Bohinj, הרי האלפים היוליאניים ועמקים ירוקים. למעלה יש מסעדה, שבילי הליכה, ורכבל כסאות נוסף.</p>
             <span class="tag tag-price">EUR 33 / מבוגר, EUR 16.50 / ילד</span>
             <span class="tag tag-time">2 שעות</span>
             <span class="tag tag-tip">למעלה 15&#176;C - לקחת סוודר!</span>
             <span class="tag tag-access">נגיש - גונדולה גדולה</span>
-            <img class="timeline-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Lake_Bohinj.jpg/960px-Lake_Bohinj.jpg" alt="אגם Bohinj" loading="lazy">
           </div>
           <div class="timeline-item drive">
             <div class="time-label">11:30</div>
@@ -1189,7 +1194,7 @@
             <span class="option-label">הרפתקאות</span>
             <h4>אדרנלין אלפיני</h4>
             <ul>
-              <li><strong>14:30</strong> - <a href="https://www.bohinj.si/en/what-to-see-do/adventures/" target="_blank" style="color: var(--teal-dark);">זיפליין + קייאקים + SUP</a> - 2 שעות של אדרנלין מעל האגם! (~EUR 20-30/אדם)</li>
+              <li><strong>14:30</strong> - <a href="https://www.bohinj.si/en/what-to-see-do/adventures/" target="_blank" style="color: #1558b0;">זיפליין + קייאקים + SUP</a> - 2 שעות של אדרנלין מעל האגם! (~EUR 20-30/אדם)</li>
               <li><strong>16:30</strong> - סיום פעילויות</li>
               <li><strong>17:00</strong> - חזרה לבלד (30 דק' נסיעה), מנוחה במלון</li>
             </ul>
@@ -1198,7 +1203,7 @@
             <span class="option-label">רגוע</span>
             <h4>כפר אלפיני + ספא</h4>
             <ul>
-              <li><strong>14:30</strong> - <a href="https://www.bohinj.si/en/what-to-see-do/villages/" target="_blank" style="color: var(--teal-dark);">Stara Fuzina</a> - כפר אלפיני מקסים, קפה, גבינות מקומיות</li>
+              <li><strong>14:30</strong> - <a href="https://www.bohinj.si/en/what-to-see-do/villages/" target="_blank" style="color: #1558b0;">Stara Fuzina</a> - כפר אלפיני מקסים, קפה, גבינות מקומיות</li>
               <li><strong>16:00</strong> - חזרה למלון, בריכות תרמיות וספא</li>
             </ul>
           </div>
@@ -1225,12 +1230,12 @@
           <div class="timeline-item attraction">
             <div class="time-label">10:00</div>
             <h4><a href="https://www.postojnska-jama.eu/en/" target="_blank">מערת Postojna - המערה הכי מפורסמת באירופה!</a></h4>
+            <img class="timeline-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Postojnska_jama_-_vlakec_1.jpg/960px-Postojnska_jama_-_vlakec_1.jpg" alt="רכבת במערת Postojna" loading="lazy">
             <p>רכבת חשמלית 3.7 ק"מ בתוך מערה ענקית, ואז הליכה מודרכת בין אולמות מוארים עם נטיפים ענקיים. 150 שנה של תיירות - 39 מיליון מבקרים!</p>
             <span class="tag tag-price">EUR 30.90 / מבוגר, EUR 17.30 / ילד</span>
             <span class="tag tag-time">1.5 שעה</span>
             <span class="tag tag-tip">10&#176;C בפנים - חובה ז'קט!</span>
             <span class="tag tag-access">הרכבת - נגישה לכולם!</span>
-            <img class="timeline-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Postojnska_jama_-_vlakec_1.jpg/960px-Postojnska_jama_-_vlakec_1.jpg" alt="רכבת במערת Postojna" loading="lazy">
           </div>
           <div class="timeline-item drive">
             <div class="time-label">11:30</div>
@@ -1293,11 +1298,11 @@
           <div class="timeline-item attraction">
             <div class="time-label">09:00</div>
             <h4><a href="https://miramare.cultura.gov.it/en/visit/" target="_blank">טירת Miramare</a></h4>
+            <img class="timeline-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Trieste_-_Piazza_Unit%C3%A0_d%27Italia_al_tramonto.JPG/960px-Trieste_-_Piazza_Unit%C3%A0_d%27Italia_al_tramonto.JPG" alt="כיכר Piazza Unita d'Italia בטריאסט" loading="lazy">
             <p>טירה לבנה של הבסבורגים בנויה ישירות על הים. גנים מרהיבים, חדרים מרוהטים, נוף על מפרץ טריאסט. אחת הטירות הכי יפות באירופה!</p>
             <span class="tag tag-price">חינם מתחת ל-18! מבוגרים ~EUR 12</span>
             <span class="tag tag-time">2 שעות</span>
             <span class="tag tag-access">גנים שטוחים - מושלם לכולם</span>
-            <img class="timeline-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Trieste_-_Piazza_Unit%C3%A0_d%27Italia_al_tramonto.JPG/960px-Trieste_-_Piazza_Unit%C3%A0_d%27Italia_al_tramonto.JPG" alt="כיכר Piazza Unita d'Italia בטריאסט" loading="lazy">
           </div>
         </div>
         <p style="text-align: center; color: var(--teal-dark); margin-top: 24px; font-weight: 700; font-size: 16px;">אחרי Miramare - בחרו את שלכם:</p>
@@ -1307,9 +1312,9 @@
             <h4>מערת ענק + חבלים</h4>
             <ul>
               <li><strong>11:00</strong> - נסיעה ל-Grotta Gigante (15 דק' מ-Miramare)</li>
-              <li><strong>11:15</strong> - <a href="https://www.grottagigante.it/en/" target="_blank" style="color: var(--teal-dark);">Grotta Gigante</a> - אולם המערה הגדול בעולם, 107 מ' גובה! שימו לב: 500 מדרגות (EUR 15/מבוגר, 1 שעה)</li>
+              <li><strong>11:15</strong> - <a href="https://www.grottagigante.it/en/" target="_blank" style="color: #1558b0;">Grotta Gigante</a> - אולם המערה הגדול בעולם, 107 מ' גובה! שימו לב: 500 מדרגות (EUR 15/מבוגר, 1 שעה)</li>
               <li><strong>13:00</strong> - ארוחת צהריים ב-Osmiza - מסעדה כפרית ייחודית לקארסט. יין, נקניקים וגבינה ביתיים</li>
-              <li><strong>14:30</strong> - <a href="https://www.parcoavventuratrieste.it/" target="_blank" style="color: var(--teal-dark);">Trieste Adventure Park</a> - מסלולי חבלים, 8 רמות קושי, זיפליין 95 מ' (~EUR 25/אדם, 2 שעות)</li>
+              <li><strong>14:30</strong> - <a href="https://www.parcoavventuratrieste.it/" target="_blank" style="color: #1558b0;">Trieste Adventure Park</a> - מסלולי חבלים, 8 רמות קושי, זיפליין 95 מ' (~EUR 25/אדם, 2 שעות)</li>
             </ul>
           </div>
           <div class="option-card">
@@ -1318,9 +1323,9 @@
             <ul>
               <li><strong>11:00</strong> - נסיעה חזרה לעיר (15 דק')</li>
               <li><strong>11:15</strong> - <strong>בית הכנסת של טריאסט</strong> - מהגדולים באירופה (1912). טריאסט היתה "שער ציון" - משם יצאו אלפי יהודים לישראל</li>
-              <li><strong>13:00</strong> - ארוחת צהריים בעיר העתיקה, קפה ב-<a href="https://www.caffedeglispecchi.it/" target="_blank" style="color: var(--teal-dark);">Caffe degli Specchi</a> - בית קפה מלכותי מ-1839</li>
+              <li><strong>13:00</strong> - ארוחת צהריים בעיר העתיקה, קפה ב-<a href="https://www.caffedeglispecchi.it/" target="_blank" style="color: #1558b0;">Caffe degli Specchi</a> - בית קפה מלכותי מ-1839</li>
               <li><strong>14:30</strong> - נסיעה לשביל Rilke (20 דק' לכיוון Duino)</li>
-              <li><strong>15:00</strong> - <a href="https://www.turismofvg.it/en/rilke-path/" target="_blank" style="color: var(--teal-dark);">Rilke Trail</a> - שביל צוקים 1.7 ק"מ מעל הים, קל ומרהיב (1 שעה)</li>
+              <li><strong>15:00</strong> - <a href="https://www.turismofvg.it/en/rilke-path/" target="_blank" style="color: #1558b0;">Rilke Trail</a> - שביל צוקים 1.7 ק"מ מעל הים, קל ומרהיב (1 שעה)</li>
               <li><strong>16:00</strong> - חזרה לטריאסט (20 דק')</li>
             </ul>
           </div>
@@ -1350,20 +1355,21 @@
         </div>
       </div>
       <div class="day-body">
-        <p style="text-align: center; color: var(--text-light); margin-bottom: 20px; font-size: 15px;">שני מסלולים מושלמים ליום האחרון. שניהם מתאימים לכולם ומסתיימים בארוחת ערב על הים.</p>
-        <img class="timeline-img" style="margin-bottom: 20px;" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Piran%27s_Harbour_at_Night.jpg/960px-Piran%27s_Harbour_at_Night.jpg" alt="נמל פיראן בלילה" loading="lazy">
+        <img class="timeline-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Piran%27s_Harbour_at_Night.jpg/960px-Piran%27s_Harbour_at_Night.jpg" alt="נמל פיראן בלילה" loading="lazy">
+        <p style="color: var(--text-light); margin-bottom: 20px; font-size: 15px;">שני מסלולים מושלמים ליום האחרון. שניהם מתאימים לכולם ומסתיימים בארוחת ערב על הים.</p>
+        <div style="clear: both;"></div>
         <div class="option-tabs">
           <div class="option-card">
             <span class="option-label">אופציה א'</span>
             <h4>ליפיצה + פיראן</h4>
             <p style="margin-bottom: 12px;">סוסים, עיירת חוף ונציאנית, ים ושקיעה</p>
             <ul>
-              <li><strong>09:00</strong> - נסיעה מטריאסט ל-<a href="https://www.lipica.org/en/" target="_blank" style="color: var(--teal-dark);">Lipica Stud Farm</a> (25 דק')</li>
+              <li><strong>09:00</strong> - נסיעה מטריאסט ל-<a href="https://www.lipica.org/en/" target="_blank" style="color: #1558b0;">Lipica Stud Farm</a> (25 דק')</li>
               <li><strong>09:30</strong> - חוות הסוסים המקורית של הליפיצנרים הלבנים! מופע סוסים, סיור במתחם, אפשרות רכיבה. מתאים לכל הגילאים!</li>
-              <li><strong>12:00</strong> - נסיעה ל-<a href="https://www.portoroz.si/en/explore/towns/piran" target="_blank" style="color: var(--teal-dark);">Piran</a> (30 דק')</li>
+              <li><strong>12:00</strong> - נסיעה ל-<a href="https://www.portoroz.si/en/explore/towns/piran" target="_blank" style="color: #1558b0;">Piran</a> (30 דק')</li>
               <li><strong>12:30</strong> - ארוחת דגים על הנמל של פיראן</li>
               <li><strong>14:00</strong> - סיור בעיר העתיקה הונציאנית, מגדל הפעמונים, חומות</li>
-              <li><strong>15:30</strong> - שחייה ב-<a href="https://www.portoroz.si/en/explore/beaches/fiesa-beach" target="_blank" style="color: var(--teal-dark);">Fiesa Beach</a> (מוצל, מים רדודים, מושלם)</li>
+              <li><strong>15:30</strong> - שחייה ב-<a href="https://www.portoroz.si/en/explore/beaches/fiesa-beach" target="_blank" style="color: #1558b0;">Fiesa Beach</a> (מוצל, מים רדודים, מושלם)</li>
               <li><strong>19:00</strong> - ארוחת פרידה על הים בפיראן</li>
             </ul>
           </div>
@@ -1372,12 +1378,12 @@
             <h4>פיראן + פורטורוז' - יום חוף</h4>
             <p style="margin-bottom: 12px;">יום רגוע, ים, עיר עתיקה, ספא ושקיעה</p>
             <ul>
-              <li><strong>09:00</strong> - נסיעה מטריאסט ל-<a href="https://www.portoroz.si/en/explore/towns/piran" target="_blank" style="color: var(--teal-dark);">Piran</a> (40 דק')</li>
+              <li><strong>09:00</strong> - נסיעה מטריאסט ל-<a href="https://www.portoroz.si/en/explore/towns/piran" target="_blank" style="color: #1558b0;">Piran</a> (40 דק')</li>
               <li><strong>09:30</strong> - סיור בחירה בעיר העתיקה: רחובות צרים, כיכר Tartini, מגדל פעמונים עם נוף, חומות העיר</li>
               <li><strong>11:00</strong> - קפה + גלידה על הנמל</li>
               <li><strong>12:00</strong> - ארוחת דגים על המים</li>
-              <li><strong>13:30</strong> - <a href="https://www.portoroz.si/en/explore/beaches" target="_blank" style="color: var(--teal-dark);">חופי Portoroz</a> - יום חוף מפנק, שחייה בים (25 מעלות!)</li>
-              <li><strong>16:00</strong> - ספא ב-<a href="https://www.lifeclass.net/en/" target="_blank" style="color: var(--teal-dark);">LifeClass Resort Portoroz</a> (בריכות מי ים תרמיות, כניסת יום)</li>
+              <li><strong>13:30</strong> - <a href="https://www.portoroz.si/en/explore/beaches" target="_blank" style="color: #1558b0;">חופי Portoroz</a> - יום חוף מפנק, שחייה בים (25 מעלות!)</li>
+              <li><strong>16:00</strong> - ספא ב-<a href="https://www.lifeclass.net/en/" target="_blank" style="color: #1558b0;">LifeClass Resort Portoroz</a> (בריכות מי ים תרמיות, כניסת יום)</li>
               <li><strong>19:00</strong> - ארוחת פרידה על הים בפיראן</li>
             </ul>
           </div>

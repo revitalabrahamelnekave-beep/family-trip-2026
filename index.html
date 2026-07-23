@@ -898,6 +898,63 @@
     transform: translateY(0);
   }
 
+  /* ============ STICKY NAV ============ */
+  .sticky-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    transform: translateY(-100%);
+    transition: transform 0.3s ease;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  .sticky-nav.visible { transform: translateY(0); }
+  .sticky-nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    margin: 0 auto;
+    padding: 0;
+    max-width: 900px;
+    flex-wrap: wrap;
+  }
+  .sticky-nav li a {
+    display: block;
+    padding: 14px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-light);
+    text-decoration: none;
+    transition: all 0.2s;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+  }
+  .sticky-nav li a:hover,
+  .sticky-nav li a.active {
+    color: var(--teal);
+    border-bottom-color: var(--teal);
+  }
+
+  /* ============ FUN FACTS ============ */
+  .fun-fact {
+    background: linear-gradient(135deg, rgba(212,168,67,0.12), rgba(212,168,67,0.04));
+    border-right: 3px solid var(--gold);
+    border-radius: 0 10px 10px 0;
+    padding: 12px 16px;
+    margin: 16px 0;
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.6;
+  }
+  .fun-fact strong {
+    color: var(--gold);
+    font-weight: 700;
+  }
+
   /* ============ RESPONSIVE ============ */
   @media (max-width: 700px) {
     .hero { min-height: 80vh; }
@@ -910,6 +967,7 @@
     .option-tabs { grid-template-columns: 1fr; }
     .option-tabs-3 { grid-template-columns: 1fr; }
     .hotel-card { flex-direction: column; text-align: center; }
+    .sticky-nav li a { padding: 10px 12px; font-size: 12px; }
     .hotel-stay { flex-direction: column; text-align: center; }
     .weather-grid { grid-template-columns: 1fr 1fr; }
     .overview-grid { grid-template-columns: 1fr 1fr; }
@@ -929,7 +987,7 @@
   <div class="hero-content">
     <div class="hero-badge">קיץ 2026</div>
     <h1>
-      נופש שנתי משפוחס 2026
+      הנופש המשפחתי הגדול 2026
       <span>סלובניה - טריאסט</span>
     </h1>
     <p class="hero-subtitle">
@@ -957,8 +1015,21 @@
   </div>
 </section>
 
+<!-- ============ STICKY NAV ============ -->
+<nav class="sticky-nav" id="stickyNav">
+  <ul>
+    <li><a href="#overview">סקירה</a></li>
+    <li><a href="#weather-section">מזג אוויר</a></li>
+    <li><a href="#itinerary">המסלול</a></li>
+    <li><a href="#hotels">מלונות</a></li>
+    <li><a href="#packing">מה לארוז</a></li>
+    <li><a href="#shopping">קניות</a></li>
+    <li><a href="#map-section">מפה</a></li>
+  </ul>
+</nav>
+
 <!-- ============ OVERVIEW ============ -->
-<section>
+<section id="overview">
   <div class="container">
     <div class="section-title">
       <h2>מה מחכה לנו?</h2>
@@ -998,7 +1069,7 @@
     </div>
 
     <!-- WEATHER -->
-    <div class="weather-section">
+    <div class="weather-section" id="weather-section">
       <h3>מזג אוויר - סוף יולי / תחילת אוגוסט</h3>
       <div class="weather-grid">
         <div class="weather-card">
@@ -1027,7 +1098,7 @@
 </section>
 
 <!-- ============ DAYS ============ -->
-<section>
+<section id="itinerary">
   <div class="container">
     <div class="section-title">
       <h2>התוכנית - יום אחר יום</h2>
@@ -1079,6 +1150,7 @@
             <h4>הליכת היכרות בעיר העתיקה</h4>
             <img class="timeline-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Dragons_Bridge%2C_Ljubljana_2.jpg/960px-Dragons_Bridge%2C_Ljubljana_2.jpg" alt="גשר הדרקונים, לובליאנה" loading="lazy">
             <p>טיילת Ljubljanica - גשרים מוארים, בתי קפה, אווירה קסומה. בלובליאנה אין מכוניות במרכז העיר - הכל רגלי!</p>
+            <div class="fun-fact"><strong>הידעתם?</strong> הדרקון הוא הסמל של לובליאנה. לפי האגדה, יאסון (מהמיתולוגיה היוונית) הרג דרקון כאן בדרכו חזרה עם גיזת הזהב.</div>
           </div>
           <div class="timeline-item meal">
             <div class="time-label">20:00</div>
@@ -1141,6 +1213,7 @@
             <h4>שוטטות בעיר העתיקה + <a href="https://www.trieste.green/en/piazza-unita-ditalia/" target="_blank">Piazza Unita d'Italia</a></h4>
             <img class="timeline-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Trieste_-_Piazza_Unit%C3%A0_d%27Italia_al_tramonto.JPG/960px-Trieste_-_Piazza_Unit%C3%A0_d%27Italia_al_tramonto.JPG" alt="כיכר Piazza Unita d'Italia בטריאסט" loading="lazy">
             <p>הכיכר הכי גדולה באירופה הפונה לים! משם הליכה על טיילת הים - בניינים מלכותיים מהתקופה האוסטרו-הונגרית.</p>
+            <div class="fun-fact"><strong>הידעתם?</strong> טריאסט היא בירת הקפה של איטליה. חברת Illy נוסדה כאן ב-1933, ויש בעיר יותר בתי קפה לנפש מכל עיר אחרת באיטליה.</div>
           </div>
           <div class="timeline-item meal">
             <div class="time-label">19:30</div>
@@ -1179,6 +1252,7 @@
             <h4><a href="https://miramare.cultura.gov.it/en/visit/" target="_blank">טירת Miramare + הגנים</a></h4>
             <img class="timeline-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Castello_di_Miramare_%28Trieste%29_%287%29.jpg/960px-Castello_di_Miramare_%28Trieste%29_%287%29.jpg" alt="טירת Miramare" loading="lazy">
             <p>טירה לבנה של הבסבורגים בנויה ישירות על הים. גנים מרהיבים, חדרים מרוהטים, נוף על מפרץ טריאסט. חובה לראות!</p>
+            <div class="fun-fact"><strong>הידעתם?</strong> הארכידוכס מקסימיליאן, שבנה את הטירה, הפך אחר כך לקיסר מקסיקו - ולצערו הוצא להורג שם. יש "קללת Miramare" שאומרת שכל מי שישן בטירה ימות בארץ זרה.</div>
             <span class="tag tag-price">חינם מתחת ל-18! מבוגרים ~EUR 12</span>
             <span class="tag tag-time">2-2.5 שעות</span>
             <span class="tag tag-tip">חובה!</span>
@@ -1273,6 +1347,7 @@
             <h4>הליכה ראשונה סביב האגם</h4>
             <img class="timeline-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Full_pletna_in_front_of_Bled_Castle%2C_Bled%2C_2013.jpg/960px-Full_pletna_in_front_of_Bled_Castle%2C_Bled%2C_2013.jpg" alt="אגם בלד וטירת בלד" loading="lazy">
             <p>אחד הנופים הכי מצולמים בעולם - האי עם הכנסייה, הטירה על הצוק, ומים כחולים-טורקיז</p>
+            <div class="fun-fact"><strong>הידעתם?</strong> 60% משטח סלובניה מכוסה יערות - אחת המדינות הכי ירוקות באירופה. קטנה כמו גליל + גולן, אבל עם 2 מיליון בני אדם בלבד.</div>
           </div>
           <div class="timeline-item meal">
             <div class="time-label">19:30</div>
@@ -1305,6 +1380,7 @@
             <div class="time-label">09:30</div>
             <h4><a href="https://www.bled.si/en/what-to-see-do/activities/16/pletna-boat/" target="_blank">סירת Pletna לאי בלד</a></h4>
             <p>סירת עץ מסורתית חוצה את האגם הכחול אל האי עם הכנסייה</p>
+            <div class="fun-fact"><strong>הידעתם?</strong> סירות ה-Pletna הן מסורת של 600 שנה! הזכות לחתור עוברת מאב לבן, ויש רק 20 משפחות מורשות. בכנסייה באי, מי שמצלצל בפעמון - מתגשמת לו משאלה.</div>
             <span class="tag tag-price">EUR 18 / אדם</span>
             <span class="tag tag-time">1.5 שעה</span>
             <span class="tag tag-access">הסירה נגישה לכולם</span>
@@ -1325,6 +1401,7 @@
             <div class="time-label">12:15</div>
             <h4>ירידה לעיירה + Kremsnita</h4>
             <p>חובה לטעום את עוגת הקרם המפורסמת של בלד! שכבות קרם וניל, קצפת ובצק פריך. Park Hotel Cafe או Cafe Belvedere.</p>
+            <div class="fun-fact"><strong>הידעתם?</strong> קרמשניטה (Kremna Rezina) הומצאה ב-1953 על ידי השף Istvan Lukacevic של Park Hotel. מאז נמכרו יותר מ-14 מיליון פרוסות!</div>
             <span class="tag tag-tip">חוויה סלובנית קלאסית</span>
           </div>
           <div class="timeline-item meal">
@@ -1385,6 +1462,7 @@
               <li><a href="https://www.postojnska-jama.eu/en/" target="_blank" style="color: #1558b0;">מערת Postojna</a> - רכבת חשמלית בתוך מערה ענקית עם נטיפים (EUR 30.90/מבוגר)</li>
               <li><a href="https://www.postojnska-jama.eu/en/predjama-castle/" target="_blank" style="color: #1558b0;">טירת Predjama</a> - בנויה בתוך פתח מערה בצוק של 123 מטר. מדהים!</li>
               <li>10&#176;C בתוך המערה - ז'קט חובה</li>
+              <li class="fun-fact" style="padding-right:0; margin-top:8px;"><strong>הידעתם?</strong> במערה חי ה-Olm, סלמנדרת מערות עיוורת שמכונה "דרקון התינוק". היא יכולה לשרוד בלי אוכל עד 10 שנים!</li>
             </ul>
           </div>
           <div class="option-card">
@@ -1460,6 +1538,7 @@
             <div class="time-label">15:00</div>
             <h4><a href="https://www.visitljubljana.com/en/visitors/activities/boat-rides/" target="_blank">שיט על נהר Ljubljanica</a></h4>
             <p>שעה של שיט בסירה מקורה, עוברים מתחת לגשרים, מדריך מספר על ההיסטוריה</p>
+            <div class="fun-fact"><strong>הידעתם?</strong> לובליאנה היא אחת הבירות הכי ירוקות בעולם. מאז 2008 אין כניסה למכוניות למרכז העיר, וב-2016 היא זכתה בתואר "הבירה הירוקה של אירופה".</div>
             <span class="tag tag-price">~EUR 15 / אדם</span>
             <span class="tag tag-time">שעה</span>
           </div>
@@ -1532,7 +1611,7 @@
 </section>
 
 <!-- ============ HOTELS ============ -->
-<section style="background: var(--warm-gray); padding: 60px 0;">
+<section id="hotels" style="background: var(--warm-gray); padding: 60px 0;">
   <div class="container">
     <div class="section-title">
       <h2>איפה ישנים?</h2>
@@ -1594,51 +1673,78 @@
 </section>
 
 <!-- ============ PACKING ============ -->
-<section>
+<section id="packing">
   <div class="container">
     <div class="section-title">
       <h2>מה לארוז?</h2>
-      <p>סוף יולי - תחילת אוגוסט. חם ביום, קריר בערב בהרים</p>
+      <p>סוף יולי - תחילת אוגוסט. חם ביום (28-30 מעלות בטריאסט), קריר בערב בהרים (15-18 מעלות בבלד). ממש לא כמו ישראל!</p>
+    </div>
+    <div class="fun-fact" style="max-width: 700px; margin: -30px auto 30px; text-align: center;">
+      <strong>העיקרון:</strong> להתלבש בשכבות. ביום תהיו בשורטים ובערב תצטרכו סוודר, במיוחד בבלד. בטריאסט - כמו תל אביב אבל 5 מעלות פחות.
     </div>
     <div class="packing-grid">
       <div class="packing-card reveal">
-        <h4>ביגוד</h4>
+        <h4>ביגוד - שכבות!</h4>
         <ul>
-          <li>בגדי קיץ קלים</li>
-          <li>סוודר / שכבה חמה לערבים</li>
-          <li>ז'קט קל למערה (10 מעלות!)</li>
-          <li>נעלי הליכה נוחות</li>
-          <li>כפכפים / סנדלים</li>
+          <li>בגדי קיץ קלים לימים</li>
+          <li>סוודר / פליז לערבים בבלד (15-18 מעלות!)</li>
+          <li>ז'קט קל למערת Postojna (10 מעלות בפנים)</li>
+          <li>מכנסיים ארוכים לערבים קרירים</li>
+          <li>נעלי הליכה נוחות (שבילי עץ, טירות, מדרגות)</li>
+          <li>כפכפים / סנדלים לאגם ולעיר</li>
         </ul>
       </div>
       <div class="packing-card reveal">
         <h4>אגם + שחייה</h4>
         <ul>
-          <li>בגד ים (כמה!)</li>
-          <li>מגבת מיקרופייבר</li>
+          <li>בגד ים (כמה! - אגם בלד, Bohinj, חוף Barcola)</li>
+          <li>מגבת מיקרופייבר (מתייבשת מהר)</li>
           <li>קרם הגנה SPF 50</li>
           <li>משקפי שמש</li>
-          <li>כובע</li>
+          <li>כובע רחב שוליים</li>
+          <li>נעלי מים (לסלעים ב-Barcola)</li>
         </ul>
       </div>
       <div class="packing-card reveal">
-        <h4>ציוד</h4>
+        <h4>ציוד חיוני</h4>
         <ul>
-          <li>מטריה קומפקטית</li>
-          <li>בקבוק מים רב פעמי</li>
-          <li>מתאם חשמל אירופאי</li>
-          <li>מטען נייד</li>
+          <li>מטריה קומפקטית (גשמי קיץ אפשריים בהרים)</li>
+          <li>בקבוק מים רב פעמי (מים מהברז שתייתיים!)</li>
+          <li>מתאם חשמל אירופאי (Type C/F)</li>
+          <li>מטען נייד (ימים ארוכים בחוץ)</li>
           <li>שקית רטובה לבגדי ים</li>
+          <li>פנס קטן לקניון Vintgar</li>
         </ul>
       </div>
       <div class="packing-card reveal">
-        <h4>מסמכים</h4>
+        <h4>מסמכים + כסף</h4>
         <ul>
           <li>דרכון (תוקף 6+ חודשים)</li>
-          <li>ביטוח נסיעות</li>
-          <li>רישיון נהיגה בינלאומי (לכל אחד מ-3 הנהגים)</li>
-          <li>כרטיסי אשראי (Visa/MC)</li>
-          <li>הדפסת הזמנות</li>
+          <li>ביטוח נסיעות (כולל ספורט אתגרי!)</li>
+          <li>רישיון נהיגה בינלאומי (לכל 3 הנהגים)</li>
+          <li>כרטיסי אשראי (Visa/MC, לפחות 2)</li>
+          <li>מזומן יורו (מס עיר משולם במזומן)</li>
+          <li>הדפסת כל ההזמנות + אישורים</li>
+        </ul>
+      </div>
+      <div class="packing-card reveal">
+        <h4>לילדים ולסבא וסבתא</h4>
+        <ul>
+          <li>שכבה חמה גם בקיץ (בלד קריר בערב)</li>
+          <li>נעליים סגורות נוחות לשבילים</li>
+          <li>חטיפים ליום הנסיעה</li>
+          <li>משחקי קלפים / ספר לנסיעות</li>
+          <li>תרופות אישיות + ערכת עזרה ראשונה בסיסית</li>
+        </ul>
+      </div>
+      <div class="packing-card reveal">
+        <h4>טיפים חשובים</h4>
+        <ul>
+          <li>אותו אזור זמן כמו ישראל (UTC+3 בקיץ)</li>
+          <li>שקיעה מאוחרת - 20:45-21:00 - יום ארוך!</li>
+          <li>מים מהברז שתייתיים בסלובניה</li>
+          <li>שתי מדינות, מטבע אחד - יורו בכל מקום</li>
+          <li>משטח חניה כחול = צריך חוגה (יש ברכב השכור)</li>
         </ul>
       </div>
     </div>
@@ -1646,7 +1752,7 @@
 </section>
 
 <!-- ============ SHOPPING ============ -->
-<section style="background: var(--warm-gray); padding: 60px 0;">
+<section id="shopping" style="background: var(--warm-gray); padding: 60px 0;">
   <div class="container">
     <div class="section-title">
       <h2>קניות במסלול</h2>
@@ -1722,7 +1828,7 @@
 </section>
 
 <!-- ============ ROUTE MAP ============ -->
-<section>
+<section id="map-section">
   <div class="container">
     <div class="section-title">
       <h2>המסלול על המפה</h2>
@@ -1782,6 +1888,52 @@
 
 <script>
   document.body.classList.add('js-enabled');
+
+  // Sticky nav - show after scrolling past hero
+  (function() {
+    var nav = document.getElementById('stickyNav');
+    var hero = document.querySelector('.hero');
+    if (!nav || !hero) return;
+    var heroBottom = hero.offsetTop + hero.offsetHeight;
+    var links = nav.querySelectorAll('a[href^="#"]');
+    var sections = [];
+    links.forEach(function(a) {
+      var id = a.getAttribute('href').slice(1);
+      var el = document.getElementById(id);
+      if (el) sections.push({el: el, a: a});
+    });
+
+    function onScroll() {
+      if (window.scrollY > heroBottom - 60) {
+        nav.classList.add('visible');
+      } else {
+        nav.classList.remove('visible');
+      }
+      // highlight active section
+      var scrollPos = window.scrollY + 100;
+      var current = null;
+      sections.forEach(function(s) {
+        if (s.el.offsetTop <= scrollPos) current = s;
+      });
+      sections.forEach(function(s) { s.a.classList.remove('active'); });
+      if (current) current.a.classList.add('active');
+    }
+
+    window.addEventListener('scroll', onScroll, {passive: true});
+    onScroll();
+
+    // smooth scroll
+    links.forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        var id = this.getAttribute('href').slice(1);
+        var target = document.getElementById(id);
+        if (target) {
+          window.scrollTo({top: target.offsetTop - 50, behavior: 'smooth'});
+        }
+      });
+    });
+  })();
   if ('IntersectionObserver' in window) {
     var revealObserver = new IntersectionObserver(function(entries) {
       entries.forEach(function(entry) {

@@ -1146,6 +1146,13 @@
             <p>התארגנות ומנוחה קצרה אחרי הטיסה, לפני שיוצאים לטייל</p>
           </div>
           <div class="timeline-item attraction">
+            <div class="time-label">17:00</div>
+            <h4><a href="https://www.btc-city.com/en" target="_blank">BTC City + Citypark</a> - קניות ברגל מהמלון!</h4>
+            <p>המלון נמצא ממש בתוך BTC City - אחד ממרכזי הקניות הגדולים באירופה! 450+ חנויות, Zara, H&M, Primark, Hugo Boss, Ralph Lauren. מי שרוצה - יוצא מהמלון וישר קניות. מי שמעדיף - ישר לעיר העתיקה.</p>
+            <span class="tag tag-tip">ברגל מהמלון! פתוח עד 21:00</span>
+            <span class="tag tag-price">Primark + Zara + H&M במחירים אירופיים</span>
+          </div>
+          <div class="timeline-item attraction">
             <div class="time-label">18:00</div>
             <h4>הליכת היכרות בעיר העתיקה</h4>
             <img class="timeline-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Dragons_Bridge%2C_Ljubljana_2.jpg/960px-Dragons_Bridge%2C_Ljubljana_2.jpg" alt="גשר הדרקונים, לובליאנה" loading="lazy">
@@ -1180,7 +1187,13 @@
       <div class="day-body">
         <div class="timeline">
           <div class="timeline-item attraction">
-            <div class="time-label">09:00</div>
+            <div class="time-label">08:00</div>
+            <h4>סיבוב בוקר ב-BTC City (למי שרוצה)</h4>
+            <p>המלון ממש בתוך הקניון - אז מי שרוצה להשלים קניות מאתמול או לתפוס פריטים ב-Primark/Zara לפני שנוסעים, זה הזמן. שאר המשפחה - ארוחת בוקר רגועה במלון.</p>
+            <span class="tag tag-tip">החנויות נפתחות 09:00, אבל Citypark כבר 08:00</span>
+          </div>
+          <div class="timeline-item attraction">
+            <div class="time-label">09:30</div>
             <h4><a href="https://www.ljubljanskigrad.si/en/" target="_blank">טירת לובליאנה + רכבל</a></h4>
             <img class="timeline-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Ljubljana_old_town_with_excursion_boat.JPG/960px-Ljubljana_old_town_with_excursion_boat.JPG" alt="שיט על נהר Ljubljanica" loading="lazy">
             <p>רכבל מודרני למעלה, תצפית 360 על העיר וההרים, מוזיאון ומגדל תצפית</p>
@@ -1836,7 +1849,17 @@
     </div>
     <div id="map" class="reveal" style="height: 450px; border-radius: 20px; box-shadow: var(--shadow-lg); margin-bottom: 20px;"></div>
     <div style="text-align: center; padding: 12px; background: var(--warm-gray); border-radius: 12px;">
-      <p style="font-size: 13px; color: var(--text-light);">לובליאנה (יום 1-2) &rarr; טריאסט (יום 2-3) &rarr; בלד (יום 4-6, עצירה אפשרית ב-Postojna) &rarr; חזרה ללובליאנה (יום 7) &rarr; שדה התעופה (יום 8)</p>
+      <p style="font-size: 13px; color: var(--text-light);">
+        <strong>1</strong> לובליאנה (יום 1-2)
+        &xrarr; <em>1:20</em> &xrarr;
+        <strong>2</strong> טריאסט (יום 2-4)
+        &xrarr; <em>2:30</em> &xrarr;
+        <strong>3</strong> בלד (יום 4-7)
+        &xrarr; <em>0:45</em> &xrarr;
+        <strong>4</strong> לובליאנה (יום 7)
+        &xrarr; <em>0:25</em> &xrarr;
+        שדה תעופה (יום 8)
+      </p>
     </div>
   </div>
 </section>
@@ -1849,33 +1872,81 @@
     attribution: '&copy; OpenStreetMap'
   }).addTo(map);
 
-  var stops = [
-    {name: 'לובליאנה', days: 'יום 1-2, 7', lat: 46.0569, lng: 14.5058, color: '#0d7377'},
-    {name: 'טריאסט', days: 'יום 2-4', lat: 45.6495, lng: 13.7768, color: '#0d7377'},
-    {name: 'Miramare', days: 'יום 3', lat: 45.6897, lng: 13.7124, color: '#d4a843'},
-    {name: 'Postojna', days: 'יום 4 / 6 (אופציה)', lat: 45.7822, lng: 14.2047, color: '#d4a843'},
-    {name: 'Predjama', days: 'יום 6 (אופציה)', lat: 45.8147, lng: 14.1269, color: '#d4a843'},
-    {name: 'בלד', days: 'יום 4-7', lat: 46.3684, lng: 14.1146, color: '#0d7377'},
-    {name: 'Bohinj', days: 'יום 6 (אופציה)', lat: 46.2860, lng: 13.8630, color: '#d4a843'},
-    {name: 'Vintgar', days: 'יום 5-6 (אופציה)', lat: 46.3833, lng: 14.0672, color: '#d4a843'}
+  // Numbered icon for main stops
+  function numIcon(num, color) {
+    return L.divIcon({
+      className: '',
+      html: '<div style="background:' + color + ';color:#fff;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;font-family:Heebo,sans-serif;border:3px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,0.3);">' + num + '</div>',
+      iconSize: [28, 28],
+      iconAnchor: [14, 14]
+    });
+  }
+
+  // Driving time label
+  function driveLabel(lat, lng, text) {
+    return L.marker([lat, lng], {
+      icon: L.divIcon({
+        className: '',
+        html: '<div style="background:rgba(255,255,255,0.92);color:#095456;font-size:11px;font-weight:700;font-family:Heebo,sans-serif;padding:3px 8px;border-radius:10px;border:1px solid rgba(13,115,119,0.3);white-space:nowrap;box-shadow:0 1px 4px rgba(0,0,0,0.15);">' + text + '</div>',
+        iconSize: [0, 0],
+        iconAnchor: [-8, 12]
+      })
+    });
+  }
+
+  // Main stops (numbered)
+  var mainStops = [
+    {num: 1, name: 'לובליאנה', info: 'תחנה 1 | יום 1-2, 7 | Radisson Blu Plaza', lat: 46.0569, lng: 14.5058, color: '#0d7377'},
+    {num: 2, name: 'טריאסט', info: 'תחנה 2 | יום 2-4 | The Modernist Hotel', lat: 45.6495, lng: 13.7768, color: '#0d7377'},
+    {num: 3, name: 'בלד', info: 'תחנה 3 | יום 4-7 | Hotel Lovec', lat: 46.3684, lng: 14.1146, color: '#0d7377'},
+    {num: 4, name: 'לובליאנה (חזרה)', info: 'תחנה 4 | יום 7 | מלון טרם הוזמן', lat: 46.0520, lng: 14.5120, color: '#e65100'}
   ];
 
-  var route = [
-    [46.0569, 14.5058], [45.6495, 13.7768], [45.7822, 14.2047],
-    [46.3684, 14.1146], [46.0569, 14.5058], [46.2237, 14.4576]
+  // Optional stops (smaller, gold)
+  var optStops = [
+    {name: 'Miramare', info: 'יום 3 - טירה על הים', lat: 45.6897, lng: 13.7124},
+    {name: 'Postojna', info: 'יום 4/6 (אופציה) - מערה + רכבת', lat: 45.7822, lng: 14.2047},
+    {name: 'Predjama', info: 'יום 6 (אופציה) - טירה בצוק', lat: 45.8147, lng: 14.1269},
+    {name: 'Bohinj', info: 'יום 6 (אופציה) - אגם אלפיני', lat: 46.2860, lng: 13.8630},
+    {name: 'Vintgar', info: 'יום 5-6 (אופציה) - קניון', lat: 46.3833, lng: 14.0672}
   ];
 
-  L.polyline(route, {color: '#0d7377', weight: 3, opacity: 0.7, dashArray: '8, 8'}).addTo(map);
+  // Route segments with driving times
+  var segments = [
+    {from: [46.2237, 14.4576], to: [46.0569, 14.5058], time: '25 דק\'', label: [46.14, 14.49]},
+    {from: [46.0569, 14.5058], to: [45.6495, 13.7768], time: '1:20 שעה', label: [45.85, 14.10]},
+    {from: [45.6495, 13.7768], to: [46.3684, 14.1146], time: '2:30 שעות', label: [46.00, 13.88]},
+    {from: [46.3684, 14.1146], to: [46.0520, 14.5120], time: '45 דק\'', label: [46.22, 14.34]},
+    {from: [46.0520, 14.5120], to: [46.2237, 14.4576], time: '25 דק\'', label: [46.14, 14.49]}
+  ];
 
-  stops.forEach(function(s) {
-    L.circleMarker([s.lat, s.lng], {
-      radius: 8, fillColor: s.color, color: '#fff', weight: 2, fillOpacity: 0.9
-    }).addTo(map).bindPopup('<strong>' + s.name + '</strong><br>' + s.days);
+  // Draw route segments
+  segments.forEach(function(seg) {
+    L.polyline([seg.from, seg.to], {color: '#0d7377', weight: 3, opacity: 0.7, dashArray: '8, 8'}).addTo(map);
+    driveLabel(seg.label[0], seg.label[1], seg.time).addTo(map);
   });
 
+  // Draw optional route to Postojna from Trieste
+  L.polyline([[45.6495, 13.7768], [45.7822, 14.2047]], {color: '#d4a843', weight: 2, opacity: 0.5, dashArray: '4, 6'}).addTo(map);
+  driveLabel(45.72, 13.99, '50 דק\'').addTo(map);
+
+  // Add numbered main stops
+  mainStops.forEach(function(s) {
+    L.marker([s.lat, s.lng], {icon: numIcon(s.num, s.color)}).addTo(map)
+      .bindPopup('<strong>' + s.name + '</strong><br>' + s.info);
+  });
+
+  // Add optional stops (small gold circles)
+  optStops.forEach(function(s) {
+    L.circleMarker([s.lat, s.lng], {
+      radius: 6, fillColor: '#d4a843', color: '#fff', weight: 2, fillOpacity: 0.9
+    }).addTo(map).bindPopup('<strong>' + s.name + '</strong><br>' + s.info);
+  });
+
+  // Airport marker
   L.circleMarker([46.2237, 14.4576], {
     radius: 6, fillColor: '#999', color: '#fff', weight: 2, fillOpacity: 0.8
-  }).addTo(map).bindPopup('<strong>שדה התעופה</strong><br>יום 1 + יום 8');
+  }).addTo(map).bindPopup('<strong>שדה התעופה</strong><br>יום 1 (הגעה) + יום 8 (חזרה)');
 })();
 </script>
 

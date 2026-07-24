@@ -259,6 +259,19 @@
     opacity: 0.85;
   }
 
+  .day-weather {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 8px;
+    background: rgba(255,255,255,0.18);
+    backdrop-filter: blur(6px);
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+  }
+
   .day-body {
     padding: 30px;
   }
@@ -1126,6 +1139,7 @@
           <span class="day-number">יום 1</span>
           <h2>לובליאנה - הגעה</h2>
           <div class="day-meta">שבת 25.7 | טיסה, איסוף 3 רכבים, ערב בעיר</div>
+          <div class="day-weather">&#9728;&#65039; לובליאנה: 13-26&#176;C | שמשי חלקית</div>
         </div>
       </div>
       <div class="day-body">
@@ -1169,7 +1183,7 @@
           <div class="hotel-stay-icon">&#127976;</div>
           <div class="hotel-stay-info">
             <strong>הלילה: Radisson Blu Plaza Ljubljana</strong>
-            <span>5 חדרי Superior Double | Booking.com | ביטול חינם עד 25.7 בשעה 14:00 | תשלום אונליין | כ-4,732 ש"ח (כ-1,356 יורו)</span>
+            <span>5 חדרי Superior Double | Booking.com | ביטול חינם עד 25.7 בשעה 14:00 | צ'ק-אאוט עד 12:00</span>
           </div>
         </div>
       </div>
@@ -1182,6 +1196,7 @@
           <span class="day-number">יום 2</span>
           <h2>לובליאנה בבוקר, טריאסט בערב</h2>
           <div class="day-meta">ראשון 26.7 | טירה + שוק, ואז נוסעים לאיטליה</div>
+          <div class="day-weather">&#9729;&#65039; לובליאנה 16-22&#176;C מעונן חלקית | טריאסט 21-28&#176;C חם יותר</div>
         </div>
       </div>
       <div class="day-body">
@@ -1212,8 +1227,13 @@
             <p>מסעדה על גדות ה-Ljubljanica לפני שיוצאים לדרך - אוכל סלובני טרי, שניצלים ודגי נהר</p>
           </div>
           <div class="timeline-item drive">
+            <div class="time-label">12:00</div>
+            <h4>צ'ק-אאוט מהרדיסון (עד 12:00) + אחסון מזוודות</h4>
+            <p>צ'ק-אאוט עד 12:00. אפשר להשאיר מזוודות באחסון של המלון ולצאת לצהריים. טוענים את הרכבים אחרי הארוחה.</p>
+          </div>
+          <div class="timeline-item drive">
             <div class="time-label">14:00</div>
-            <h4>צ'ק-אאוט, נסיעה לטריאסט</h4>
+            <h4>נסיעה לטריאסט</h4>
             <p>כ-1:20 שעה דרומה, חוצים את הגבול סלובניה-איטליה. הדרכונים ביד - יש בידוקים רנדומליים בגבול.</p>
           </div>
           <div class="timeline-item">
@@ -1238,7 +1258,7 @@
           <div class="hotel-stay-icon">&#127976;</div>
           <div class="hotel-stay-info">
             <strong>הלילה: The Modernist Hotel, Trieste (לילה 1 מתוך 2)</strong>
-            <span>5 חדרים | Booking.com | אישור #6962.540.275 | ביטול חינם עד 23.7 | כ-7,058 ש"ח (כ-2,028 יורו) ל-2 לילות</span>
+            <span>5 חדרים | אישור #6962.540.275 | צ'ק-אאוט עד 12:00</span>
           </div>
         </div>
       </div>
@@ -1251,6 +1271,7 @@
           <span class="day-number">יום 3</span>
           <h2>טריאסט - יום מלא</h2>
           <div class="day-meta">שני 27.7 | טירת Miramare, ואחר הצהריים - בחרו את שלכם</div>
+          <div class="day-weather">&#9728;&#65039; טריאסט: 21-30&#176;C | חם ושמשי, לחות בינונית</div>
         </div>
       </div>
       <div class="day-body">
@@ -1322,7 +1343,7 @@
           <div class="hotel-stay-icon">&#127976;</div>
           <div class="hotel-stay-info">
             <strong>הלילה: The Modernist Hotel, Trieste (לילה 2 מתוך 2)</strong>
-            <span>אישור #6962.540.275 | ביטול חינם עד 23.7</span>
+            <span>אישור #6962.540.275 | מחר צ'ק-אאוט עד 12:00</span>
           </div>
         </div>
       </div>
@@ -1335,14 +1356,15 @@
           <span class="day-number">יום 4</span>
           <h2>טריאסט - בלד</h2>
           <div class="day-meta">שלישי 28.7 | נסיעה לאגם, אפשרות עצירה ב-Postojna</div>
+          <div class="day-weather">&#9729;&#65039; טריאסט 20-28&#176;C | בלד 11-24&#176;C - קריר יותר בהרים!</div>
         </div>
       </div>
       <div class="day-body">
         <div class="timeline">
           <div class="timeline-item drive">
             <div class="time-label">10:30</div>
-            <h4>צ'ק-אאוט מ-The Modernist עד 11:00</h4>
-            <p>סגירת חשבון, טעינת המזוודות ל-3 הרכבים</p>
+            <h4>צ'ק-אאוט מ-The Modernist (עד 12:00)</h4>
+            <p>סגירת חשבון, טעינת המזוודות ל-3 הרכבים. צ'ק-אאוט עד 12:00 - יוצאים בזמן כי יש נסיעה ארוכה.</p>
           </div>
           <div class="timeline-item drive">
             <div class="time-label">11:00</div>
@@ -1372,7 +1394,7 @@
           <div class="hotel-stay-icon">&#127976;</div>
           <div class="hotel-stay-info">
             <strong>הלילה: Hotel Lovec, Bled (לילה 1 מתוך 3)</strong>
-            <span>6 חדרי Twin | Booking.com | אישור #6830.388.902 | כולל ארוחת בוקר | ביטול חינם עד 26.7 | תשלום במלון | כ-19,342 ש"ח (כ-5,558 יורו) ל-3 לילות</span>
+            <span>6 חדרי Twin | אישור #6830.388.902 | כולל ארוחת בוקר | צ'ק-אאוט עד 11:00</span>
           </div>
         </div>
       </div>
@@ -1385,6 +1407,7 @@
           <span class="day-number">יום 5</span>
           <h2>אגם בלד - יום מלא</h2>
           <div class="day-meta">רביעי 29.7 | סירת Pletna, טירת בלד, קרמשניטה - ואחר הצהריים בוחרים</div>
+          <div class="day-weather">&#9728;&#65039; בלד: 12-25&#176;C | שמשי, ערב קריר (סוודר!)</div>
         </div>
       </div>
       <div class="day-body">
@@ -1462,6 +1485,7 @@
           <span class="day-number">יום 6</span>
           <h2>יום טיול מבלד - שלוש אופציות</h2>
           <div class="day-meta">חמישי 30.7 | Postojna+Predjama / Bohinj / Vintgar - וערב חגיגי אחרון בבלד</div>
+          <div class="day-weather">&#9729;&#65039; בלד: 13-24&#176;C | מעונן חלקית, 10&#176;C בתוך מערת Postojna!</div>
         </div>
       </div>
       <div class="day-body">
@@ -1523,6 +1547,7 @@
           <span class="day-number">יום 7</span>
           <h2>חזרה ללובליאנה</h2>
           <div class="day-meta">שישי 31.7 | שוק, שיט על הנהר, Metelkova, ארוחת פרידה</div>
+          <div class="day-weather">&#9728;&#65039; לובליאנה: 15-26&#176;C | שמשי ונעים</div>
         </div>
       </div>
       <div class="day-body">
@@ -1583,6 +1608,7 @@
           <span class="day-number">יום 8 - נפרדים</span>
           <h2>פרידה + טיסה הביתה</h2>
           <div class="day-meta">שבת 1.8 | החזרת רכבים, טיסה - חלק מהמשפחה ממשיכים</div>
+          <div class="day-weather">&#9728;&#65039; לובליאנה: 16-27&#176;C | חם ושמשי</div>
         </div>
       </div>
       <div class="day-body">

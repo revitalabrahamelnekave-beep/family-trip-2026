@@ -1039,6 +1039,29 @@
     body.js-enabled .reveal { opacity: 1 !important; transform: none !important; }
   }
 
+  /* ============ ABOUT THE PLACE (history) ============ */
+  .about-toggle {
+    display: inline-block; background: rgba(212,168,67,0.16);
+    border: 1px solid rgba(212,168,67,0.55); color: #8a5e0f;
+    font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 700;
+    cursor: pointer; padding: 6px 14px; border-radius: 20px; margin-top: 10px;
+  }
+  .about-toggle:hover { background: rgba(212,168,67,0.28); }
+  .about-toggle::before { content: '\1F4D6 \05E7\05E8\05D0 \05E2\05DC \05D4\05DE\05E7\05D5\05DD \25BC'; }
+  .about-toggle.open::before { content: '\1F4D6 \05E1\05D2\05D5\05E8 \25B2'; }
+  .about-content {
+    display: none;
+    background: linear-gradient(135deg, rgba(212,168,67,0.10), rgba(212,168,67,0.02));
+    border-right: 3px solid var(--gold); border-radius: 0 10px 10px 0;
+    padding: 14px 16px; margin-top: 10px; font-size: 14px; line-height: 1.8; color: var(--text);
+  }
+  .about-content.open { display: block; }
+  .about-content h5 { margin: 10px 0 4px; font-size: 13.5px; color: var(--teal-dark); }
+  .about-content p { margin: 0 0 4px; }
+  .about-content ul { list-style: none; padding: 0; margin: 4px 0 0; }
+  .about-content li { padding: 3px 16px 3px 0; position: relative; }
+  .about-content li::before { content: '\25C6'; position: absolute; right: 0; top: 7px; color: var(--gold); font-size: 9px; }
+
   /* ============ DAY COLLAPSE / TODAY ============ */
   .day-card .day-header { cursor: pointer; }
   .day-collapse-chevron {
@@ -1248,6 +1271,17 @@
             <img class="timeline-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Dragons_Bridge%2C_Ljubljana_2.jpg/960px-Dragons_Bridge%2C_Ljubljana_2.jpg" alt="גשר הדרקונים, לובליאנה" loading="lazy">
             <p>טיילת Ljubljanica - גשרים מוארים, בתי קפה, אווירה קסומה. בלובליאנה אין מכוניות במרכז העיר - הכל רגלי!</p>
             <div class="fun-fact"><strong>הידעתם?</strong> הדרקון הוא הסמל של לובליאנה. לפי האגדה, יאסון (מהמיתולוגיה היוונית) הרג דרקון כאן בדרכו חזרה עם גיזת הזהב.</div>
+            <button class="about-toggle" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')"></button>
+            <div class="about-content">
+              <p>לובליאנה, בירת סלובניה (~285 אלף תושבים), הייתה במשך מאות שנים חלק מהאימפריה ההבסבורגית ונקראה Laibach. רעידת אדמה ב-1895 החריבה חלק גדול מהעיר, והיא נבנתה מחדש בסגנון סֶצֶסיון וינאי. את הפָּנים הייחודיות שלה עיצב האדריכל <strong>יוז'ה פלצ'ניק</strong> בשנות ה-20 וה-30, שהפך את גדות הנהר לאחת הפנינות האורבניות של אירופה. מרכז העיר הוכר כאתר מורשת עולמית של אונסק"ו.</p>
+              <h5>מונומנטים מרכזיים לראות:</h5>
+              <ul>
+                <li><strong>גשר הדרקונים</strong> - סמל העיר, עם 4 דרקוני נחושת (1901)</li>
+                <li><strong>הגשר המשולש</strong> ו<strong>כיכר Prešeren</strong> - לב העיר</li>
+                <li><strong>טירת לובליאנה</strong> על הגבעה מעל העיר</li>
+                <li><strong>השוק המרכזי</strong> והקולונדה של פלצ'ניק לאורך הנהר</li>
+              </ul>
+            </div>
           </div>
           <div class="timeline-item meal">
             <div class="time-label">20:00</div>
@@ -1316,6 +1350,17 @@
             <span class="tag tag-price">EUR 19 / מבוגר, EUR 8 / ילד (משולב + רכבל)</span>
             <span class="tag tag-time">45 דק'-שעה</span>
             <span class="tag tag-access">נגיש - רכבל + מעלית</span>
+            <button class="about-toggle" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')"></button>
+            <div class="about-content">
+              <p>טירת לובליאנה (Ljubljanski grad) יושבת על גבעה מעל העיר כבר כ-900 שנה. המבצר המתועד הראשון הוא מהמאה ה-12, אך רוב המבנה הנוכחי הוא מהמאות ה-15-17, כשנבנה מחדש להגנה מפני האימפריה העות'מאנית. לאורך השנים שימש מושב אצולה, מחסן נשק, קסרקטין וגם בית כלא, והיום זהו מרכז תרבותי עם מוזיאונים, מסעדה ותצפית.</p>
+              <h5>מה כדאי לראות למעלה:</h5>
+              <ul>
+                <li><strong>מגדל התצפית</strong> - פנורמה 360° על העיר והאלפים</li>
+                <li>תערוכת <strong>ההיסטוריה הסלובנית</strong></li>
+                <li><strong>קפלת סנט ג'ורג'</strong> עם שלטי אצולה צבעוניים</li>
+                <li><strong>מוזיאון הבובות</strong> - כיף לילדים</li>
+              </ul>
+            </div>
             <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;font-size:13px;">
               <a href="https://waze.com/ul?q=Ljubljana%20Castle%20Funicular" target="_blank" style="display:inline-flex;align-items:center;gap:5px;background:#33ccff;color:#00263a;padding:5px 11px;border-radius:6px;text-decoration:none;font-weight:700;">🧭 נווט ב-Waze</a>
               <button type="button" data-addr="Ljubljana Castle Funicular, Krekov trg 3, Ljubljana" onclick="copyAddr(this)" style="display:inline-flex;align-items:center;gap:5px;background:#eef1f5;color:#333;border:1px solid #d0d5dd;padding:5px 11px;border-radius:6px;cursor:pointer;font-weight:600;font-family:inherit;font-size:13px;">📋 העתק כתובת</button>
@@ -1328,6 +1373,17 @@
             <p>• <a href="https://www.visitljubljana.com/en/poi/presernov-trg-square" target="_blank"><strong>כיכר Prešeren</strong></a> - לב העיר, עם הכנסייה הפרנציסקנית הוורודה ופסל המשורר הלאומי France Prešeren (הפסל נחנך ב-1905).<br>• <a href="https://www.visitljubljana.com/en/poi/triple-bridge" target="_blank"><strong>הגשר המשולש (Tromostovje)</strong></a> - הגשר המרכזי מ-1842, והאדריכל פלצ'ניק הוסיף ב-1929-1932 שני גשרי הולכי-רגל לצדדים - סמל אדריכלי של העיר.<br>• <a href="https://www.visitljubljana.com/en/visitors/attractions/dragon-bridge/" target="_blank"><strong>גשר הדרקונים</strong></a> - 4 דרקוני נחושת בסגנון ארט-נובו (1901), סמל העיר.<br>• <strong>בית העירייה</strong> הבארוקי ומזרקת רובּה מולו.</p>
             <p>🛍️ ועל טיילת הנהר (Breg) פרוש דווקא ביום ראשון <a href="https://www.visitljubljana.com/en/visitors/events/events-in-ljubljana/antique-flea-market" target="_blank"><strong>שוק העתיקות והוינטג'</strong></a> (08:00-14:00): עתיקות, מטבעות, ספרים ישנים, תקליטים ומזכרות מתקופת יוגוסלביה. מציצים בדרך למסעדה.</p>
             <span class="tag tag-tip">שוק העתיקות - רק בימי ראשון, נארז סביב 14:00</span>
+            <button class="about-toggle" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')"></button>
+            <div class="about-content">
+              <p>הלב הבארוקי של לובליאנה עוצב במידה רבה בידי האדריכל <strong>יוז'ה פלצ'ניק</strong> (1872-1957), שעיצב את הגשר המשולש, השוק המקורה, גדות הנהר והספרייה הלאומית - ובכך הפך את מרכז העיר לאתר מורשת עולמית של אונסק"ו.</p>
+              <h5>מונומנטים בשיטוט:</h5>
+              <ul>
+                <li><strong>כיכר Prešeren</strong> והכנסייה הפרנציסקנית הוורודה (המאה ה-17)</li>
+                <li><strong>הגשר המשולש</strong> - שלושה גשרים במניפה מעל הנהר</li>
+                <li><strong>גשר הדרקונים</strong> וגשר הקצבים (עם מנעולי האהבה)</li>
+                <li><strong>בית העירייה</strong> הבארוקי ומזרקת רובּה מולו</li>
+              </ul>
+            </div>
             <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;font-size:13px;">
               <a href="https://waze.com/ul?q=Pre%C5%A1ernov%20trg%20Ljubljana" target="_blank" style="display:inline-flex;align-items:center;gap:5px;background:#33ccff;color:#00263a;padding:5px 11px;border-radius:6px;text-decoration:none;font-weight:700;">🧭 נווט ב-Waze (כיכר Prešeren)</a>
               <button type="button" data-addr="Prešernov trg, Ljubljana" onclick="copyAddr(this)" style="display:inline-flex;align-items:center;gap:5px;background:#eef1f5;color:#333;border:1px solid #d0d5dd;padding:5px 11px;border-radius:6px;cursor:pointer;font-weight:600;font-family:inherit;font-size:13px;">📋 העתק כתובת</button>
@@ -1423,6 +1479,16 @@
             <img class="timeline-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Castello_di_Miramare_%28Trieste%29_%287%29.jpg/960px-Castello_di_Miramare_%28Trieste%29_%287%29.jpg" alt="טירת Miramare" loading="lazy">
             <p>טירה לבנה של הבסבורגים בנויה ישירות על הים. גנים מרהיבים, חדרים מרוהטים, נוף על מפרץ טריאסט. חובה לראות!</p>
             <div class="fun-fact"><strong>הידעתם?</strong> הארכידוכס מקסימיליאן, שבנה את הטירה, הפך אחר כך לקיסר מקסיקו - ולצערו הוצא להורג שם. יש "קללת Miramare" שאומרת שכל מי שישן בטירה ימות בארץ זרה.</div>
+            <button class="about-toggle" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')"></button>
+            <div class="about-content">
+              <p>הטירה נבנתה בין 1856-1860 עבור הארכידוכס <strong>מקסימיליאן מהבסבורג</strong> (אחיו של הקיסר פרנץ יוזף) ורעייתו שרלוטה, כמעון פרטי מול הים. מקסימיליאן הפך אחר כך לקיסר מקסיקו והוצא שם להורג ב-1867. הטירה שמורה במקור עם הריהוט, הספרייה והחדרים מהתקופה.</p>
+              <h5>מה כדאי לראות:</h5>
+              <ul>
+                <li>החדרים המלכותיים המרוהטים והספרייה</li>
+                <li><strong>הגנים</strong> - 22 הקטאר, שטוחים, עם צמחייה נדירה ונוף לים</li>
+                <li>שמורת הים ומוזיאון BioMa הסמוך (מעולה לילדים)</li>
+              </ul>
+            </div>
             <span class="tag tag-price">חינם מתחת ל-18! מבוגרים ~EUR 12</span>
             <span class="tag tag-time">~2 שעות</span>
             <span class="tag tag-access">גנים שטוחים - מושלם לכולם, כולל סבא וסבתא</span>
@@ -1453,6 +1519,16 @@
             <div class="time-label">15:00</div>
             <h4>שיטוט במרכז (שטוח, בלי טבע)</h4>
             <p><strong>Piazza Unità d'Italia</strong> - הכיכר הגדולה באירופה הפונה לים; <strong>Molo Audace</strong> - הרציף שנכנס לים, שממנו יהודים הפליגו לארץ ישראל ("שער ציון"), רגע קצר ומרגש; ו<strong>Canal Grande</strong> ורובע Borgo Teresiano עם הכנסיות המרשימות.</p>
+            <button class="about-toggle" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')"></button>
+            <div class="about-content">
+              <p>טריאסט הייתה במשך 500 שנה הנמל הראשי של האימפריה האוסטרו-הונגרית - "וינה שליד הים" - ומכאן האדריכלות המונומנטלית שלה. העיר הייתה מפגש תרבויות (איטלקית, סלובנית, גרמנית, יהודית, יוונית, סרבית) ומרכז ספרותי (ג'יימס ג'ויס ואיטלו סבבו חיו כאן).</p>
+              <h5>מונומנטים במרכז:</h5>
+              <ul>
+                <li><strong>Piazza Unità d'Italia</strong> - הכיכר הפתוחה-לים הגדולה באירופה, מוקפת ארמונות ובניין העירייה</li>
+                <li><strong>Molo Audace</strong> - הרציף שממנו הפליגו לארץ ישראל ("שער ציון")</li>
+                <li><strong>Canal Grande</strong> וכנסיית San Spiridione הסרבית-אורתודוקסית</li>
+              </ul>
+            </div>
           </div>
           <div class="timeline-item attraction">
             <div class="time-label">15:50</div>
@@ -1471,6 +1547,16 @@
             <div class="time-label">17:15</div>
             <h4>גבעת San Giusto - קתדרלה, מצודה ותצפית</h4>
             <p>הקתדרלה עם פסיפסים מימי הביניים, המצודה, ותצפית פנורמית על העיר והים - הנוף היפה בלי שום טיפוס. <strong>הגיעו עד ~17:30</strong> (המצודה נסגרת 18:00, הקתדרלה ~19:00). האור באחה"צ הכי יפה.</p>
+            <button class="about-toggle" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')"></button>
+            <div class="about-content">
+              <p>גבעת San Giusto היא ערש העיר - כאן עמדה טְרֶגֶסְטֶה הרומית. הקתדרלה הנוכחית (המאה ה-14) נוצרה מאיחוד שתי כנסיות עתיקות ומוקדשת לקדוש הפטרון של העיר. המצודה נבנתה בידי הוונציאנים והאוסטרים במאות ה-15-17.</p>
+              <h5>מה לראות על הגבעה:</h5>
+              <ul>
+                <li><strong>הקתדרלה</strong> עם פסיפסים ביזנטיים מהמאה ה-12-13</li>
+                <li><strong>המצודה</strong> וחומותיה - תצפית על העיר והמפרץ</li>
+                <li><strong>התיאטרון הרומי</strong> והשרידים הרומיים למרגלות הגבעה</li>
+              </ul>
+            </div>
           </div>
           <div class="timeline-item meal">
             <div class="time-label">19:30</div>
@@ -1523,6 +1609,17 @@
             <h4><a href="https://www.postojnska-jama.eu/en/" target="_blank">מערת Postojna</a> - רכבת בתוך מערה ענקית</h4>
             <p>רכבת חשמלית נכנסת עמוק לתוך מערת נטיפים ענקית - מהמפורסמות בעולם. EUR 30.90/מבוגר, כשעה וחצי. <strong>כדאי להזמין מראש כרטיס לשעה מתואמת</strong> (למשל ~13:00) כדי לא לחכות בתור.</p>
             <div class="fun-fact"><strong>הידעתם?</strong> במערה חי ה-Olm, סלמנדרת מערות עיוורת שמכונה "דרקון התינוק". היא יכולה לשרוד בלי אוכל עד 10 שנים!</div>
+            <button class="about-toggle" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')"></button>
+            <div class="about-content">
+              <p>מערת Postojna היא מערכת מערות באורך 24 ק"מ, מהמפורסמות בעולם, שחתר נהר Pivka בסלע הקארסט לאורך מיליוני שנים. היא פתוחה לתיירים מאז 1819, ובשנת 1872 הותקנה בה <strong>רכבת מערות</strong> - הראשונה בעולם. ביקרו בה למעלה מ-40 מיליון איש.</p>
+              <h5>מה מיוחד:</h5>
+              <ul>
+                <li>נסיעת <strong>רכבת חשמלית</strong> 3.5 ק"מ אל תוך המערה</li>
+                <li>אולמות נטיפים ענקיים ו"היהלום" - נטיף לבן מפורסם</li>
+                <li>ה-<strong>Olm</strong>, סלמנדרת המערות העיוורת הייחודית</li>
+                <li>בקרבת מקום: <strong>טירת Predjama</strong> הבנויה בתוך צוק</li>
+              </ul>
+            </div>
             <button class="read-more-toggle" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')"></button>
             <div class="read-more-content">
               <ul>
@@ -1549,6 +1646,16 @@
             <img class="timeline-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Full_pletna_in_front_of_Bled_Castle%2C_Bled%2C_2013.jpg/960px-Full_pletna_in_front_of_Bled_Castle%2C_Bled%2C_2013.jpg" alt="אגם בלד וטירת בלד" loading="lazy">
             <p>אחד הנופים הכי מצולמים בעולם - האי עם הכנסייה, הטירה על הצוק, ומים כחולים-טורקיז</p>
             <div class="fun-fact"><strong>הידעתם?</strong> 60% משטח סלובניה מכוסה יערות - אחת המדינות הכי ירוקות באירופה. קטנה כמו גליל + גולן, אבל עם 2 מיליון בני אדם בלבד.</div>
+            <button class="about-toggle" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')"></button>
+            <div class="about-content">
+              <p>אגם בלד הוא אגם קרחוני באורך 2 ק"מ בלב האלפים היוליאניים, ובמרכזו <strong>האי היחיד בסלובניה</strong>. המקום היה אתר עלייה לרגל מימי הביניים, ובמאה ה-19 הפך לאתר נופש אירופאי מפורסם בזכות האקלים הנעים והמים. הטירה שעל הצוק משקיפה עליו כבר כ-1000 שנה.</p>
+              <h5>שלושת סמלי בלד:</h5>
+              <ul>
+                <li><strong>האי</strong> עם כנסיית מריה ופעמון המשאלות</li>
+                <li><strong>טירת בלד</strong> על הצוק - המבצר העתיק בסלובניה</li>
+                <li>סירות ה-<strong>Pletna</strong> המסורתיות</li>
+              </ul>
+            </div>
           </div>
           <div class="timeline-item meal">
             <div class="time-label">19:30</div>
@@ -1583,6 +1690,16 @@
             <h4><a href="https://www.bled.si/en/what-to-see-do/activities/16/pletna-boat/" target="_blank">סירת Pletna לאי בלד</a></h4>
             <p>סירת עץ מסורתית חוצה את האגם הכחול אל האי עם הכנסייה</p>
             <div class="fun-fact"><strong>הידעתם?</strong> סירות ה-Pletna הן מסורת של 600 שנה! הזכות לחתור עוברת מאב לבן, ויש רק 20 משפחות מורשות. בכנסייה באי, מי שמצלצל בפעמון - מתגשמת לו משאלה.</div>
+            <button class="about-toggle" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')"></button>
+            <div class="about-content">
+              <p>אי בלד הוא לב האגם, ועליו <strong>כנסיית העלייה של מריה</strong> מהמאה ה-17 (על יסודות של מקדש עתיק וקדם-נוצרי). מסורת מקומית: החתן נושא את הכלה במעלה 99 המדרגות אל הכנסייה, ובפנים מצלצלים ב<strong>פעמון המשאלות</strong> - ומי שמצלצל, משאלתו מתגשמת.</p>
+              <h5>מה כדאי:</h5>
+              <ul>
+                <li>שיט ב-<strong>Pletna</strong>, סירת עץ מסורתית בת 600 שנה</li>
+                <li>עלייה לכנסייה וצלצול פעמון המשאלות</li>
+                <li>נוף על הטירה וההרים ממש מהמים</li>
+              </ul>
+            </div>
             <span class="tag tag-price">EUR 18 / אדם</span>
             <span class="tag tag-time">1.5 שעה</span>
             <span class="tag tag-access">הסירה נגישה לכולם</span>
@@ -1604,6 +1721,16 @@
             <div class="time-label">11:15</div>
             <h4><a href="https://www.bfreled.si/en/" target="_blank">טירת בלד</a></h4>
             <p>טירה מימי הביניים על צוק מעל האגם - נוף פנורמי שעוצר את הנשימה!</p>
+            <button class="about-toggle" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')"></button>
+            <div class="about-content">
+              <p>טירת בלד היא <strong>המבצר העתיק ביותר בסלובניה</strong> - נזכרה לראשונה ב-1011. היא ניצבת על צוק בגובה ~130 מ' מעל האגם ושימשה מאות שנים את בישופי בְּריקְסֶן. היום יש בה מוזיאון, בית דפוס בסגנון ימי-ביניים, מרתף יין וחצר עם הנוף המפורסם על האגם והאי.</p>
+              <h5>מה לראות:</h5>
+              <ul>
+                <li>המרפסת עם הנוף הפנורמי על האגם והאי</li>
+                <li>המוזיאון על תולדות בלד וחצר הטירה</li>
+                <li>בית הדפוס ומרתף היין (אפשר למלא בקבוק)</li>
+              </ul>
+            </div>
             <span class="tag tag-price">EUR 15 / מבוגר, EUR 7 / ילד</span>
             <span class="tag tag-time">1 שעה</span>
             <button class="read-more-toggle" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')"></button>
@@ -1685,6 +1812,16 @@
               <li>מפל Savica: הליכה קצרה אבל עם 553 מדרגות עלייה! נעלי ספורט חובה. לא מתאים למבוגרים.</li>
               <li>מי שלא עולה למפל - שפת האגם מרהיבה ושטוחה לגמרי, מתאימה לכולם.</li>
             </ul>
+            <button class="about-toggle" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')"></button>
+            <div class="about-content">
+              <p>אגם Bohinj הוא האגם הטבעי הגדול בסלובניה, בלב <strong>הפארק הלאומי טְריגְלַב</strong> - האזור המוגן היחיד במדינה, סביב ההר טריגלב (2864 מ', סמל הדגל הסלובני). בניגוד לבלד - פראי, שקט ובתולי.</p>
+              <h5>מה יש:</h5>
+              <ul>
+                <li>אגם אלפיני צלול לשחייה ולשיט</li>
+                <li>מפל Savica בגובה 78 מ' (עלייה של 553 מדרגות)</li>
+                <li>כנסיית סן ג'ובאני העתיקה על שפת האגם</li>
+              </ul>
+            </div>
           </div>
           <div class="option-card">
             <span class="option-label">אופציה ב'</span>
@@ -1695,6 +1832,16 @@
               <li>נעלי ספורט חובה (רטוב). קריר בפנים, שכבה דקה מומלצת. כדאי להגיע מוקדם (מ-10:30 צפוף).</li>
               <li>חזרה: תמיד על הדקים (שטוח), לא דרך היער (תלול, מעט מעקות). מתאים למבוגרים שהולכים יציב.</li>
             </ul>
+            <button class="about-toggle" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')"></button>
+            <div class="about-content">
+              <p>נקיק Vintgar נפתח לציבור ב-1893. זהו נקיק סלעי באורך 1.6 ק"מ שחתר נהר Radovna, שחוצים על גשרונים ומעברי עץ צמודים לדופן הצוק, מעל מים טורקיז ומפלים - עד למפל Šum שבסופו. מהיפים באלפים.</p>
+              <h5>מה מיוחד:</h5>
+              <ul>
+                <li>שבילי עץ תלויים מעל המים הטורקיז</li>
+                <li>מפלים, אשדות וגשר מסילת ברזל היסטורי</li>
+                <li>מפל Šum בסוף המסלול</li>
+              </ul>
+            </div>
           </div>
         </div>
         <div class="timeline" style="margin-top: 20px; padding-top: 16px; border-top: 1px dashed #ddd;">
@@ -1751,6 +1898,16 @@
             <h4><a href="https://www.visitljubljana.com/en/visitors/activities/boat-rides/" target="_blank">שיט על נהר Ljubljanica</a></h4>
             <p>שעה של שיט בסירה מקורה, עוברים מתחת לגשרים, מדריך מספר על ההיסטוריה</p>
             <div class="fun-fact"><strong>הידעתם?</strong> לובליאנה היא אחת הבירות הכי ירוקות בעולם. מאז 2008 אין כניסה למכוניות למרכז העיר, וב-2016 היא זכתה בתואר "הבירה הירוקה של אירופה".</div>
+            <button class="about-toggle" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')"></button>
+            <div class="about-content">
+              <p>נהר Ljubljanica היה עורק המסחר של העיר עוד מהתקופה הרומית. גדותיו עוצבו בידי האדריכל <strong>פלצ'ניק</strong> לטיילות, קולונדות וגשרים - ומהמים רואים הכי יפה את שכבות ההיסטוריה של העיר.</p>
+              <h5>מה עוברים בשיט:</h5>
+              <ul>
+                <li>הגשר המשולש וגשר הדרקונים מלמטה</li>
+                <li>גשר הקצבים והקולונדה של השוק</li>
+                <li>הטירה המשקיפה מהגבעה</li>
+              </ul>
+            </div>
             <span class="tag tag-price">~EUR 15 / אדם</span>
             <span class="tag tag-time">שעה</span>
             <button class="read-more-toggle" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')"></button>
@@ -1765,6 +1922,16 @@
             <div class="time-label">16:30</div>
             <h4><a href="https://www.visitljubljana.com/en/visitors/attractions/metelkova-mesto/" target="_blank">Metelkova</a> - רובע אמנות</h4>
             <p>רובע אלטרנטיבי עם גרפיטי צבעוני וארכיטקטורה יוצאת דופן - חינם, מעניין במיוחד לבני הנוער במשפחה</p>
+            <button class="about-toggle" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')"></button>
+            <div class="about-content">
+              <p>Metelkova (מטלקובה) הוא מרכז תרבות אוטונומי שקם ב-1993 בתוך מתחם צבא יוגוסלבי נטוש, כשאמנים ופעילים השתלטו עליו כדי למנוע את הריסתו. היום זה אחד ממרכזי התרבות האלטרנטיבית המפורסמים באירופה - קירות גרפיטי, פסלים מחומרים ממוחזרים, גלריות ומועדוני מוזיקה.</p>
+              <h5>מה לראות:</h5>
+              <ul>
+                <li>קירות הגרפיטי והאמנות ברחוב</li>
+                <li>הפסלים והפסיפסים היצירתיים בחצרות</li>
+                <li>ביום - שקט ונעים לסיור; בלילה - סצנת מוזיקה תוססת</li>
+              </ul>
+            </div>
           </div>
           <div class="timeline-item meal">
             <div class="time-label">20:00</div>

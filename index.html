@@ -1038,6 +1038,34 @@
     .day-card { break-inside: avoid; }
     body.js-enabled .reveal { opacity: 1 !important; transform: none !important; }
   }
+
+  /* ============ DAY COLLAPSE / TODAY ============ */
+  .day-card .day-header { cursor: pointer; }
+  .day-collapse-chevron {
+    position: absolute; top: 14px; left: 14px; z-index: 3;
+    width: 34px; height: 34px; border-radius: 50%;
+    background: rgba(0,0,0,0.45); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; line-height: 1; transition: transform 0.3s ease;
+    -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
+  }
+  .day-card.collapsed .day-collapse-chevron { transform: rotate(-90deg); }
+  .day-card.collapsed .day-body { display: none; }
+  .day-today-badge {
+    display: inline-block; background: #e44d26; color: #fff;
+    font-weight: 800; font-size: 12px; padding: 3px 12px;
+    border-radius: 20px; margin-right: 8px; letter-spacing: .5px;
+    vertical-align: middle;
+  }
+  .day-card.today-card { outline: 3px solid #e44d26; outline-offset: 3px; }
+  .jump-today-btn {
+    position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+    z-index: 900; background: #e44d26; color: #fff; border: none;
+    padding: 11px 20px; border-radius: 30px; font-weight: 800; font-size: 14px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.28); cursor: pointer; font-family: inherit;
+    display: none;
+  }
+  .jump-today-btn.show { display: block; }
 </style>
 </head>
 <body>
@@ -2213,6 +2241,68 @@
     window.addEventListener('load', revealNearby);
     revealNearby();
     setTimeout(function() { for (var i = 0; i < reveals.length; i++) reveal(reveals[i]); }, 4000);
+  })();
+
+  // ============ Collapse past days + jump to today ============
+  (function() {
+    var cards = document.querySelectorAll('.day-card');
+    if (!cards.length) return;
+    var now = new Date();
+    var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    var todayCard = null;
+
+    cards.forEach(function(card) {
+      var header = card.querySelector('.day-header');
+      if (!header) return;
+
+      // clickable chevron to collapse/expand
+      var chev = document.createElement('div');
+      chev.className = 'day-collapse-chevron';
+      chev.innerHTML = '&#9662;';
+      header.appendChild(chev);
+      header.addEventListener('click', function() { card.classList.toggle('collapsed'); });
+
+      // parse "DD.M" from the day-meta text
+      var meta = card.querySelector('.day-meta');
+      var d = null;
+      if (meta) {
+        var m = meta.textContent.match(/(\d{1,2})\.(\d{1,2})/);
+        if (m) d = new Date(2026, parseInt(m[2], 10) - 1, parseInt(m[1], 10));
+      }
+      if (!d) return;
+      if (d.getTime() < today.getTime()) {
+        card.classList.add('collapsed');            // past day -> folded
+      } else if (d.getTime() === today.getTime()) {
+        todayCard = card;
+        card.classList.add('today-card');
+        var num = card.querySelector('.day-number');
+        if (num) {
+          var badge = document.createElement('span');
+          badge.className = 'day-today-badge';
+          badge.textContent = 'היום';
+          num.insertAdjacentElement('afterend', badge);
+        }
+      }
+    });
+
+    if (todayCard) {
+      function scrollToToday() {
+        var y = todayCard.getBoundingClientRect().top + window.pageYOffset - 60;
+        window.scrollTo({top: y, behavior: 'smooth'});
+      }
+      var btn = document.createElement('button');
+      btn.className = 'jump-today-btn';
+      btn.textContent = '↓ קפיצה להיום';
+      btn.addEventListener('click', scrollToToday);
+      document.body.appendChild(btn);
+      window.addEventListener('scroll', function() {
+        var r = todayCard.getBoundingClientRect();
+        var visible = r.top < window.innerHeight && r.bottom > 80;
+        btn.classList.toggle('show', !visible);
+      }, {passive: true});
+      // auto-scroll to today's card on load
+      setTimeout(scrollToToday, 600);
+    }
   })();
 </script>
 

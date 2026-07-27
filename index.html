@@ -214,7 +214,7 @@
 
   .day-header {
     position: relative;
-    height: 280px;
+    min-height: 280px;
     display: flex;
     align-items: flex-end;
     padding: 30px;
@@ -1021,7 +1021,7 @@
     .hero h1 { font-size: 36px; }
     .hero-stats { gap: 24px; }
     .hero-stat-num { font-size: 32px; }
-    .day-header { height: 220px; }
+    .day-header { min-height: 220px; }
     .day-header h2 { font-size: 24px; }
     .split-box { grid-template-columns: 1fr; }
     .option-tabs { grid-template-columns: 1fr; }
@@ -2183,23 +2183,36 @@
       });
     });
   })();
-  if ('IntersectionObserver' in window) {
-    var revealObserver = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('in-view');
-          revealObserver.unobserve(entry.target);
-        }
-      });
-    }, {threshold: 0.12});
-    document.querySelectorAll('.reveal').forEach(function(el) {
-      revealObserver.observe(el);
-    });
-  } else {
-    document.querySelectorAll('.reveal').forEach(function(el) {
-      el.classList.add('in-view');
-    });
-  }
+  (function() {
+    var reveals = document.querySelectorAll('.reveal');
+    function reveal(el) { el.classList.add('in-view'); }
+    // Backup: reveal anything at/above the fold (handles tall cards, fast scroll, split-screen resize)
+    function revealNearby() {
+      var vh = window.innerHeight || document.documentElement.clientHeight;
+      for (var i = 0; i < reveals.length; i++) {
+        if (reveals[i].classList.contains('in-view')) continue;
+        if (reveals[i].getBoundingClientRect().top < vh * 1.15) reveal(reveals[i]);
+      }
+    }
+    if ('IntersectionObserver' in window) {
+      var revealObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            reveal(entry.target);
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, {threshold: 0, rootMargin: '0px 0px -8% 0px'});
+      reveals.forEach(function(el) { revealObserver.observe(el); });
+    }
+    // Fallbacks so a card can NEVER stay invisible
+    window.addEventListener('scroll', revealNearby, {passive: true});
+    window.addEventListener('resize', revealNearby);
+    window.addEventListener('orientationchange', revealNearby);
+    window.addEventListener('load', revealNearby);
+    revealNearby();
+    setTimeout(function() { for (var i = 0; i < reveals.length; i++) reveal(reveals[i]); }, 4000);
+  })();
 </script>
 
 </body>

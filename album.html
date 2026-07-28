@@ -47,15 +47,20 @@
   .scene .blurb{max-width:580px;margin:0 auto 6px;font-size:15.5px;line-height:1.65;opacity:0.95;text-shadow:0 2px 8px rgba(0,0,0,0.5);}
   .scene .head{text-align:center;}
 
-  /* POLAROIDS */
-  .polas{display:flex;flex-wrap:wrap;justify-content:center;gap:18px 16px;margin-top:26px;}
-  .pola{position:relative;background:#fff;padding:12px 12px 0;border-radius:2px;box-shadow:0 14px 32px rgba(0,0,0,0.5);
-    width:45%;max-width:230px;cursor:pointer;transition:transform .28s ease,box-shadow .28s ease;}
+  /* POLAROID COLLAGE */
+  .polas{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:10px 6px;margin-top:28px;perspective:900px;}
+  .pola{position:relative;background:#fff;padding:11px 11px 0;border-radius:2px;box-shadow:0 16px 34px rgba(0,0,0,0.55);
+    width:44%;max-width:210px;cursor:pointer;transition:transform .3s cubic-bezier(.2,.8,.3,1.2),box-shadow .3s ease;margin:-4px;}
   .pola::before{content:'';position:absolute;top:-11px;right:50%;transform:translateX(50%) rotate(-4deg);
-    width:78px;height:24px;background:rgba(255,240,180,0.65);box-shadow:0 2px 5px rgba(0,0,0,0.2);}
-  .pola:nth-child(4n+1){transform:rotate(-3.5deg);} .pola:nth-child(4n+2){transform:rotate(2.5deg);}
-  .pola:nth-child(4n+3){transform:rotate(-1.5deg);} .pola:nth-child(4n){transform:rotate(3deg);}
-  .pola:hover{transform:rotate(0) scale(1.05);z-index:6;box-shadow:0 20px 44px rgba(0,0,0,0.6);}
+    width:78px;height:24px;background:rgba(255,240,180,0.6);box-shadow:0 2px 5px rgba(0,0,0,0.2);}
+  /* varied tilt + size for a scattered collage feel */
+  .pola:nth-child(6n+1){transform:rotate(-5deg) translateY(6px);}
+  .pola:nth-child(6n+2){transform:rotate(3deg) translateY(-10px);width:50%;max-width:238px;z-index:3;}
+  .pola:nth-child(6n+3){transform:rotate(-2deg) translateY(4px);}
+  .pola:nth-child(6n+4){transform:rotate(4.5deg) translateY(-6px);width:40%;max-width:180px;}
+  .pola:nth-child(6n+5){transform:rotate(-3.5deg) translateY(8px);}
+  .pola:nth-child(6n){transform:rotate(2deg) translateY(-8px);width:48%;max-width:224px;z-index:2;}
+  .pola:hover{transform:rotate(0) scale(1.08) translateY(0);z-index:9;box-shadow:0 24px 50px rgba(0,0,0,0.65);}
   .pola img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block;background:#eee;}
   .pola .cap{color:#3a3a3a;text-align:center;font-family:'Caveat',cursive;font-size:20px;padding:6px 4px 12px;}
   .addpola{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;width:45%;max-width:230px;min-height:160px;
@@ -81,7 +86,22 @@
   .viewer button{border:none;padding:10px 20px;border-radius:22px;font-family:inherit;font-weight:800;cursor:pointer;}
   .vclose{background:#fff;color:#111;} .vdel{background:#c0392b;color:#fff;}
 
-  @media(min-width:640px){.pola,.addpola{width:220px;}.scene h2{font-size:52px;}.hero h1{font-size:60px;}}
+  /* CREW / MEET THE TRAVELERS */
+  .crew{background:linear-gradient(160deg,#0d7377,#0a2a30);padding:54px 18px 60px;text-align:center;}
+  .crew .kick{font-family:'Caveat',cursive;font-size:26px;color:#f0d38a;}
+  .crew h2{font-size:30px;font-weight:900;margin:4px 0 6px;}
+  .crew .sub{font-size:14px;opacity:0.85;max-width:520px;margin:0 auto 26px;line-height:1.6;}
+  .crewGrid{display:flex;flex-wrap:wrap;justify-content:center;gap:18px 16px;max-width:760px;margin:0 auto;}
+  .person{position:relative;width:96px;}
+  .person .ava{width:96px;height:96px;border-radius:50%;object-fit:cover;border:3px solid #f0d38a;box-shadow:0 8px 20px rgba(0,0,0,0.45);background:#0a2a30;}
+  .person .pname{margin-top:8px;font-weight:800;font-size:14px;word-break:break-word;}
+  .person .pdel{position:absolute;top:-4px;left:-4px;width:24px;height:24px;border-radius:50%;border:none;background:#c0392b;color:#fff;font-weight:900;cursor:pointer;display:none;}
+  .person:hover .pdel{display:block;}
+  .addperson{width:96px;height:96px;border-radius:50%;border:2px dashed rgba(255,255,255,0.6);background:rgba(255,255,255,0.1);
+    color:#fff;font-size:13px;font-weight:800;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;line-height:1.1;}
+  .addperson span{font-size:26px;}
+
+  @media(min-width:640px){.pola,.addpola{width:220px;}.scene h2{font-size:52px;}.hero h1{font-size:60px;}.crew h2{font-size:40px;}}
 </style>
 </head>
 <body>
@@ -98,6 +118,15 @@
   <div class="scroll">גללו למטה כדי לצאת לדרך ↓</div>
 </div>
 
+<section class="crew">
+  <div class="kick">מי בנסיעה?</div>
+  <h2>המשפחה שיצאה לדרך</h2>
+  <div class="sub">העלו תמונה ושם של כל מי שהצטרף למסע. כך תהיה כאן "גלריית נוסעים" נחמדה בראש האלבום — וגם אוכל לדעת מי כל אחד כשתשתפו איתי תמונות מהטיול.</div>
+  <div class="crewGrid" id="crewGrid">
+    <button class="addperson" id="addPerson"><span>＋</span>הוסיפו נוסע</button>
+  </div>
+</section>
+
 <div id="story"></div>
 
 <div class="viewer" id="viewer">
@@ -106,6 +135,7 @@
   <div class="vbtns"><button class="vclose" id="vclose">✕ סגור</button><button class="vdel" id="vdel">🗑️ מחק</button></div>
 </div>
 <input type="file" id="fileInput" accept="image/*" multiple style="display:none">
+<input type="file" id="personInput" accept="image/*" style="display:none">
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
@@ -121,13 +151,13 @@ var STOPS=[
   bg:IMG+'2/27/Castello_di_Miramare_%28Trieste%29_%287%29.jpg/1200px-Castello_di_Miramare_%28Trieste%29_%287%29.jpg',
   blurb:'ארמון הבסבורגי לבן על שפת הים, עם גנים וסיפור טרגי של מקסימיליאן ושרלוטה.'},
  {name:'מערת Postojna',day:'יום 4',lat:45.7822,lng:14.2047,
-  grad:'linear-gradient(160deg,#0b2a3a,#12545f)',
+  bg:'https://commons.wikimedia.org/wiki/Special:FilePath/Postojna%20Cave%20-%20Slovenia.jpg?width=1200',
   blurb:'רכבת חשמלית עמוק לתוך מערת נטיפים ענקית - וה־Olm, ״דרקון התינוק״.'},
  {name:'אגם בלד',day:'ימים 4-7',lat:46.3684,lng:14.1146,
   bg:IMG+'8/84/Lake_Bled_from_the_Mountain.jpg/1200px-Lake_Bled_from_the_Mountain.jpg',
   blurb:'אחד הנופים היפים באירופה - אי עם כנסייה, טירה על צוק וסירות Pletna.'},
  {name:'נקיק Vintgar',day:'ימים 5-6',lat:46.3833,lng:14.0672,
-  grad:'linear-gradient(160deg,#0f3d2e,#1e8a5f)',
+  bg:'https://commons.wikimedia.org/wiki/Special:FilePath/Vintgar-gorge-bled-slovenia.jpg?width=1200',
   blurb:'שבילי עץ תלויים מעל מים טורקיז ומפלים, בתוך נקיק סלעי דרמטי.'},
  {name:'אגם Bohinj',day:'יום 6',lat:46.2775,lng:13.8875,
   bg:IMG+'4/46/Bohinjsko_jezero_2.jpg/1200px-Bohinjsko_jezero_2.jpg',
@@ -143,9 +173,16 @@ addEventListener('scroll',function(){
 
 // IndexedDB
 var db;
-function openDB(){return new Promise(function(res,rej){var r=indexedDB.open('tripAlbum2',1);
-  r.onupgradeneeded=function(e){e.target.result.createObjectStore('photos',{keyPath:'id',autoIncrement:true});};
+function openDB(){return new Promise(function(res,rej){var r=indexedDB.open('tripAlbum2',2);
+  r.onupgradeneeded=function(e){var d=e.target.result;
+    if(!d.objectStoreNames.contains('photos'))d.createObjectStore('photos',{keyPath:'id',autoIncrement:true});
+    if(!d.objectStoreNames.contains('people'))d.createObjectStore('people',{keyPath:'id',autoIncrement:true});};
   r.onsuccess=function(e){db=e.target.result;res();};r.onerror=rej;});}
+function savePerson(rec){return new Promise(function(res,rej){var tx=db.transaction('people','readwrite');
+  var q=tx.objectStore('people').add(rec);q.onsuccess=function(){rec.id=q.result;};tx.oncomplete=function(){res(rec.id);};tx.onerror=rej;});}
+function deletePerson(id){var tx=db.transaction('people','readwrite');tx.objectStore('people').delete(id);}
+function allPeople(){return new Promise(function(res){var tx=db.transaction('people','readonly');
+  var q=tx.objectStore('people').getAll();q.onsuccess=function(){res(q.result||[]);};});}
 function savePhoto(rec){return new Promise(function(res,rej){var tx=db.transaction('photos','readwrite');
   var q=tx.objectStore('photos').add(rec);q.onsuccess=function(){rec.id=q.result;};tx.oncomplete=function(){res(rec.id);};tx.onerror=rej;});}
 function deletePhoto(id){var tx=db.transaction('photos','readwrite');tx.objectStore('photos').delete(id);}
@@ -155,6 +192,17 @@ function photosForStop(idx){return new Promise(function(res){var tx=db.transacti
 // build
 var story=document.getElementById('story');
 function buildStory(){STOPS.forEach(function(s,i){ if(i>0) story.appendChild(makeLeg(STOPS[i-1],s)); story.appendChild(makeScene(s,i)); });}
+
+// CREW
+var crewGrid=document.getElementById('crewGrid'),personInput=document.getElementById('personInput');
+function makePerson(rec){var url=URL.createObjectURL(rec.blob);var d=document.createElement('div');d.className='person';
+  d.innerHTML='<button class="pdel" title="מחק">✕</button><img class="ava" src="'+url+'"><div class="pname">'+(rec.name||'')+'</div>';
+  d.querySelector('.pdel').onclick=function(){if(rec.id!=null)deletePerson(rec.id);d.remove();};return d;}
+function renderCrew(){allPeople().then(function(list){list.forEach(function(rec){crewGrid.insertBefore(makePerson(rec),document.getElementById('addPerson'));});});}
+document.getElementById('addPerson').onclick=function(){personInput.click();};
+personInput.addEventListener('change',function(e){var f=(e.target.files||[])[0];personInput.value='';if(!f)return;
+  var name=prompt('מה השם של הנוסע/ת בתמונה?')||'';var rec={blob:f,name:name.trim(),ts:Date.now()};
+  savePerson(rec).then(function(){crewGrid.insertBefore(makePerson(rec),document.getElementById('addPerson'));});});
 
 function makeScene(s,i){
   var sec=document.createElement('section');sec.className='scene';
@@ -192,11 +240,20 @@ function initLeg(leg){
   var map=L.map(leg.dataset.mid,{zoomControl:false,attributionControl:false,dragging:false,scrollWheelZoom:false,doubleClickZoom:false,tap:false,keyboard:false});
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19}).addTo(map);
   var line=[[f[0],f[1]],[t[0],t[1]]];
+  var bounds=L.latLngBounds(line).pad(0.35);
   L.polyline(line,{color:'#d4a843',weight:4,dashArray:'2,9',lineCap:'round'}).addTo(map);
   L.circleMarker(line[0],{radius:5,color:'#fff',fillColor:'#0d7377',fillOpacity:1}).addTo(map);
   L.circleMarker(line[1],{radius:6,color:'#fff',fillColor:'#e44d26',fillOpacity:1}).addTo(map);
-  map.fitBounds(L.latLngBounds(line).pad(0.35));
-  setTimeout(function(){map.invalidateSize();driveCars(map,f,t);},260);
+  // start zoomed-in on the origin, then fly out to reveal the whole drive
+  map.setView(line[0],10,{animate:false});
+  setTimeout(function(){
+    map.invalidateSize();
+    map.flyToBounds(bounds,{duration:2.6,easeLinearity:0.25});
+    driveCars(map,f,t);
+    // after the cars arrive, zoom the "camera" into the destination
+    setTimeout(function(){map.flyTo(line[1],11,{duration:2.2});
+      setTimeout(function(){map.flyToBounds(bounds,{duration:1.8});},2600);},4700);
+  },300);
 }
 function driveCars(map,f,t){for(var k=0;k<3;k++){(function(delay){
   var m=L.marker([f[0],f[1]],{icon:L.divIcon({html:'<div class="car">🚗</div>',className:'',iconSize:[26,26],iconAnchor:[13,13]})}).addTo(map);
@@ -220,7 +277,7 @@ function openViewer(url,rec,el){document.getElementById('viewerImg').src=url;doc
 document.getElementById('vclose').onclick=function(){document.getElementById('viewer').classList.remove('show');};
 document.getElementById('vdel').onclick=function(){if(vstate){if(vstate.rec.id!=null)deletePhoto(vstate.rec.id);if(vstate.el)vstate.el.remove();vstate=null;}document.getElementById('viewer').classList.remove('show');};
 
-openDB().then(buildStory).catch(buildStory);
+openDB().then(function(){renderCrew();buildStory();}).catch(buildStory);
 </script>
 </body>
 </html>

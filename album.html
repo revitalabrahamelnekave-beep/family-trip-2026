@@ -5,83 +5,97 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>אלבום המסע - סלובניה &amp; טריאסט 2026</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Heebo:wght@400;600;800;900&display=swap" rel="stylesheet">
 <style>
-  * { margin:0; padding:0; box-sizing:border-box; }
-  body { font-family:'Heebo',-apple-system,Arial,sans-serif; background:#0e1417; color:#fff; overflow-x:hidden; }
-  a { color:inherit; }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Heebo',-apple-system,Arial,sans-serif;background:#080b0d;color:#fff;overflow-x:hidden;}
 
-  .topnav { position:fixed; top:0; left:0; right:0; z-index:2000; display:flex; align-items:center; gap:10px;
-    padding:8px 14px; background:linear-gradient(180deg,rgba(0,0,0,0.6),rgba(0,0,0,0)); pointer-events:none; }
-  .topnav a { pointer-events:auto; background:rgba(0,0,0,0.45); color:#fff; text-decoration:none; font-size:13px; font-weight:700;
-    padding:7px 12px; border-radius:20px; backdrop-filter:blur(4px); }
-  .topnav .sp { flex:1; }
+  .progress{position:fixed;top:0;right:0;height:4px;width:0;z-index:3000;
+    background:linear-gradient(90deg,#d4a843,#e44d26);box-shadow:0 0 10px rgba(228,77,38,0.6);}
 
-  /* ---- HERO ---- */
-  .hero { min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;
-    padding:30px; background:linear-gradient(160deg,#0d7377,#14a0a6 55%,#d4a843); position:relative; }
-  .hero h1 { font-size:38px; font-weight:800; line-height:1.15; text-shadow:0 3px 14px rgba(0,0,0,0.3); }
-  .hero p { margin-top:10px; font-size:16px; opacity:0.95; }
-  .hero .scroll { position:absolute; bottom:26px; font-size:14px; opacity:0.9; animation:bob 1.6s infinite; }
-  @keyframes bob { 0%,100%{transform:translateY(0);} 50%{transform:translateY(8px);} }
+  .topnav{position:fixed;top:0;left:0;right:0;z-index:2500;display:flex;gap:8px;padding:10px 14px;
+    background:linear-gradient(180deg,rgba(0,0,0,0.55),rgba(0,0,0,0));pointer-events:none;}
+  .topnav a{pointer-events:auto;background:rgba(0,0,0,0.4);color:#fff;text-decoration:none;font-size:13px;font-weight:800;
+    padding:7px 13px;border-radius:20px;backdrop-filter:blur(6px);}
+  .topnav .sp{flex:1;}
 
-  /* ---- DESTINATION SCENE ---- */
-  .scene { position:relative; min-height:100vh; display:flex; flex-direction:column; justify-content:center;
-    padding:80px 18px 60px; background-size:cover; background-position:center; }
-  .scene::before { content:''; position:absolute; inset:0; background:linear-gradient(180deg,rgba(8,12,15,0.55),rgba(8,12,15,0.35) 40%,rgba(8,12,15,0.8)); }
-  .scene > * { position:relative; z-index:2; }
-  .scene .day { align-self:center; background:#d4a843; color:#3a2e0a; font-weight:800; font-size:13px; padding:4px 16px; border-radius:20px; }
-  .scene h2 { text-align:center; font-size:34px; font-weight:800; margin:10px 0 4px; text-shadow:0 3px 14px rgba(0,0,0,0.5); }
-  .scene .blurb { text-align:center; max-width:560px; margin:0 auto 8px; font-size:15px; line-height:1.6; opacity:0.95; }
+  /* HERO */
+  .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:30px;
+    background:linear-gradient(130deg,#0d7377,#14a0a6,#d4a843,#e44d26);background-size:300% 300%;animation:grad 16s ease infinite;position:relative;}
+  @keyframes grad{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+  .hero .kick{font-family:'Caveat',cursive;font-size:30px;opacity:0;animation:fadeUp 1s .2s forwards;}
+  .hero h1{font-size:44px;font-weight:900;line-height:1.1;margin:6px 0;text-shadow:0 4px 20px rgba(0,0,0,0.35);opacity:0;animation:fadeUp 1s .5s forwards;}
+  .hero p{font-size:16px;opacity:0;animation:fadeUp 1s .9s forwards;}
+  .hero .scroll{position:absolute;bottom:26px;font-size:14px;font-weight:700;opacity:0;animation:fadeUp 1s 1.3s forwards, bob 1.8s 2.3s infinite;}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(9px)}}
 
-  /* ---- POLAROIDS ---- */
-  .polas { display:flex; flex-wrap:wrap; justify-content:center; gap:16px; margin-top:22px; }
-  .pola { background:#fff; padding:10px 10px 0; border-radius:3px; box-shadow:0 10px 26px rgba(0,0,0,0.45);
-    width:44%; max-width:230px; transition:transform .25s ease; cursor:pointer; }
-  .pola:nth-child(3n+1){ transform:rotate(-3deg); }
-  .pola:nth-child(3n+2){ transform:rotate(2.5deg); }
-  .pola:nth-child(3n){ transform:rotate(-1.5deg); }
-  .pola:hover{ transform:rotate(0) scale(1.03); z-index:5; }
-  .pola img { width:100%; aspect-ratio:1/1; object-fit:cover; display:block; background:#eee; }
-  .pola .cap { color:#333; text-align:center; font-size:13px; padding:8px 4px 12px; font-family:'Heebo',cursive; }
-  .addpola { display:flex; align-items:center; justify-content:center; flex-direction:column; gap:6px;
-    width:44%; max-width:230px; min-height:150px; border:2px dashed rgba(255,255,255,0.6); border-radius:8px;
-    color:#fff; background:rgba(255,255,255,0.08); cursor:pointer; font-weight:700; font-size:14px; }
-  .addpola span { font-size:30px; }
+  /* SCENE */
+  .scene{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:90px 18px 70px;overflow:hidden;}
+  .scenebg{position:absolute;inset:0;background-size:cover;background-position:center;z-index:0;transform:scale(1.16);
+    animation:ken 22s ease-in-out infinite alternate;}
+  @keyframes ken{from{transform:scale(1.16) translate(0,0)}to{transform:scale(1.02) translate(0,-1.5%)}}
+  .scene::before{content:'';position:absolute;inset:0;z-index:1;
+    background:linear-gradient(180deg,rgba(6,9,11,0.5),rgba(6,9,11,0.28) 38%,rgba(6,9,11,0.88));}
+  .scene .inner{position:relative;z-index:2;opacity:0;transform:translateY(30px);transition:opacity .9s ease,transform .9s ease;}
+  .scene.in .inner{opacity:1;transform:translateY(0);}
+  .scene .day{display:inline-block;background:#d4a843;color:#3a2e0a;font-weight:900;font-size:13px;padding:4px 18px;border-radius:20px;letter-spacing:.5px;}
+  .scene h2{font-size:40px;font-weight:900;margin:12px 0 6px;text-shadow:0 4px 20px rgba(0,0,0,0.6);}
+  .scene .blurb{max-width:580px;margin:0 auto 6px;font-size:15.5px;line-height:1.65;opacity:0.95;text-shadow:0 2px 8px rgba(0,0,0,0.5);}
+  .scene .head{text-align:center;}
 
-  /* ---- ROAD / MAP TRANSITION ---- */
-  .leg { position:relative; padding:26px 14px 30px; background:#0e1417; text-align:center; }
-  .leg .legh { font-size:15px; font-weight:700; margin-bottom:12px; color:#d4a843; }
-  .leg .legh b { color:#fff; }
-  .legmap { height:230px; border-radius:16px; overflow:hidden; box-shadow:0 8px 24px rgba(0,0,0,0.5); }
-  .car { font-size:26px; filter:drop-shadow(0 2px 3px rgba(0,0,0,0.5)); }
+  /* POLAROIDS */
+  .polas{display:flex;flex-wrap:wrap;justify-content:center;gap:18px 16px;margin-top:26px;}
+  .pola{position:relative;background:#fff;padding:12px 12px 0;border-radius:2px;box-shadow:0 14px 32px rgba(0,0,0,0.5);
+    width:45%;max-width:230px;cursor:pointer;transition:transform .28s ease,box-shadow .28s ease;}
+  .pola::before{content:'';position:absolute;top:-11px;right:50%;transform:translateX(50%) rotate(-4deg);
+    width:78px;height:24px;background:rgba(255,240,180,0.65);box-shadow:0 2px 5px rgba(0,0,0,0.2);}
+  .pola:nth-child(4n+1){transform:rotate(-3.5deg);} .pola:nth-child(4n+2){transform:rotate(2.5deg);}
+  .pola:nth-child(4n+3){transform:rotate(-1.5deg);} .pola:nth-child(4n){transform:rotate(3deg);}
+  .pola:hover{transform:rotate(0) scale(1.05);z-index:6;box-shadow:0 20px 44px rgba(0,0,0,0.6);}
+  .pola img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block;background:#eee;}
+  .pola .cap{color:#3a3a3a;text-align:center;font-family:'Caveat',cursive;font-size:20px;padding:6px 4px 12px;}
+  .addpola{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;width:45%;max-width:230px;min-height:160px;
+    border:2px dashed rgba(255,255,255,0.65);border-radius:10px;color:#fff;background:rgba(255,255,255,0.1);cursor:pointer;font-weight:800;font-size:14px;text-align:center;padding:10px;}
+  .addpola span{font-size:34px;}
 
-  .leaflet-container { background:#12303a; }
+  /* LEG / DRIVE */
+  .leg{position:relative;padding:34px 14px 40px;background:radial-gradient(ellipse at top,#12303a,#080b0d 70%);text-align:center;}
+  .leg .legh{font-family:'Caveat',cursive;font-size:26px;color:#f0d38a;margin-bottom:4px;}
+  .leg .legh b{color:#fff;font-family:'Heebo';font-weight:900;font-size:20px;}
+  .leg .cars{font-size:22px;letter-spacing:2px;margin-bottom:12px;animation:drift 2.2s ease-in-out infinite;}
+  @keyframes drift{0%,100%{transform:translateX(-6px)}50%{transform:translateX(6px)}}
+  .legmap{height:230px;border-radius:18px;overflow:hidden;box-shadow:0 12px 34px rgba(0,0,0,0.6);border:2px solid rgba(212,168,67,0.35);}
+  .car{font-size:26px;filter:drop-shadow(0 2px 3px rgba(0,0,0,0.5));transform:scaleX(-1);}
+  .leaflet-container{background:#0d2029;}
 
-  /* ---- VIEWER ---- */
-  .viewer { position:fixed; inset:0; z-index:3000; background:rgba(0,0,0,0.94); display:none; align-items:center; justify-content:center; flex-direction:column; padding:20px; }
-  .viewer.show { display:flex; }
-  .viewer img { max-width:94vw; max-height:74vh; border-radius:6px; }
-  .viewer .vcap { color:#fff; margin-top:12px; font-size:15px; }
-  .viewer .vbtns { margin-top:14px; display:flex; gap:10px; }
-  .viewer button { border:none; padding:10px 18px; border-radius:22px; font-family:inherit; font-weight:700; cursor:pointer; }
-  .vclose { background:#fff; color:#111; }
-  .vdel { background:#c0392b; color:#fff; }
+  /* VIEWER */
+  .viewer{position:fixed;inset:0;z-index:3500;background:rgba(0,0,0,0.95);display:none;align-items:center;justify-content:center;flex-direction:column;padding:20px;}
+  .viewer.show{display:flex;}
+  .viewer img{max-width:94vw;max-height:72vh;border-radius:6px;box-shadow:0 10px 40px rgba(0,0,0,0.6);}
+  .viewer .vcap{color:#fff;margin-top:12px;font-family:'Caveat',cursive;font-size:22px;}
+  .viewer .vbtns{margin-top:16px;display:flex;gap:10px;}
+  .viewer button{border:none;padding:10px 20px;border-radius:22px;font-family:inherit;font-weight:800;cursor:pointer;}
+  .vclose{background:#fff;color:#111;} .vdel{background:#c0392b;color:#fff;}
 
-  @media (min-width:640px){ .pola,.addpola{ width:220px; } .scene h2{font-size:42px;} .hero h1{font-size:52px;} }
+  @media(min-width:640px){.pola,.addpola{width:220px;}.scene h2{font-size:52px;}.hero h1{font-size:60px;}}
 </style>
 </head>
 <body>
-
+<div class="progress" id="progress"></div>
 <div class="topnav">
-  <a href="index.html">← ללו"ז</a>
-  <span class="sp"></span>
-  <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">↑ להתחלה</a>
+  <a href="index.html">← ללו"ז</a><span class="sp"></span>
+  <a href="#" onclick="scrollTo({top:0,behavior:'smooth'});return false;">↑ להתחלה</a>
 </div>
 
 <div class="hero">
-  <h1>אלבום המסע<br>סלובניה &amp; טריאסט</h1>
+  <div class="kick">המסע שלנו</div>
+  <h1>סלובניה &amp; טריאסט</h1>
   <p>יולי 2026 · 12 בני משפחה · 3 רכבים</p>
-  <div class="scroll">גללו למטה להתחיל את המסע ↓</div>
+  <div class="scroll">גללו למטה כדי לצאת לדרך ↓</div>
 </div>
 
 <div id="story"></div>
@@ -89,158 +103,124 @@
 <div class="viewer" id="viewer">
   <img id="viewerImg" src="" alt="">
   <div class="vcap" id="viewerCap"></div>
-  <div class="vbtns">
-    <button class="vclose" id="vclose">✕ סגור</button>
-    <button class="vdel" id="vdel">🗑️ מחק</button>
-  </div>
+  <div class="vbtns"><button class="vclose" id="vclose">✕ סגור</button><button class="vdel" id="vdel">🗑️ מחק</button></div>
 </div>
-
 <input type="file" id="fileInput" accept="image/*" multiple style="display:none">
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
 var IMG='https://upload.wikimedia.org/wikipedia/commons/thumb/';
 var STOPS=[
-  {name:'לובליאנה', day:'ימים 1-2', lat:46.0569, lng:14.5058,
-   bg:IMG+'1/1c/Ljubljanica_banks_night.jpg/1000px-Ljubljanica_banks_night.jpg',
-   blurb:'הבירה הירוקה - טירה על גבעה, גשר הדרקונים וגדות הנהר של פלצ׳ניק.'},
-  {name:'טריאסט', day:'ימים 2-3', lat:45.6495, lng:13.7768,
-   bg:IMG+'a/a3/Trieste_-_Piazza_Unit%C3%A0_d%27Italia_al_tramonto.JPG/1000px-Trieste_-_Piazza_Unit%C3%A0_d%27Italia_al_tramonto.JPG',
-   blurb:'״וינה שליד הים״ - Piazza Unità, הרציף Molo Audace והקפה של איטליה.'},
-  {name:'טירת Miramare', day:'יום 3', lat:45.6897, lng:13.7124,
-   bg:IMG+'2/27/Castello_di_Miramare_%28Trieste%29_%287%29.jpg/1000px-Castello_di_Miramare_%28Trieste%29_%287%29.jpg',
-   blurb:'ארמון הבסבורגי לבן על שפת הים, עם גנים וסיפור טרגי של מקסימיליאן ושרלוטה.'},
-  {name:'מערת Postojna', day:'יום 4', lat:45.7822, lng:14.2047,
-   grad:'linear-gradient(160deg,#0b2a3a,#12545f)',
-   blurb:'רכבת חשמלית עמוק לתוך מערת נטיפים ענקית - וה־Olm, ״דרקון התינוק״.'},
-  {name:'אגם בלד', day:'ימים 4-7', lat:46.3684, lng:14.1146,
-   bg:IMG+'8/84/Lake_Bled_from_the_Mountain.jpg/1000px-Lake_Bled_from_the_Mountain.jpg',
-   blurb:'אחד הנופים היפים באירופה - אי עם כנסייה, טירה על צוק וסירות Pletna.'},
-  {name:'נקיק Vintgar', day:'ימים 5-6', lat:46.3833, lng:14.0672,
-   grad:'linear-gradient(160deg,#0f3d2e,#1e8a5f)',
-   blurb:'שבילי עץ תלויים מעל מים טורקיז ומפלים, בתוך נקיק סלעי דרמטי.'},
-  {name:'אגם Bohinj', day:'יום 6', lat:46.2775, lng:13.8875,
-   bg:IMG+'4/46/Bohinjsko_jezero_2.jpg/1000px-Bohinjsko_jezero_2.jpg',
-   blurb:'האגם הפראי והשקט בלב הפארק הלאומי טריגלב - אלפים בתוליים.'}
+ {name:'לובליאנה',day:'ימים 1-2',lat:46.0569,lng:14.5058,
+  bg:IMG+'1/1c/Ljubljanica_banks_night.jpg/1200px-Ljubljanica_banks_night.jpg',
+  blurb:'הבירה הירוקה - טירה על גבעה, גשר הדרקונים וגדות הנהר של פלצ׳ניק.'},
+ {name:'טריאסט',day:'ימים 2-3',lat:45.6495,lng:13.7768,
+  bg:IMG+'a/a3/Trieste_-_Piazza_Unit%C3%A0_d%27Italia_al_tramonto.JPG/1200px-Trieste_-_Piazza_Unit%C3%A0_d%27Italia_al_tramonto.JPG',
+  blurb:'״וינה שליד הים״ - Piazza Unità, הרציף Molo Audace והקפה של איטליה.'},
+ {name:'טירת Miramare',day:'יום 3',lat:45.6897,lng:13.7124,
+  bg:IMG+'2/27/Castello_di_Miramare_%28Trieste%29_%287%29.jpg/1200px-Castello_di_Miramare_%28Trieste%29_%287%29.jpg',
+  blurb:'ארמון הבסבורגי לבן על שפת הים, עם גנים וסיפור טרגי של מקסימיליאן ושרלוטה.'},
+ {name:'מערת Postojna',day:'יום 4',lat:45.7822,lng:14.2047,
+  grad:'linear-gradient(160deg,#0b2a3a,#12545f)',
+  blurb:'רכבת חשמלית עמוק לתוך מערת נטיפים ענקית - וה־Olm, ״דרקון התינוק״.'},
+ {name:'אגם בלד',day:'ימים 4-7',lat:46.3684,lng:14.1146,
+  bg:IMG+'8/84/Lake_Bled_from_the_Mountain.jpg/1200px-Lake_Bled_from_the_Mountain.jpg',
+  blurb:'אחד הנופים היפים באירופה - אי עם כנסייה, טירה על צוק וסירות Pletna.'},
+ {name:'נקיק Vintgar',day:'ימים 5-6',lat:46.3833,lng:14.0672,
+  grad:'linear-gradient(160deg,#0f3d2e,#1e8a5f)',
+  blurb:'שבילי עץ תלויים מעל מים טורקיז ומפלים, בתוך נקיק סלעי דרמטי.'},
+ {name:'אגם Bohinj',day:'יום 6',lat:46.2775,lng:13.8875,
+  bg:IMG+'4/46/Bohinjsko_jezero_2.jpg/1200px-Bohinjsko_jezero_2.jpg',
+  blurb:'האגם הפראי והשקט בלב הפארק הלאומי טריגלב - אלפים בתוליים.'}
 ];
 
-// ---------- IndexedDB ----------
+// progress bar
+addEventListener('scroll',function(){
+  var h=document.documentElement, sc=h.scrollTop||document.body.scrollTop;
+  var mx=(h.scrollHeight-h.clientHeight)||1;
+  document.getElementById('progress').style.width=(sc/mx*100)+'%';
+},{passive:true});
+
+// IndexedDB
 var db;
 function openDB(){return new Promise(function(res,rej){var r=indexedDB.open('tripAlbum2',1);
   r.onupgradeneeded=function(e){e.target.result.createObjectStore('photos',{keyPath:'id',autoIncrement:true});};
-  r.onsuccess=function(e){db=e.target.result;res();}; r.onerror=rej;});}
+  r.onsuccess=function(e){db=e.target.result;res();};r.onerror=rej;});}
 function savePhoto(rec){return new Promise(function(res,rej){var tx=db.transaction('photos','readwrite');
-  var q=tx.objectStore('photos').add(rec); q.onsuccess=function(){rec.id=q.result;}; tx.oncomplete=function(){res(rec.id);}; tx.onerror=rej;});}
-function deletePhoto(id){var tx=db.transaction('photos','readwrite'); tx.objectStore('photos').delete(id);}
+  var q=tx.objectStore('photos').add(rec);q.onsuccess=function(){rec.id=q.result;};tx.oncomplete=function(){res(rec.id);};tx.onerror=rej;});}
+function deletePhoto(id){var tx=db.transaction('photos','readwrite');tx.objectStore('photos').delete(id);}
 function photosForStop(idx){return new Promise(function(res){var tx=db.transaction('photos','readonly');
-  var q=tx.objectStore('photos').getAll(); q.onsuccess=function(){res((q.result||[]).filter(function(p){return p.stop===idx;}));};});}
+  var q=tx.objectStore('photos').getAll();q.onsuccess=function(){res((q.result||[]).filter(function(p){return p.stop===idx;}));};});}
 
-// ---------- Build the story ----------
+// build
 var story=document.getElementById('story');
-function buildStory(){
-  STOPS.forEach(function(s,i){
-    if(i>0) story.appendChild(makeLeg(STOPS[i-1],s));
-    story.appendChild(makeScene(s,i));
-  });
-}
+function buildStory(){STOPS.forEach(function(s,i){ if(i>0) story.appendChild(makeLeg(STOPS[i-1],s)); story.appendChild(makeScene(s,i)); });}
+
 function makeScene(s,i){
-  var sec=document.createElement('section'); sec.className='scene';
-  if(s.bg){ sec.style.backgroundImage='url('+s.bg+')'; } else { sec.style.background=s.grad||'linear-gradient(160deg,#0d7377,#14a0a6)'; }
-  sec.innerHTML='<span class="day">'+s.day+'</span><h2>'+s.name+'</h2><div class="blurb">'+s.blurb+'</div>'+
-    '<div class="polas" id="polas'+i+'"></div>';
-  var polas=sec.querySelector('#polas'+i);
-  var add=document.createElement('div'); add.className='addpola';
-  add.innerHTML='<span>📷</span>הוסיפו תמונות מ'+s.name;
-  add.onclick=function(){ pickFor(i); };
-  polas.appendChild(add);
+  var sec=document.createElement('section');sec.className='scene';
+  var bg=document.createElement('div');bg.className='scenebg';
+  if(s.bg){bg.style.backgroundImage='url('+s.bg+')';}else{bg.style.background=s.grad||'linear-gradient(160deg,#0d7377,#14a0a6)';}
+  sec.appendChild(bg);
+  var inner=document.createElement('div');inner.className='inner';
+  inner.innerHTML='<div class="head"><span class="day">'+s.day+'</span><h2>'+s.name+'</h2><div class="blurb">'+s.blurb+'</div></div><div class="polas" id="polas'+i+'"></div>';
+  sec.appendChild(inner);
+  var polas=inner.querySelector('#polas'+i);
+  var add=document.createElement('div');add.className='addpola';add.innerHTML='<span>📷</span>הוסיפו תמונות מ'+s.name;
+  add.onclick=function(){pickFor(i);};polas.appendChild(add);
   renderStop(i,polas);
+  sceneObserver.observe(sec);
   return sec;
 }
-function renderStop(i,container){
-  photosForStop(i).then(function(list){
-    list.forEach(function(rec){ container.insertBefore(makePola(rec), container.firstChild); });
-  });
-}
-function makePola(rec){
-  var url=URL.createObjectURL(rec.blob);
-  var d=document.createElement('div'); d.className='pola';
+function renderStop(i,c){photosForStop(i).then(function(list){list.forEach(function(rec){c.insertBefore(makePola(rec),c.firstChild);});});}
+function makePola(rec){var url=URL.createObjectURL(rec.blob);var d=document.createElement('div');d.className='pola';
   d.innerHTML='<img src="'+url+'"><div class="cap">'+(rec.cap||'התמונה שלנו')+'</div>';
-  d.onclick=function(){ openViewer(url,rec,d); };
-  return d;
-}
-function makeLeg(from,to){
-  var leg=document.createElement('div'); leg.className='leg';
+  d.onclick=function(){openViewer(url,rec,d);};return d;}
+function makeLeg(from,to){var leg=document.createElement('div');leg.className='leg';
   var id='m'+Math.round(from.lat*1000)+'_'+Math.round(to.lat*1000);
-  leg.innerHTML='<div class="legh">🚗 נוסעים אל <b>'+to.name+'</b></div><div class="legmap" id="'+id+'"></div>';
-  leg.dataset.from=from.lat+','+from.lng; leg.dataset.to=to.lat+','+to.lng; leg.dataset.mid=id;
-  legObserver.observe(leg);
-  return leg;
-}
+  leg.innerHTML='<div class="legh">בדרך אל <b>'+to.name+'</b></div><div class="cars">🚗 🚗 🚗</div><div class="legmap" id="'+id+'"></div>';
+  leg.dataset.from=from.lat+','+from.lng;leg.dataset.to=to.lat+','+to.lng;leg.dataset.mid=id;
+  legObserver.observe(leg);return leg;}
 
-// ---------- Map leg animation (lazy) ----------
-var legObserver=new IntersectionObserver(function(entries){
-  entries.forEach(function(en){
-    if(en.isIntersecting && !en.target.dataset.done){
-      en.target.dataset.done='1'; initLeg(en.target);
-    }
-  });
-},{threshold:0.4});
+// scene reveal
+var sceneObserver=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('in');});},{threshold:0.25});
 
+// leg maps + car animation (lazy)
+var legObserver=new IntersectionObserver(function(es){es.forEach(function(e){
+  if(e.isIntersecting&&!e.target.dataset.done){e.target.dataset.done='1';initLeg(e.target);}});},{threshold:0.4});
 function initLeg(leg){
-  var f=leg.dataset.from.split(',').map(Number), t=leg.dataset.to.split(',').map(Number);
-  var map=L.map(leg.dataset.mid,{zoomControl:false,attributionControl:false,dragging:false,scrollWheelZoom:false,doubleClickZoom:false,tap:false});
+  var f=leg.dataset.from.split(',').map(Number),t=leg.dataset.to.split(',').map(Number);
+  var map=L.map(leg.dataset.mid,{zoomControl:false,attributionControl:false,dragging:false,scrollWheelZoom:false,doubleClickZoom:false,tap:false,keyboard:false});
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19}).addTo(map);
   var line=[[f[0],f[1]],[t[0],t[1]]];
-  L.polyline(line,{color:'#d4a843',weight:4,dashArray:'2,8',lineCap:'round'}).addTo(map);
+  L.polyline(line,{color:'#d4a843',weight:4,dashArray:'2,9',lineCap:'round'}).addTo(map);
   L.circleMarker(line[0],{radius:5,color:'#fff',fillColor:'#0d7377',fillOpacity:1}).addTo(map);
   L.circleMarker(line[1],{radius:6,color:'#fff',fillColor:'#e44d26',fillOpacity:1}).addTo(map);
   map.fitBounds(L.latLngBounds(line).pad(0.35));
-  setTimeout(function(){ map.invalidateSize(); driveCars(map,f,t); },250);
+  setTimeout(function(){map.invalidateSize();driveCars(map,f,t);},260);
 }
-function driveCars(map,f,t){
-  for(var k=0;k<3;k++){ // 3 cars convoy
-    (function(delay){
-      var icon=L.divIcon({html:'<div class="car">🚗</div>',className:'',iconSize:[26,26],iconAnchor:[13,13]});
-      var m=L.marker([f[0],f[1]],{icon:icon}).addTo(map);
-      var start=null, dur=3600;
-      function step(ts){ if(start===null) start=ts;
-        var p=(ts-start-delay)/dur;
-        if(p<0){ requestAnimationFrame(step); return; }
-        p=Math.min(p,1);
-        m.setLatLng([f[0]+(t[0]-f[0])*p, f[1]+(t[1]-f[1])*p]);
-        if(p<1) requestAnimationFrame(step);
-      }
-      requestAnimationFrame(step);
-    })(k*550);
-  }
-}
+function driveCars(map,f,t){for(var k=0;k<3;k++){(function(delay){
+  var m=L.marker([f[0],f[1]],{icon:L.divIcon({html:'<div class="car">🚗</div>',className:'',iconSize:[26,26],iconAnchor:[13,13]})}).addTo(map);
+  var start=null,dur=3800;
+  function step(ts){if(start===null)start=ts;var p=(ts-start-delay)/dur;
+    if(p<0){requestAnimationFrame(step);return;}p=Math.min(p,1);
+    m.setLatLng([f[0]+(t[0]-f[0])*p,f[1]+(t[1]-f[1])*p]);if(p<1)requestAnimationFrame(step);}
+  requestAnimationFrame(step);})(k*600);}}
 
-// ---------- Add photos to a stop ----------
-var targetStop=null;
-var fileInput=document.getElementById('fileInput');
-function pickFor(i){ targetStop=i; fileInput.click(); }
-fileInput.addEventListener('change',function(e){
-  var files=Array.from(e.target.files||[]); var idx=targetStop;
-  var container=document.getElementById('polas'+idx);
-  files.forEach(function(f){
-    var rec={blob:f,stop:idx,cap:'',ts:Date.now()};
-    savePhoto(rec).then(function(){ container.insertBefore(makePola(rec), container.firstChild); });
-  });
-  fileInput.value='';
-});
+// add photos to a stop
+var targetStop=null,fileInput=document.getElementById('fileInput');
+function pickFor(i){targetStop=i;fileInput.click();}
+fileInput.addEventListener('change',function(e){var files=Array.from(e.target.files||[]),idx=targetStop,c=document.getElementById('polas'+idx);
+  files.forEach(function(f){var rec={blob:f,stop:idx,cap:'',ts:Date.now()};savePhoto(rec).then(function(){c.insertBefore(makePola(rec),c.firstChild);});});
+  fileInput.value='';});
 
-// ---------- Viewer ----------
+// viewer
 var vstate=null;
-function openViewer(url,rec,el){ document.getElementById('viewerImg').src=url;
-  document.getElementById('viewerCap').textContent=rec.cap||'התמונה שלנו';
-  vstate={rec:rec,el:el}; document.getElementById('viewer').classList.add('show'); }
-document.getElementById('vclose').onclick=function(){ document.getElementById('viewer').classList.remove('show'); };
-document.getElementById('vdel').onclick=function(){
-  if(vstate){ if(vstate.rec.id!=null) deletePhoto(vstate.rec.id); if(vstate.el) vstate.el.remove(); vstate=null; }
-  document.getElementById('viewer').classList.remove('show'); };
+function openViewer(url,rec,el){document.getElementById('viewerImg').src=url;document.getElementById('viewerCap').textContent=rec.cap||'התמונה שלנו';
+  vstate={rec:rec,el:el};document.getElementById('viewer').classList.add('show');}
+document.getElementById('vclose').onclick=function(){document.getElementById('viewer').classList.remove('show');};
+document.getElementById('vdel').onclick=function(){if(vstate){if(vstate.rec.id!=null)deletePhoto(vstate.rec.id);if(vstate.el)vstate.el.remove();vstate=null;}document.getElementById('viewer').classList.remove('show');};
 
-// ---------- Go ----------
-openDB().then(buildStory).catch(function(){ buildStory(); });
+openDB().then(buildStory).catch(buildStory);
 </script>
 </body>
 </html>

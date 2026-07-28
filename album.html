@@ -67,6 +67,15 @@
     border:2px dashed rgba(255,255,255,0.65);border-radius:10px;color:#fff;background:rgba(255,255,255,0.1);cursor:pointer;font-weight:800;font-size:14px;text-align:center;padding:10px;}
   .addpola span{font-size:34px;}
 
+  /* FACT BUBBLES */
+  .facts{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;max-width:680px;margin:20px auto 4px;}
+  .fact{display:flex;gap:8px;align-items:flex-start;background:rgba(10,30,35,0.55);backdrop-filter:blur(8px);
+    border:1px solid rgba(240,211,138,0.35);border-radius:16px;padding:11px 14px;max-width:300px;
+    font-size:13.5px;line-height:1.55;text-align:right;box-shadow:0 8px 22px rgba(0,0,0,0.45);}
+  .fact .fi{font-size:16px;flex-shrink:0;}
+  .fact .ft{opacity:0.95;}
+  @media(min-width:900px){.facts{max-width:920px;}.fact{max-width:250px;}}
+
   /* LEG / DRIVE */
   .leg{position:relative;padding:34px 14px 40px;background:radial-gradient(ellipse at top,#12303a,#080b0d 70%);text-align:center;}
   .leg .legh{font-family:'Caveat',cursive;font-size:26px;color:#f0d38a;margin-bottom:4px;}
@@ -84,7 +93,7 @@
   .viewer .vcap{color:#fff;margin-top:12px;font-family:'Caveat',cursive;font-size:22px;}
   .viewer .vbtns{margin-top:16px;display:flex;gap:10px;}
   .viewer button{border:none;padding:10px 20px;border-radius:22px;font-family:inherit;font-weight:800;cursor:pointer;}
-  .vclose{background:#fff;color:#111;} .vdel{background:#c0392b;color:#fff;}
+  .vclose{background:#fff;color:#111;} .vdel{background:#c0392b;color:#fff;} .vedit{background:#d4a843;color:#3a2e0a;}
 
   /* CREW / MEET THE TRAVELERS */
   .crew{background:linear-gradient(160deg,#0d7377,#0a2a30);padding:54px 18px 60px;text-align:center;}
@@ -134,7 +143,7 @@
 <div class="viewer" id="viewer">
   <img id="viewerImg" src="" alt="">
   <div class="vcap" id="viewerCap"></div>
-  <div class="vbtns"><button class="vclose" id="vclose">✕ סגור</button><button class="vdel" id="vdel">🗑️ מחק</button></div>
+  <div class="vbtns"><button class="vclose" id="vclose">✕ סגור</button><button class="vedit" id="vedit">✏️ כיתוב</button><button class="vdel" id="vdel">🗑️ מחק</button></div>
 </div>
 <input type="file" id="fileInput" accept="image/*" multiple style="display:none">
 <input type="file" id="personInput" accept="image/*" style="display:none">
@@ -145,30 +154,50 @@
 var FP='https://commons.wikimedia.org/wiki/Special:FilePath/';
 function wimg(file){return FP+encodeURIComponent(file)+'?width=1600';}
 var STOPS=[
- {name:'לובליאנה',day:'ימים 1-2',lat:46.0500,lng:14.5064,
+ {name:'לובליאנה',day:'ימים 1-2',lat:46.0500,lng:14.5064,cap:'רגע בעיר האהובה',
   bg:wimg('2021-07-28 Ljubljana-0881.jpg'),
-  blurb:'הבירה הירוקה - טירה על גבעה, גשר הדרקונים, הגשר המשולש וגדות הנהר של פלצ׳ניק.'},
- {name:'טריאסט',day:'ימים 2-3',lat:45.6495,lng:13.7768,
+  blurb:'הבירה הירוקה - טירה על גבעה, גשר הדרקונים, הגשר המשולש וגדות הנהר של פלצ׳ניק.',
+  facts:['אדריכל אחד, יוֹזֶ׳ה פְּלֶצְ׳נִיק, עיצב את רוב העיר - הגשרים והשווקים הם כמו "חתימת יד" שלו על עיר שלמה.',
+    'הדרקון על הגשר הוא סמל העיר. לפי האגדה יאסון והארגונאוטים הרגו כאן מפלצת ביצה בדרכם חזרה עם גיזת הזהב.',
+    'השם Ljubljana דומה למילה הסלובנית "אהובה" (ljubljena) - פשוטו כמשמעו, העיר האהובה.']},
+ {name:'טריאסט',day:'ימים 2-3',lat:45.6495,lng:13.7768,cap:'קפה מול הים',
   bg:wimg('Piazza Unità Trieste 08.jpg'),
-  blurb:'״וינה שליד הים״ - Piazza Unità, הרציף Molo Audace, הקנאל גראנדה והקפה של איטליה.'},
- {name:'טירת Miramare',day:'יום 3',lat:45.7025,lng:13.7128,
+  blurb:'״וינה שליד הים״ - Piazza Unità, הרציף Molo Audace, הקנאל גראנדה והקפה של איטליה.',
+  facts:['Piazza Unità היא הכיכר הפתוחה-לים הגדולה באירופה - צד אחד שלה הוא פשוט הים הפתוח.',
+    'טריאסט הייתה הנמל הראשי של הקיסרות האוסטרו-הונגרית, ולכן היא נראית "וינאית" הרבה יותר מאיטלקית.',
+    'הסופר ג׳יימס ג׳ויס גר כאן עשר שנים וכתב חלק מ"יוליסס"; וגם מותג הקפה illy נולד בעיר.']},
+ {name:'טירת Miramare',day:'יום 3',lat:45.7025,lng:13.7128,cap:'נסיכים ליום אחד',
   bg:wimg('Castello di Miramare (Trieste) (7).jpg'),
-  blurb:'ארמון הבסבורגי לבן על שפת הים, עם גנים וסיפור טרגי של מקסימיליאן ושרלוטה.'},
- {name:'מערת Postojna',day:'יום 4',lat:45.7828,lng:14.2044,
+  blurb:'ארמון הבסבורגי לבן על שפת הים, עם גנים וסיפור טרגי של מקסימיליאן ושרלוטה.',
+  facts:['הארכידוכס מקסימיליאן בנה אותה כקן אהבה - ומכאן הפליג להיות קיסר מקסיקו, שם הוצא להורג. אשתו שרלוטה השתגעה מרוב צער.',
+    'רבים מאמינים שיש "קללה" על מי שלן בטירה. הגן הענק, לעומת זאת, תוכנן ע"י מקסימיליאן עצמו - ימאי שאסף צמחים מכל העולם.']},
+ {name:'מערת Postojna',day:'יום 4',lat:45.7828,lng:14.2044,cap:'עמוק במעמקים',
   bg:wimg('Postojna Cave - Slovenia.jpg'),
-  blurb:'רכבת חשמלית עמוק לתוך מערת נטיפים ענקית - וה־Olm, ״דרקון התינוק״.'},
- {name:'אגם בלד',day:'ימים 4-7',lat:46.3625,lng:14.0936,
+  blurb:'רכבת חשמלית עמוק לתוך מערת נטיפים ענקית - וה־Olm, ״דרקון התינוק״.',
+  facts:['רכבת חשמלית נוסעת בתוך המערה מאז 1872 - אחת הראשונות בעולם, ועדיין מסיעה מבקרים 24 ק"מ של מנהרות.',
+    'במערה חי ה-Olm, "דרקון התינוק": דו-חי עיוור וורוד שיכול לחיות עד 100 שנה ולשרוד עד עשור בלי אוכל.',
+    'במלה"ע ה-2 הגרמנים אחסנו שם דלק; פרטיזנים פוצצו אותו, והפיח על התקרה נשאר עד היום.']},
+ {name:'אגם בלד',day:'ימים 4-7',lat:46.3625,lng:14.0936,cap:'גלויה מהאגם',
   bg:wimg('Bled island, bled, slovenia.jpg'),
-  blurb:'אחד הנופים היפים באירופה - אי עם כנסייה במרכז האגם וסירות Pletna מסורתיות.'},
- {name:'טירת בלד',day:'ימים 4-7',lat:46.3691,lng:14.1006,
+  blurb:'אחד הנופים היפים באירופה - אי עם כנסייה במרכז האגם וסירות Pletna מסורתיות.',
+  facts:['זה האי היחיד בכל סלובניה. בכנסייה שעליו תולים "פעמון משאלות" - מי שמצלצל בו, אומרים שמשאלתו תתגשם.',
+    'לפי המנהג, על החתן לשאת את הכלה במעלה 99 המדרגות אל הכנסייה - מבחן קטן לפני החתונה.',
+    'עוגת השמנת המפורסמת kremšnita נולדה כאן ב-1953. מאז נמכרו ממנה מיליוני חתיכות סביב האגם.']},
+ {name:'טירת בלד',day:'ימים 4-7',lat:46.3691,lng:14.1006,cap:'מלכים על הצוק',
   bg:wimg('Bled Castle - Bled, Slovenia (7451260928).jpg'),
-  blurb:'הטירה העתיקה בסלובניה, על צוק מעל האגם - נוף פנורמי, חצר ומרפסת תצפית.'},
- {name:'נקיק Vintgar',day:'ימים 5-6',lat:46.3833,lng:14.0672,
+  blurb:'הטירה העתיקה בסלובניה, על צוק מעל האגם - נוף פנורמי, חצר ומרפסת תצפית.',
+  facts:['הטירה העתיקה ביותר בסלובניה - מוזכרת כבר בשנת 1011, יושבת 130 מטר מעל פני האגם.',
+    'יש בה בית דפוס בסגנון ימי-ביניים שבו מטביעים מזכרת, ומרתף יין שבו ממלאים ואוטמים בקבוק במו ידיכם.']},
+ {name:'נקיק Vintgar',day:'ימים 5-6',lat:46.3833,lng:14.0672,cap:'בין המים לסלע',
   bg:wimg('Vintgar-gorge-bled-slovenia.jpg'),
-  blurb:'שבילי עץ תלויים מעל מים טורקיז ומפלים, בתוך נקיק סלעי דרמטי.'},
- {name:'אגם Bohinj',day:'יום 6',lat:46.2775,lng:13.8875,
+  blurb:'שבילי עץ תלויים מעל מים טורקיז ומפלים, בתוך נקיק סלעי דרמטי.',
+  facts:['הנקיק התגלה רק ב-1891 ע"י ראש עיר וצלם סקרנים; שבילי העץ התלויים נבנו תוך שנתיים בלבד.',
+    'צבע המים הטורקיז מגיע מאבן הגיר. באורך של 1.6 ק"מ, הנקיק מסתיים במפל Šum - המפל הנהרי הגבוה בסלובניה.']},
+ {name:'אגם Bohinj',day:'יום 6',lat:46.2775,lng:13.8875,cap:'שקט אלפיני',
   bg:wimg('Bohinj slovenia 08.jpg'),
-  blurb:'האגם הפראי והשקט בלב הפארק הלאומי טריגלב - אלפים בתוליים.'}
+  blurb:'האגם הפראי והשקט בלב הפארק הלאומי טריגלב - אלפים בתוליים.',
+  facts:['האגם הטבעי הגדול בסלובניה - פי שלושה מבלד, אבל הרבה יותר שקט ופראי.',
+    'הוא נמצא בלב הפארק הלאומי טְרִיגְלַב, הפארק הלאומי היחיד במדינה, על שם ההר הגבוה בסלובניה.']}
 ];
 
 // progress bar
@@ -193,6 +222,7 @@ function allPeople(){return new Promise(function(res){var tx=db.transaction('peo
 function savePhoto(rec){return new Promise(function(res,rej){var tx=db.transaction('photos','readwrite');
   var q=tx.objectStore('photos').add(rec);q.onsuccess=function(){rec.id=q.result;};tx.oncomplete=function(){res(rec.id);};tx.onerror=rej;});}
 function deletePhoto(id){var tx=db.transaction('photos','readwrite');tx.objectStore('photos').delete(id);}
+function updatePhoto(rec){var tx=db.transaction('photos','readwrite');tx.objectStore('photos').put(rec);}
 function photosForStop(idx){return new Promise(function(res){var tx=db.transaction('photos','readonly');
   var q=tx.objectStore('photos').getAll();q.onsuccess=function(){res((q.result||[]).filter(function(p){return p.stop===idx;}));};});}
 
@@ -234,7 +264,10 @@ function makeScene(s,i){
   if(s.bg){bg.style.backgroundImage='url('+s.bg+')';}else{bg.style.background=s.grad||'linear-gradient(160deg,#0d7377,#14a0a6)';}
   sec.appendChild(bg);
   var inner=document.createElement('div');inner.className='inner';
-  inner.innerHTML='<div class="head"><span class="day">'+s.day+'</span><h2>'+s.name+'</h2><div class="blurb">'+s.blurb+'</div></div><div class="polas" id="polas'+i+'"></div>';
+  var factsHtml='';
+  if(s.facts&&s.facts.length){factsHtml='<div class="facts">'+s.facts.map(function(f){
+    return '<div class="fact"><span class="fi">💡</span><span class="ft">'+f+'</span></div>';}).join('')+'</div>';}
+  inner.innerHTML='<div class="head"><span class="day">'+s.day+'</span><h2>'+s.name+'</h2><div class="blurb">'+s.blurb+'</div></div>'+factsHtml+'<div class="polas" id="polas'+i+'"></div>';
   sec.appendChild(inner);
   var polas=inner.querySelector('#polas'+i);
   var add=document.createElement('div');add.className='addpola';add.innerHTML='<span>📷</span>הוסיפו תמונות מ'+s.name;
@@ -291,7 +324,8 @@ function driveCars(map,f,t){for(var k=0;k<3;k++){(function(delay){
 var targetStop=null,fileInput=document.getElementById('fileInput');
 function pickFor(i){targetStop=i;fileInput.click();}
 fileInput.addEventListener('change',function(e){var files=Array.from(e.target.files||[]),idx=targetStop,c=document.getElementById('polas'+idx);
-  files.forEach(function(f){var rec={blob:f,stop:idx,cap:'',ts:Date.now()};savePhoto(rec).then(function(){c.insertBefore(makePola(rec),c.firstChild);});});
+  var defCap=(STOPS[idx]&&STOPS[idx].cap)||'התמונה שלנו';
+  files.forEach(function(f){var rec={blob:f,stop:idx,cap:defCap,ts:Date.now()};savePhoto(rec).then(function(){c.insertBefore(makePola(rec),c.firstChild);});});
   fileInput.value='';});
 
 // viewer
@@ -299,6 +333,10 @@ var vstate=null;
 function openViewer(url,rec,el){document.getElementById('viewerImg').src=url;document.getElementById('viewerCap').textContent=rec.cap||'התמונה שלנו';
   vstate={rec:rec,el:el};document.getElementById('viewer').classList.add('show');}
 document.getElementById('vclose').onclick=function(){document.getElementById('viewer').classList.remove('show');};
+document.getElementById('vedit').onclick=function(){if(!vstate)return;var nc=prompt('כיתוב לתמונה:',vstate.rec.cap||'');if(nc===null)return;
+  vstate.rec.cap=nc;if(vstate.rec.id!=null)updatePhoto(vstate.rec);
+  document.getElementById('viewerCap').textContent=nc||'התמונה שלנו';
+  if(vstate.el){var cp=vstate.el.querySelector('.cap');if(cp)cp.textContent=nc||'התמונה שלנו';}};
 document.getElementById('vdel').onclick=function(){if(vstate){if(vstate.rec.id!=null)deletePhoto(vstate.rec.id);if(vstate.el)vstate.el.remove();vstate=null;}document.getElementById('viewer').classList.remove('show');};
 
 openDB().then(function(){renderCrew();buildStory();}).catch(buildStory);

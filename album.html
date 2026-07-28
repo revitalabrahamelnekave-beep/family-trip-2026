@@ -35,9 +35,9 @@
 
   /* SCENE */
   .scene{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:90px 18px 70px;overflow:hidden;}
-  .scenebg{position:absolute;inset:0;background-size:cover;background-position:center;background-color:#10343b;z-index:0;transform:scale(1.16);
-    animation:ken 22s ease-in-out infinite alternate;}
-  @keyframes ken{from{transform:scale(1.16) translate(0,0)}to{transform:scale(1.02) translate(0,-1.5%)}}
+  .scenebg{position:absolute;inset:0;background-size:cover;background-position:center;background-color:#10343b;z-index:0;transform:scale(1.05);
+    animation:ken 26s ease-in-out infinite alternate;}
+  @keyframes ken{from{transform:scale(1.05) translate(0,0)}to{transform:scale(1.0) translate(0,-1%)}}
   .scene::before{content:'';position:absolute;inset:0;z-index:1;
     background:linear-gradient(180deg,rgba(6,9,11,0.5),rgba(6,9,11,0.28) 38%,rgba(6,9,11,0.88));}
   .scene .inner{position:relative;z-index:2;opacity:0;transform:translateY(30px);transition:opacity .9s ease,transform .9s ease;}
@@ -286,7 +286,14 @@ function makeLeg(from,to){var leg=document.createElement('div');leg.className='l
   legObserver.observe(leg);return leg;}
 
 // scene reveal
-var sceneObserver=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('in');});},{threshold:0.25});
+var sceneObserver=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('in');});},{threshold:0.06,rootMargin:'0px 0px -4% 0px'});
+// safety net: never leave a scene's content hidden (some mobile scroll patterns miss the observer)
+function revealScenesNear(){var vh=window.innerHeight||800;document.querySelectorAll('.scene').forEach(function(s){if(!s.classList.contains('in')&&s.getBoundingClientRect().top<vh*1.1)s.classList.add('in');});}
+function revealAllScenes(){document.querySelectorAll('.scene').forEach(function(s){s.classList.add('in');});}
+window.addEventListener('scroll',revealScenesNear,{passive:true});
+window.addEventListener('resize',revealScenesNear);window.addEventListener('orientationchange',revealScenesNear);
+window.addEventListener('load',function(){revealScenesNear();setTimeout(revealAllScenes,3500);});
+setTimeout(revealAllScenes,4500);
 
 // leg maps + car animation (lazy)
 var legObserver=new IntersectionObserver(function(es){es.forEach(function(e){

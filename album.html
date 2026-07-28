@@ -100,6 +100,8 @@
   .addperson{width:96px;height:96px;border-radius:50%;border:2px dashed rgba(255,255,255,0.6);background:rgba(255,255,255,0.1);
     color:#fff;font-size:13px;font-weight:800;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;line-height:1.1;}
   .addperson span{font-size:26px;}
+  .person .ava.addslot{display:flex;align-items:center;justify-content:center;font-size:30px;border-style:dashed;border-color:rgba(255,255,255,0.55);cursor:pointer;color:#f0d38a;}
+  .person .ava.addslot:hover{background:rgba(255,255,255,0.16);}
 
   @media(min-width:640px){.pola,.addpola{width:220px;}.scene h2{font-size:52px;}.hero h1{font-size:60px;}.crew h2{font-size:40px;}}
 </style>
@@ -194,15 +196,32 @@ var story=document.getElementById('story');
 function buildStory(){STOPS.forEach(function(s,i){ if(i>0) story.appendChild(makeLeg(STOPS[i-1],s)); story.appendChild(makeScene(s,i)); });}
 
 // CREW
-var crewGrid=document.getElementById('crewGrid'),personInput=document.getElementById('personInput');
+var crewGrid=document.getElementById('crewGrid'),personInput=document.getElementById('personInput'),addBtn=document.getElementById('addPerson');
+// 12 pre-labeled slots so photos just get attached to a name
+var CREW=['סבא יוסי אברהם','סבתא רחל אברהם','מוטי אלנקוה (אבא)','רויטל אברהם אלנקוה (אמא)',
+  'נועם אלנקוה (בת 15)','איתן אלנקוה (בן 13)','גיא אלנקוה (בן 9)',
+  'אסף ורונה (אבא)','אפרת אברהם ורונה (אמא)','אלון ורונה (בן 13)','יעל ורונה (בת 15)','רועי דנקנר (בן 16)'];
+var pendingSlot=null;
+function makeSlot(name,rec){var d=document.createElement('div');d.className='person';
+  function paint(){
+    if(rec){var url=URL.createObjectURL(rec.blob);
+      d.innerHTML='<button class="pdel" title="הסר תמונה">✕</button><img class="ava" src="'+url+'"><div class="pname">'+name+'</div>';
+      d.querySelector('.pdel').onclick=function(){if(rec.id!=null)deletePerson(rec.id);rec=null;paint();};
+    }else{d.innerHTML='<div class="ava addslot">📷</div><div class="pname">'+name+'</div>';
+      d.querySelector('.addslot').onclick=function(){pendingSlot={name:name,cb:function(r){rec=r;paint();}};personInput.click();};}
+  }
+  paint();return d;}
 function makePerson(rec){var url=URL.createObjectURL(rec.blob);var d=document.createElement('div');d.className='person';
   d.innerHTML='<button class="pdel" title="מחק">✕</button><img class="ava" src="'+url+'"><div class="pname">'+(rec.name||'')+'</div>';
   d.querySelector('.pdel').onclick=function(){if(rec.id!=null)deletePerson(rec.id);d.remove();};return d;}
-function renderCrew(){allPeople().then(function(list){list.forEach(function(rec){crewGrid.insertBefore(makePerson(rec),document.getElementById('addPerson'));});});}
-document.getElementById('addPerson').onclick=function(){personInput.click();};
-personInput.addEventListener('change',function(e){var f=(e.target.files||[])[0];personInput.value='';if(!f)return;
-  var name=prompt('מה השם של הנוסע/ת בתמונה?')||'';var rec={blob:f,name:name.trim(),ts:Date.now()};
-  savePerson(rec).then(function(){crewGrid.insertBefore(makePerson(rec),document.getElementById('addPerson'));});});
+function renderCrew(){allPeople().then(function(list){var byName={};list.forEach(function(p){byName[p.name]=p;});
+  CREW.forEach(function(nm){crewGrid.insertBefore(makeSlot(nm,byName[nm]),addBtn);});
+  list.forEach(function(p){if(CREW.indexOf(p.name)<0)crewGrid.insertBefore(makePerson(p),addBtn);});});}
+addBtn.onclick=function(){pendingSlot=null;personInput.click();};
+personInput.addEventListener('change',function(e){var f=(e.target.files||[])[0];personInput.value='';if(!f){pendingSlot=null;return;}
+  if(pendingSlot){var nm=pendingSlot.name,cb=pendingSlot.cb;pendingSlot=null;var rec={blob:f,name:nm,ts:Date.now()};savePerson(rec).then(function(){cb(rec);});}
+  else{var name=prompt('מה השם של הנוסע/ת בתמונה?')||'';var rec2={blob:f,name:name.trim(),ts:Date.now()};
+    savePerson(rec2).then(function(){crewGrid.insertBefore(makePerson(rec2),addBtn);});}});
 
 function makeScene(s,i){
   var sec=document.createElement('section');sec.className='scene';

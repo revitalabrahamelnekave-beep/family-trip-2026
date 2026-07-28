@@ -148,7 +148,6 @@
 <input type="file" id="fileInput" accept="image/*" multiple style="display:none">
 <input type="file" id="personInput" accept="image/*" style="display:none">
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
 // Stable Wikimedia URLs via Special:FilePath (no need to know the file hash) — all filenames verified to exist.
 var FP='https://commons.wikimedia.org/wiki/Special:FilePath/';
@@ -217,14 +216,14 @@ function openDB(){return new Promise(function(res,rej){var r=indexedDB.open('tri
 function savePerson(rec){return new Promise(function(res,rej){var tx=db.transaction('people','readwrite');
   var q=tx.objectStore('people').add(rec);q.onsuccess=function(){rec.id=q.result;};tx.oncomplete=function(){res(rec.id);};tx.onerror=rej;});}
 function deletePerson(id){var tx=db.transaction('people','readwrite');tx.objectStore('people').delete(id);}
-function allPeople(){return new Promise(function(res){var tx=db.transaction('people','readonly');
-  var q=tx.objectStore('people').getAll();q.onsuccess=function(){res(q.result||[]);};});}
+function allPeople(){return new Promise(function(res){if(!db)return res([]);var tx=db.transaction('people','readonly');
+  var q=tx.objectStore('people').getAll();q.onsuccess=function(){res(q.result||[]);};q.onerror=function(){res([]);};});}
 function savePhoto(rec){return new Promise(function(res,rej){var tx=db.transaction('photos','readwrite');
   var q=tx.objectStore('photos').add(rec);q.onsuccess=function(){rec.id=q.result;};tx.oncomplete=function(){res(rec.id);};tx.onerror=rej;});}
 function deletePhoto(id){var tx=db.transaction('photos','readwrite');tx.objectStore('photos').delete(id);}
 function updatePhoto(rec){var tx=db.transaction('photos','readwrite');tx.objectStore('photos').put(rec);}
-function photosForStop(idx){return new Promise(function(res){var tx=db.transaction('photos','readonly');
-  var q=tx.objectStore('photos').getAll();q.onsuccess=function(){res((q.result||[]).filter(function(p){return p.stop===idx;}));};});}
+function photosForStop(idx){return new Promise(function(res){if(!db)return res([]);var tx=db.transaction('photos','readonly');
+  var q=tx.objectStore('photos').getAll();q.onsuccess=function(){res((q.result||[]).filter(function(p){return p.stop===idx;}));};q.onerror=function(){res([]);};});}
 
 // build
 var story=document.getElementById('story');
@@ -293,6 +292,7 @@ var sceneObserver=new IntersectionObserver(function(es){es.forEach(function(e){i
 var legObserver=new IntersectionObserver(function(es){es.forEach(function(e){
   if(e.isIntersecting&&!e.target.dataset.done){e.target.dataset.done='1';initLeg(e.target);}});},{threshold:0.4});
 function initLeg(leg){
+  if(typeof L==='undefined'){leg._tries=(leg._tries||0)+1;if(leg._tries<30){setTimeout(function(){initLeg(leg);},400);}return;}
   var f=leg.dataset.from.split(',').map(Number),t=leg.dataset.to.split(',').map(Number);
   var map=L.map(leg.dataset.mid,{zoomControl:false,attributionControl:false,dragging:false,scrollWheelZoom:false,doubleClickZoom:false,tap:false,keyboard:false});
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19}).addTo(map);
@@ -339,7 +339,12 @@ document.getElementById('vedit').onclick=function(){if(!vstate)return;var nc=pro
   if(vstate.el){var cp=vstate.el.querySelector('.cap');if(cp)cp.textContent=nc||'התמונה שלנו';}};
 document.getElementById('vdel').onclick=function(){if(vstate){if(vstate.rec.id!=null)deletePhoto(vstate.rec.id);if(vstate.el)vstate.el.remove();vstate=null;}document.getElementById('viewer').classList.remove('show');};
 
-openDB().then(function(){renderCrew();buildStory();}).catch(buildStory);
+// build the album no matter what — never block on IndexedDB (may hang/throw in some contexts)
+var booted=false;function boot(){if(booted)return;booted=true;renderCrew();buildStory();}
+openDB().then(boot).catch(boot);
+setTimeout(boot,1500);
+// load Leaflet without blocking scene rendering; leg maps init once it's ready
+(function(){var s=document.createElement('script');s.src='https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';s.async=true;document.head.appendChild(s);})();
 </script>
 </body>
 </html>

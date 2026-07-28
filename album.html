@@ -66,6 +66,7 @@
   .viewer img { max-width: 94vw; max-height: 82vh; border-radius: 8px; }
   .viewer .vcap { color: #fff; margin-top: 10px; font-size: 14px; }
   .viewer .vclose { position: absolute; top: 16px; left: 16px; color: #fff; font-size: 30px; background: none; border: none; cursor: pointer; }
+  .viewer .vdel { margin-top: 14px; background: #c0392b; color: #fff; border: none; padding: 9px 18px; border-radius: 20px; font-family: inherit; font-weight: 700; font-size: 14px; cursor: pointer; }
 
   /* place-photo mode banner */
   .placebar { position: absolute; top: 62px; left: 50%; transform: translateX(-50%); z-index: 1500;
@@ -84,7 +85,7 @@
   <a class="back" href="index.html">← ללו"ז</a>
 </div>
 
-<div class="hint" id="hint">לחצו ▶ נגן מסע לסיור אוטומטי, או הוסיפו תמונות משלכם 📷</div>
+<div class="hint" id="hint">▶ נגן מסע · 📷 הוסף תמונות · אפשר לגרור כל תמונה למיקום הנכון</div>
 <div class="placebar" id="placebar">👆 הקישו על המפה במקום שבו צולמה התמונה</div>
 
 <div class="card" id="card">
@@ -107,6 +108,7 @@
   <button class="vclose" id="vclose">✕</button>
   <img id="viewerImg" src="" alt="">
   <div class="vcap" id="viewerCap"></div>
+  <button class="vdel" id="vdel">🗑️ מחק תמונה</button>
 </div>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -203,10 +205,14 @@ function openDB(){
 function savePhoto(rec){
   return new Promise(function(res, rej){
     var tx = db.transaction('photos','readwrite');
-    tx.objectStore('photos').add(rec);
-    tx.oncomplete = res; tx.onerror = rej;
+    var req = tx.objectStore('photos').add(rec);
+    req.onsuccess = function(){ rec.id = req.result; };
+    tx.oncomplete = function(){ res(rec.id); };
+    tx.onerror = rej;
   });
 }
+function updatePhoto(rec){ var tx = db.transaction('photos','readwrite'); tx.objectStore('photos').put(rec); }
+function deletePhoto(id){ var tx = db.transaction('photos','readwrite'); tx.objectStore('photos').delete(id); }
 function allPhotos(){
   return new Promise(function(res){
     var tx = db.transaction('photos','readonly');
@@ -218,15 +224,22 @@ function allPhotos(){
 function addPhotoMarker(rec){
   var url = URL.createObjectURL(rec.blob);
   var icon = L.divIcon({html:'<img class="marker-photo" src="'+url+'" width="40" height="40">', className:'', iconSize:[40,40], iconAnchor:[20,20]});
-  var m = L.marker([rec.lat, rec.lng], {icon: icon}).addTo(map);
-  m.on('click', function(){ openViewer(url, rec.caption || 'התמונה שלכם'); });
+  var m = L.marker([rec.lat, rec.lng], {icon: icon, draggable: true}).addTo(map);
+  m.on('dragend', function(){ var ll = m.getLatLng(); rec.lat = ll.lat; rec.lng = ll.lng; updatePhoto(rec); });
+  m.on('click', function(){ openViewer(url, rec, m); });
 }
-function openViewer(url, cap){
+var viewerState = null;
+function openViewer(url, rec, marker){
   document.getElementById('viewerImg').src = url;
-  document.getElementById('viewerCap').textContent = cap || '';
+  document.getElementById('viewerCap').textContent = 'גררו את הסמן במפה כדי למקם במקום המדויק';
+  viewerState = {rec: rec, marker: marker};
   document.getElementById('viewer').classList.add('show');
 }
 document.getElementById('vclose').addEventListener('click', function(){ document.getElementById('viewer').classList.remove('show'); });
+document.getElementById('vdel').addEventListener('click', function(){
+  if (viewerState){ map.removeLayer(viewerState.marker); if(viewerState.rec.id!=null) deletePhoto(viewerState.rec.id); viewerState=null; }
+  document.getElementById('viewer').classList.remove('show');
+});
 
 // ---------- Adding photos ----------
 var pendingBlob = null, placeMode = false;
@@ -261,11 +274,9 @@ function handleFile(file){
     var lat = dms(EXIF.getTag(this,'GPSLatitude'), EXIF.getTag(this,'GPSLatitudeRef'));
     var lng = dms(EXIF.getTag(this,'GPSLongitude'), EXIF.getTag(this,'GPSLongitudeRef'));
     if (lat != null && lng != null){
-      storeAt(file, lat, lng);
+      storeAt(file, lat, lng);           // photo has GPS -> exact spot
     } else {
-      // no GPS in photo -> try current location, else place manually
-      getHere().then(function(pos){ storeAt(file, pos.lat, pos.lng); })
-               .catch(function(){ startPlaceMode(file); });
+      startPlaceMode(file);              // no GPS -> tap the map where it was taken
     }
   });
 }

@@ -35,7 +35,7 @@
 
   /* SCENE */
   .scene{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:90px 18px 70px;overflow:hidden;}
-  .scenebg{position:absolute;inset:0;background-size:cover;background-position:center;z-index:0;transform:scale(1.16);
+  .scenebg{position:absolute;inset:0;background-size:cover;background-position:center;background-color:#10343b;z-index:0;transform:scale(1.16);
     animation:ken 22s ease-in-out infinite alternate;}
   @keyframes ken{from{transform:scale(1.16) translate(0,0)}to{transform:scale(1.02) translate(0,-1.5%)}}
   .scene::before{content:'';position:absolute;inset:0;z-index:1;
@@ -141,28 +141,33 @@
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
-var IMG='https://upload.wikimedia.org/wikipedia/commons/thumb/';
+// Stable Wikimedia URLs via Special:FilePath (no need to know the file hash) — all filenames verified to exist.
+var FP='https://commons.wikimedia.org/wiki/Special:FilePath/';
+function wimg(file){return FP+encodeURIComponent(file)+'?width=1600';}
 var STOPS=[
- {name:'לובליאנה',day:'ימים 1-2',lat:46.0569,lng:14.5058,
-  bg:IMG+'1/1c/Ljubljanica_banks_night.jpg/1200px-Ljubljanica_banks_night.jpg',
-  blurb:'הבירה הירוקה - טירה על גבעה, גשר הדרקונים וגדות הנהר של פלצ׳ניק.'},
+ {name:'לובליאנה',day:'ימים 1-2',lat:46.0500,lng:14.5064,
+  bg:wimg('2021-07-28 Ljubljana-0881.jpg'),
+  blurb:'הבירה הירוקה - טירה על גבעה, גשר הדרקונים, הגשר המשולש וגדות הנהר של פלצ׳ניק.'},
  {name:'טריאסט',day:'ימים 2-3',lat:45.6495,lng:13.7768,
-  bg:IMG+'a/a3/Trieste_-_Piazza_Unit%C3%A0_d%27Italia_al_tramonto.JPG/1200px-Trieste_-_Piazza_Unit%C3%A0_d%27Italia_al_tramonto.JPG',
-  blurb:'״וינה שליד הים״ - Piazza Unità, הרציף Molo Audace והקפה של איטליה.'},
- {name:'טירת Miramare',day:'יום 3',lat:45.6897,lng:13.7124,
-  bg:IMG+'2/27/Castello_di_Miramare_%28Trieste%29_%287%29.jpg/1200px-Castello_di_Miramare_%28Trieste%29_%287%29.jpg',
+  bg:wimg('Piazza Unità Trieste 08.jpg'),
+  blurb:'״וינה שליד הים״ - Piazza Unità, הרציף Molo Audace, הקנאל גראנדה והקפה של איטליה.'},
+ {name:'טירת Miramare',day:'יום 3',lat:45.7025,lng:13.7128,
+  bg:wimg('Castello di Miramare (Trieste) (7).jpg'),
   blurb:'ארמון הבסבורגי לבן על שפת הים, עם גנים וסיפור טרגי של מקסימיליאן ושרלוטה.'},
- {name:'מערת Postojna',day:'יום 4',lat:45.7822,lng:14.2047,
-  bg:'https://commons.wikimedia.org/wiki/Special:FilePath/Postojna%20Cave%20-%20Slovenia.jpg?width=1200',
+ {name:'מערת Postojna',day:'יום 4',lat:45.7828,lng:14.2044,
+  bg:wimg('Postojna Cave - Slovenia.jpg'),
   blurb:'רכבת חשמלית עמוק לתוך מערת נטיפים ענקית - וה־Olm, ״דרקון התינוק״.'},
- {name:'אגם בלד',day:'ימים 4-7',lat:46.3684,lng:14.1146,
-  bg:IMG+'8/84/Lake_Bled_from_the_Mountain.jpg/1200px-Lake_Bled_from_the_Mountain.jpg',
-  blurb:'אחד הנופים היפים באירופה - אי עם כנסייה, טירה על צוק וסירות Pletna.'},
+ {name:'אגם בלד',day:'ימים 4-7',lat:46.3625,lng:14.0936,
+  bg:wimg('Bled island, bled, slovenia.jpg'),
+  blurb:'אחד הנופים היפים באירופה - אי עם כנסייה במרכז האגם וסירות Pletna מסורתיות.'},
+ {name:'טירת בלד',day:'ימים 4-7',lat:46.3691,lng:14.1006,
+  bg:wimg('Bled Castle - Bled, Slovenia (7451260928).jpg'),
+  blurb:'הטירה העתיקה בסלובניה, על צוק מעל האגם - נוף פנורמי, חצר ומרפסת תצפית.'},
  {name:'נקיק Vintgar',day:'ימים 5-6',lat:46.3833,lng:14.0672,
-  bg:'https://commons.wikimedia.org/wiki/Special:FilePath/Vintgar-gorge-bled-slovenia.jpg?width=1200',
+  bg:wimg('Vintgar-gorge-bled-slovenia.jpg'),
   blurb:'שבילי עץ תלויים מעל מים טורקיז ומפלים, בתוך נקיק סלעי דרמטי.'},
  {name:'אגם Bohinj',day:'יום 6',lat:46.2775,lng:13.8875,
-  bg:IMG+'4/46/Bohinjsko_jezero_2.jpg/1200px-Bohinjsko_jezero_2.jpg',
+  bg:wimg('Bohinj slovenia 08.jpg'),
   blurb:'האגם הפראי והשקט בלב הפארק הלאומי טריגלב - אלפים בתוליים.'}
 ];
 

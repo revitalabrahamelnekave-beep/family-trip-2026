@@ -277,7 +277,7 @@ function makeScene(s,i){
 }
 function renderStop(i,c){photosForStop(i).then(function(list){list.forEach(function(rec){c.insertBefore(makePola(rec),c.firstChild);});});}
 function makePola(rec){var url=URL.createObjectURL(rec.blob);var d=document.createElement('div');d.className='pola';
-  d.innerHTML='<img src="'+url+'"><div class="cap">'+(rec.cap||'התמונה שלנו')+'</div>';
+  d.innerHTML='<img src="'+url+'"><div class="cap">'+(rec.cap||(STOPS[rec.stop]&&STOPS[rec.stop].cap)||'רגע מהטיול')+'</div>';
   d.onclick=function(){openViewer(url,rec,d);};return d;}
 function makeLeg(from,to){var leg=document.createElement('div');leg.className='leg';
   var id='m'+Math.round(from.lat*1000)+'_'+Math.round(to.lat*1000);
@@ -331,19 +331,19 @@ function driveCars(map,f,t){for(var k=0;k<3;k++){(function(delay){
 var targetStop=null,fileInput=document.getElementById('fileInput');
 function pickFor(i){targetStop=i;fileInput.click();}
 fileInput.addEventListener('change',function(e){var files=Array.from(e.target.files||[]),idx=targetStop,c=document.getElementById('polas'+idx);
-  var defCap=(STOPS[idx]&&STOPS[idx].cap)||'התמונה שלנו';
+  var defCap=(STOPS[idx]&&STOPS[idx].cap)||'רגע מהטיול';
   files.forEach(function(f){var rec={blob:f,stop:idx,cap:defCap,ts:Date.now()};savePhoto(rec).then(function(){c.insertBefore(makePola(rec),c.firstChild);});});
   fileInput.value='';});
 
 // viewer
 var vstate=null;
-function openViewer(url,rec,el){document.getElementById('viewerImg').src=url;document.getElementById('viewerCap').textContent=rec.cap||'התמונה שלנו';
+function openViewer(url,rec,el){document.getElementById('viewerImg').src=url;document.getElementById('viewerCap').textContent=rec.cap||(vstate&&vstate.rec&&STOPS[vstate.rec.stop]&&STOPS[vstate.rec.stop].cap)||'רגע מהטיול';
   vstate={rec:rec,el:el};document.getElementById('viewer').classList.add('show');}
 document.getElementById('vclose').onclick=function(){document.getElementById('viewer').classList.remove('show');};
 document.getElementById('vedit').onclick=function(){if(!vstate)return;var nc=prompt('כיתוב לתמונה:',vstate.rec.cap||'');if(nc===null)return;
   vstate.rec.cap=nc;if(vstate.rec.id!=null)updatePhoto(vstate.rec);
-  document.getElementById('viewerCap').textContent=nc||'התמונה שלנו';
-  if(vstate.el){var cp=vstate.el.querySelector('.cap');if(cp)cp.textContent=nc||'התמונה שלנו';}};
+  document.getElementById('viewerCap').textContent=nc||'רגע מהטיול';
+  if(vstate.el){var cp=vstate.el.querySelector('.cap');if(cp)cp.textContent=nc||'רגע מהטיול';}};
 document.getElementById('vdel').onclick=function(){if(vstate){if(vstate.rec.id!=null)deletePhoto(vstate.rec.id);if(vstate.el)vstate.el.remove();vstate=null;}document.getElementById('viewer').classList.remove('show');};
 
 // build the album no matter what — never block on IndexedDB (may hang/throw in some contexts)

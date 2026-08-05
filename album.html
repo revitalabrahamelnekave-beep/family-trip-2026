@@ -105,61 +105,53 @@
   .postcard::before{content:'';position:absolute;top:-13px;left:50%;transform:translateX(-50%) rotate(-3deg);width:130px;height:30px;
     background:rgba(150,120,70,0.34);background-image:repeating-linear-gradient(45deg,rgba(255,255,255,0.22) 0 7px,transparent 7px 14px);box-shadow:0 2px 6px rgba(0,0,0,0.18);}
 
-  .journal{font-size:22px;line-height:1.55;color:#4a3722;text-align:center;margin:8px auto 8px;max-width:90%;position:relative;z-index:2;}
+  .journal{font-size:22px;line-height:1.55;color:#4a3722;text-align:center;margin:8px auto 12px;max-width:90%;position:relative;z-index:2;}
 
-  /* FAUX FLYERS / TICKET STUBS from each place */
-  .flyers{display:flex;flex-wrap:wrap;justify-content:center;gap:13px;margin:14px auto 6px;position:relative;z-index:2;}
-  .flyer{position:relative;min-width:150px;max-width:210px;background:#fffdf6;border-radius:4px;box-shadow:0 9px 20px rgba(0,0,0,0.28);
+  /* ONE MIXED MASONRY COLLAGE per page: photos + ticket-stubs + notes, interwoven */
+  .collage{column-count:2;column-gap:14px;margin-top:20px;position:relative;z-index:2;}
+  @media(min-width:680px){.collage{column-count:3;}}
+  .collage > *{width:100%;display:block;margin:0 0 16px;break-inside:avoid;-webkit-column-break-inside:avoid;}
+
+  /* taped photo prints — no captions */
+  .pola{position:relative;background:#fff;padding:8px 8px 10px;box-shadow:0 12px 26px rgba(0,0,0,0.4);
+    cursor:pointer;transition:transform .3s cubic-bezier(.2,.8,.3,1.2),box-shadow .3s ease;}
+  .pola:nth-child(4n+1){transform:rotate(-1.6deg);}
+  .pola:nth-child(4n+2){transform:rotate(1.4deg);}
+  .pola:nth-child(4n+3){transform:rotate(-0.8deg);}
+  .pola:nth-child(4n){transform:rotate(1deg);}
+  .pola::before{content:'';position:absolute;top:-8px;right:24px;width:58px;height:20px;z-index:4;transform:rotate(-6deg);
+    background:rgba(200,180,120,0.5);background-image:repeating-linear-gradient(45deg,rgba(255,255,255,0.28) 0 6px,transparent 6px 12px);
+    box-shadow:0 2px 5px rgba(0,0,0,0.16);}
+  .pola:nth-child(3n)::before{background-color:rgba(140,190,180,0.55);}
+  .pola:nth-child(3n+1)::before{background-color:rgba(230,170,175,0.55);}
+  .pola:nth-child(3n+2)::before{background-color:rgba(150,180,220,0.55);}
+  .pola:hover{transform:rotate(0) scale(1.04);z-index:9;box-shadow:0 22px 46px rgba(0,0,0,0.55);}
+  .pola img{width:100%;height:auto;display:block;background:#eee;}
+
+  /* faux flyer / ticket stub — a memento from each place */
+  .flyer{position:relative;background:#fffdf6;border-radius:4px;box-shadow:0 9px 20px rgba(0,0,0,0.26);
     overflow:hidden;border:1px solid rgba(120,90,50,0.12);}
-  .flyer:nth-child(3n){transform:rotate(-2.2deg);}
-  .flyer:nth-child(3n+1){transform:rotate(1.6deg);}
-  .flyer:nth-child(3n+2){transform:rotate(-0.8deg);}
+  .flyer:nth-child(2n){transform:rotate(1.4deg);} .flyer:nth-child(2n+1){transform:rotate(-1.8deg);}
   .flyer .fh{padding:7px 11px;color:#fff;font-family:'Special Elite',monospace;font-size:11px;letter-spacing:.6px;
     display:flex;justify-content:space-between;align-items:center;gap:6px;}
   .flyer .fh .fic{font-size:15px;}
-  .flyer .fb{padding:8px 11px 6px;font-size:12.5px;color:#4a3722;line-height:1.4;text-align:right;}
+  .flyer .fb{padding:8px 11px 7px;font-size:12.5px;color:#4a3722;line-height:1.4;text-align:right;}
   .flyer .fadmit{font-family:'Special Elite',monospace;font-size:8.5px;letter-spacing:1.5px;color:#9b3b30;
     border-top:1px dashed rgba(120,90,50,0.4);margin-top:7px;padding-top:5px;text-align:center;}
-  .flyer::after{content:'';position:absolute;top:-7px;right:22px;width:44px;height:16px;transform:rotate(-6deg);
+  .flyer::after{content:'';position:absolute;top:-7px;right:20px;width:44px;height:16px;transform:rotate(-6deg);
     background:rgba(200,180,120,0.5);background-image:repeating-linear-gradient(45deg,rgba(255,255,255,0.28) 0 5px,transparent 5px 10px);}
 
-  /* PHOTO COLLAGE — taped prints, no captions */
-  .polas{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:15px 11px;margin-top:24px;position:relative;z-index:2;}
-  .pola{position:relative;background:#fff;padding:8px 8px 8px;border-radius:1px;box-shadow:0 12px 28px rgba(0,0,0,0.42);
-    width:44%;max-width:205px;cursor:pointer;transition:transform .3s cubic-bezier(.2,.8,.3,1.2),box-shadow .3s ease;}
-  .pola::before,.pola::after{content:'';position:absolute;width:62px;height:22px;z-index:4;
-    background:rgba(200,180,120,0.5);background-image:repeating-linear-gradient(45deg,rgba(255,255,255,0.28) 0 6px,transparent 6px 12px);
-    box-shadow:0 2px 5px rgba(0,0,0,0.16);}
-  .pola::before{top:-9px;right:20px;transform:rotate(-7deg);}
-  .pola::after{bottom:-9px;left:22px;transform:rotate(-4deg);}
-  .pola:nth-child(3n)::before{background-color:rgba(140,190,180,0.55);}
-  .pola:nth-child(3n)::after{background-color:rgba(140,190,180,0.5);}
-  .pola:nth-child(3n+1)::before{background-color:rgba(230,170,175,0.55);}
-  .pola:nth-child(3n+1)::after{background-color:rgba(230,170,175,0.5);}
-  .pola:nth-child(3n+2)::before{background-color:rgba(150,180,220,0.55);}
-  .pola:nth-child(3n+2)::after{background-color:rgba(150,180,220,0.5);}
-  .pola:nth-child(6n+1){transform:rotate(-4deg) translateY(6px);}
-  .pola:nth-child(6n+2){transform:rotate(3deg) translateY(-8px);width:50%;max-width:232px;z-index:3;}
-  .pola:nth-child(6n+3){transform:rotate(-2deg) translateY(4px);}
-  .pola:nth-child(6n+4){transform:rotate(4deg) translateY(-6px);width:40%;max-width:178px;}
-  .pola:nth-child(6n+5){transform:rotate(-3.5deg) translateY(8px);}
-  .pola:nth-child(6n){transform:rotate(2deg) translateY(-8px);width:48%;max-width:220px;z-index:2;}
-  .pola:hover{transform:rotate(0) scale(1.07) translateY(0);z-index:9;box-shadow:0 24px 50px rgba(0,0,0,0.6);}
-  .pola img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block;background:#eee;}
-  .addpola{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;width:45%;max-width:220px;min-height:150px;
-    border:2px dashed rgba(90,70,40,0.4);border-radius:8px;color:#6a5330;background:rgba(120,90,50,0.06);cursor:pointer;font-weight:800;font-size:14px;text-align:center;padding:10px;}
-  .addpola span{font-size:32px;}
-
-  /* JOURNALING NOTES (trivia, as pinned notes) */
-  .notes{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;max-width:660px;margin:24px auto 2px;position:relative;z-index:2;}
-  .note{background:#fff8e2;border:1px solid rgba(120,90,50,0.14);border-radius:2px;padding:11px 13px 12px;max-width:280px;
+  /* trivia note — handwritten sticky, mixed into the collage */
+  .note{background:#fff8e2;border:1px solid rgba(120,90,50,0.14);border-radius:2px;padding:11px 13px 12px;
     font-size:12.5px;line-height:1.55;text-align:right;color:#4a3a24;box-shadow:0 7px 16px rgba(0,0,0,0.18);position:relative;}
-  .note:nth-child(3n){transform:rotate(-1.4deg);}
-  .note:nth-child(3n+1){transform:rotate(1.2deg);}
-  .note:nth-child(3n+2){transform:rotate(-0.6deg);}
-  .note::before{content:'';position:absolute;top:-8px;right:50%;transform:translateX(50%) rotate(-3deg);width:52px;height:18px;
+  .note:nth-child(2n){transform:rotate(-1.2deg);} .note:nth-child(2n+1){transform:rotate(1deg);}
+  .note::before{content:'';position:absolute;top:-8px;right:50%;transform:translateX(50%) rotate(-3deg);width:50px;height:17px;
     background:rgba(200,180,120,0.55);background-image:repeating-linear-gradient(45deg,rgba(255,255,255,0.28) 0 5px,transparent 5px 10px);}
   .note .ni{color:#b23a2e;font-weight:900;margin-left:3px;}
+
+  .addpola{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;min-height:120px;
+    border:2px dashed rgba(90,70,40,0.4);border-radius:8px;color:#6a5330;background:rgba(120,90,50,0.06);cursor:pointer;font-weight:800;font-size:13.5px;text-align:center;padding:12px;}
+  .addpola span{font-size:30px;}
 
   /* LEG / DRIVE — a route card between pages */
   .leg{max-width:560px;margin:10px auto;padding:0 16px;}
@@ -204,7 +196,7 @@
   .person .ava.addslot{display:flex;align-items:center;justify-content:center;font-size:30px;border:5px dashed rgba(120,90,50,0.4);cursor:pointer;color:#8a5a2b;}
   .person .ava.addslot:hover{background:rgba(120,90,50,0.1);}
 
-  @media(min-width:640px){.pola,.addpola{width:220px;}.ttl{font-size:56px;}.cover h1{font-size:70px;}.crew h2{font-size:46px;}}
+  @media(min-width:640px){.ttl{font-size:56px;}.cover h1{font-size:70px;}.crew h2{font-size:46px;}}
 </style>
 </head>
 <body>
@@ -219,7 +211,7 @@
     <div class="cov-stamp">✈</div>
     <div class="kick">האלבום שלנו</div>
     <h1 class="hw">סלובניה &amp; טריאסט</h1>
-    <div class="cov-ticket">קיץ 2026 · 12 נוסעים · 3 רכבים</div>
+    <div class="cov-ticket">קיץ 2026 · סלובניה &amp; טריאסט</div>
     <div class="cov-note hw">גללו למטה — עמוד סקראפבוק לכל תחנה במסע ✎</div>
   </div>
   <div class="scroll">גללו למטה כדי לצאת לדרך ↓</div>
@@ -324,10 +316,16 @@ function doodleLayer(i){var set=DSET[i%DSET.length];
   return '<div class="doodles">'+set.map(function(p){
     return '<span class="dood" style="'+p[1]+'transform:rotate('+p[2]+'deg);">'+DOODLES[p[0]]+'</span>';}).join('')+'</div>';}
 function stampHtml(s){return '<div class="stamp"><div class="stamp-in"><div class="sc">'+(s.en||s.name)+'</div><div class="sd">'+(s.cc||'SLOVENIJA')+' · JUL 2026</div></div></div>';}
-function flyerHtml(f){return '<div class="flyer"><div class="fh" style="background:'+f.c+'"><span>'+f.t+'</span><span class="fic">'+(f.ic||'')+'</span></div>'
-  +'<div class="fb">'+(f.s||'')+'<div class="fadmit">ADMIT ONE · JUL 2026</div></div></div>';}
-function flyersRow(s){if(!s.flyers||!s.flyers.length)return '';
-  return '<div class="flyers">'+s.flyers.map(flyerHtml).join('')+'</div>';}
+// collage tiles: ticket-stub flyer + trivia note (mixed among the photos)
+function makeFlyer(f){var d=document.createElement('div');d.className='flyer';
+  d.innerHTML='<div class="fh" style="background:'+f.c+'"><span>'+f.t+'</span><span class="fic">'+(f.ic||'')+'</span></div>'
+    +'<div class="fb">'+(f.s||'')+'<div class="fadmit">ADMIT ONE · JUL 2026</div></div>';return d;}
+function makeNote(t){var d=document.createElement('div');d.className='note';d.innerHTML='<span class="ni">✎</span>'+t;return d;}
+// scatter a photo among the existing collage tiles so it never becomes "info then a wall of photos"
+function collageInsert(c,node){var kids=c.querySelectorAll('.pola,.flyer,.note');var add=c.querySelector('.addpola');
+  if(!kids.length){c.insertBefore(node,add);return;}
+  var idx=Math.floor(Math.random()*(kids.length+1));
+  c.insertBefore(node, idx<kids.length?kids[idx]:add);}
 
 // progress bar
 addEventListener('scroll',function(){
@@ -389,27 +387,25 @@ personInput.addEventListener('change',function(e){var f=(e.target.files||[])[0];
 function makeScene(s,i){
   var sec=document.createElement('section');sec.className='scene';
   var inner=document.createElement('div');inner.className='inner paper paper'+['A','B','C'][i%3];
-  var notesHtml='';
-  if(s.facts&&s.facts.length){notesHtml='<div class="notes">'+s.facts.map(function(f){
-    return '<div class="note"><span class="ni">✎</span>'+f+'</div>';}).join('')+'</div>';}
   inner.innerHTML=
     doodleLayer(i)+
     '<div class="pagehead"><div class="htext"><div class="ttl hw">'+s.name+'</div><div class="ttl-en">'+(s.en||'')+'</div></div>'+stampHtml(s)+'</div>'+
     '<div class="ticket">'+s.day+'</div>'+
     (s.bg?'<div class="postcard"><img src="'+s.bg+'" alt="'+(s.en||s.name)+'"><span class="plabel">'+(s.en||s.name)+'</span></div>':'')+
     (s.blurb?'<div class="journal hw">'+s.blurb+'</div>':'')+
-    flyersRow(s)+
-    '<div class="polas" id="polas'+i+'"></div>'+
-    notesHtml;
+    '<div class="collage" id="polas'+i+'"></div>';
   sec.appendChild(inner);
   var polas=inner.querySelector('#polas'+i);
+  // seed the collage with the place's ticket-stubs + trivia, then photos scatter in among them
+  (s.flyers||[]).forEach(function(f){polas.appendChild(makeFlyer(f));});
+  (s.facts||[]).forEach(function(f){polas.appendChild(makeNote(f));});
   var add=document.createElement('div');add.className='addpola';add.innerHTML='<span>📷</span>הוסיפו תמונות מ'+s.name;
   add.onclick=function(){pickFor(i);};polas.appendChild(add);
   renderStop(i,polas);
   sceneObserver.observe(sec);
   return sec;
 }
-function renderStop(i,c){photosForStop(i).then(function(list){list.forEach(function(rec){c.insertBefore(makePola(rec),c.firstChild);});});}
+function renderStop(i,c){photosForStop(i).then(function(list){list.forEach(function(rec){collageInsert(c,makePola(rec));});});}
 function makePola(rec){var url=URL.createObjectURL(rec.blob);var d=document.createElement('div');d.className='pola';
   d.innerHTML='<img src="'+url+'">';
   d.onclick=function(){openViewer(url,rec,d);};return d;}
@@ -465,7 +461,7 @@ function driveCars(map,f,t){for(var k=0;k<3;k++){(function(delay){
 var targetStop=null,fileInput=document.getElementById('fileInput');
 function pickFor(i){targetStop=i;fileInput.click();}
 fileInput.addEventListener('change',function(e){var files=Array.from(e.target.files||[]),idx=targetStop,c=document.getElementById('polas'+idx);
-  files.forEach(function(f){var rec={blob:f,stop:idx,ts:Date.now()};savePhoto(rec).then(function(){c.insertBefore(makePola(rec),c.firstChild);});});
+  files.forEach(function(f){var rec={blob:f,stop:idx,ts:Date.now()};savePhoto(rec).then(function(){collageInsert(c,makePola(rec));});});
   fileInput.value='';});
 
 // viewer

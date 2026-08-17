@@ -1093,110 +1093,19 @@
 </head>
 <body>
 
-<!-- ============ HERO ============ -->
-<section class="hero">
-  <div class="hero-content">
-    <div class="hero-badge">קיץ</div>
-    <h1>
-      סלובניה וטריאסט
-      <span>מקומות שאהבנו וכדאי לראות</span>
-    </h1>
-    <p class="hero-subtitle">
-      אגמים אלפיניים, מערות תת-קרקעיות, טירה על צוק, טירה על המפרץ וכיכר איטלקית ענקית -
-      שבוע שלם של חוויות בלתי נשכחות בין סלובניה לטריאסט
-    </p>
-    <div class="hero-stats">
-      <div class="hero-stat">
-        <span class="hero-stat-num">7</span>
-        <span class="hero-stat-label">לילות</span>
-      </div>
-      <div class="hero-stat">
-        <span class="hero-stat-num">2</span>
-        <span class="hero-stat-label">מדינות</span>
-      </div>
-    </div>
-  </div>
+<!-- ============ MINI HEADER ============ -->
+<section style="padding:70px 20px 30px; text-align:center; background:linear-gradient(160deg, rgba(13,115,119,0.06), rgba(212,168,67,0.06));">
+  <h1 style="font-family:'Heebo',sans-serif; font-size:clamp(32px,6vw,50px); font-weight:900; color:var(--teal-dark);">סלובניה וטריאסט</h1>
 </section>
 
 <!-- ============ STICKY NAV ============ -->
 <nav class="sticky-nav" id="stickyNav">
   <ul>
-    <li><a href="#overview">סקירה</a></li>
-    <li><a href="#weather-section">מזג אוויר</a></li>
     <li><a href="#itinerary">המסלול</a></li>
     <li><a href="#map-section">מפה</a></li>
     <li><a href="#extension">עוד כמה ימים</a></li>
   </ul>
 </nav>
-
-<!-- ============ OVERVIEW ============ -->
-<section id="overview">
-  <div class="container">
-    <div class="section-title">
-      <h2>מה מחכה לנו?</h2>
-      <p>טעימה מהחוויות שלא תשכחו</p>
-    </div>
-    <div class="overview-grid">
-      <div class="overview-card reveal">
-        <div class="icon">&#9968;</div>
-        <h3>אגם בלד - הפנינה של סלובניה</h3>
-        <p>סירת Pletna לאי, טירה על הצוק, שחייה במים צלולים - 3 לילות שלמים</p>
-      </div>
-      <div class="overview-card reveal">
-        <div class="icon">&#9962;</div>
-        <h3>טירה על המפרץ, טירה על הצוק</h3>
-        <p>Miramare בטריאסט מול הים, ואופציה ל-Predjama - טירה בתוך פתח מערה</p>
-      </div>
-      <div class="overview-card reveal">
-        <div class="icon">&#9992;</div>
-        <h3>רכבת במערה</h3>
-        <p>Postojna - מערה ענקית עם רכבת חשמלית בפנים (יום 4, בדרך לבלד)</p>
-      </div>
-      <div class="overview-card reveal">
-        <div class="icon">&#10052;</div>
-        <h3>מגלשת הרים + נקיק</h3>
-        <p>Alpine Coaster ב-Straza ונקיק Vintgar - הרפתקה ליד בלד</p>
-      </div>
-      <div class="overview-card reveal">
-        <div class="icon">&#9749;</div>
-        <h3>בירת הקפה של איטליה</h3>
-        <p>טריאסט - Piazza Unita d'Italia, בתי קפה מלכותיים, טיילת ים</p>
-      </div>
-      <div class="overview-card reveal">
-        <div class="icon">&#127754;</div>
-        <h3>לובליאנה פעמיים</h3>
-        <p>גשר הדרקונים, שוק מרכזי, שיט על הנהר - גם בהתחלה וגם בסוף</p>
-      </div>
-    </div>
-
-    <!-- WEATHER -->
-    <div class="weather-section" id="weather-section">
-      <h3>מזג אוויר - סוף יולי / תחילת אוגוסט</h3>
-      <div class="weather-grid">
-        <div class="weather-card">
-          <div class="location">לובליאנה</div>
-          <div class="temp">28&#176;</div>
-          <div class="detail">28&#176; בהתחלה, מתחמם עד 34&#176; ביום שישי<br>גשם ביום ראשון</div>
-        </div>
-        <div class="weather-card">
-          <div class="location">בלד</div>
-          <div class="temp">30&#176;</div>
-          <div class="detail">ביום 30&#176;, בלילה 12-18&#176;<br>קפוצ'ון לערב ליד האגם</div>
-        </div>
-        <div class="weather-card">
-          <div class="location">טריאסט</div>
-          <div class="temp">27&#176;</div>
-          <div class="detail">ביום 27-30&#176;, בלילה 20&#176;<br>מים בים 25&#176; | גשם ביום ראשון בערב</div>
-        </div>
-        <div class="weather-card">
-          <div class="location">מערת Postojna</div>
-          <div class="temp">10&#176;</div>
-          <div class="detail">10&#176; בפנים כל השנה!<br>קפוצ'ון + מעיל דק + ארוך + סגורות</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- ============ DAYS ============ -->
 <section id="itinerary">
@@ -1227,7 +1136,6 @@
           <span class="day-number">יום 1</span>
           <h2>לובליאנה - הגעה</h2>
           <div class="day-meta">טיסה, איסוף 3 רכבים, ערב בעיר</div>
-          <div class="day-weather">לובליאנה, 28&#176; ביום, 17&#176; בלילה | בלי גשם</div>
         </div>
       </div>
       <div class="day-body">
@@ -1298,7 +1206,6 @@
           <span class="day-number">יום 2</span>
           <h2>לובליאנה בבוקר, טריאסט בערב</h2>
           <div class="day-meta">בוקר בלובליאנה, ואז נוסעים לאיטליה</div>
-          <div class="day-weather">לובליאנה, 26&#176; ביום | גשם צפוי היום - קחו מטריות ומעילים דקים | בערב בטריאסט, 20&#176; בלילה</div>
         </div>
       </div>
       <div class="day-body">
@@ -1457,7 +1364,6 @@
           <span class="day-number">יום 3</span>
           <h2>טריאסט - מירמאר, מרכז וסאן ג'וסטו</h2>
           <div class="day-meta">מירמאר בבוקר, מרכז וקניות בצהריים, San Giusto לתצפית</div>
-          <div class="day-weather">טריאסט, ~28&#176; ביום | מזג אוויר בהיר ונעים - יום מושלם לטיול בעיר</div>
         </div>
       </div>
       <div class="day-body">
@@ -1616,7 +1522,6 @@
           <span class="day-number">יום 4</span>
           <h2>טריאסט - בלד</h2>
           <div class="day-meta">שופינג אחרון בטריאסט, מערת Postojna, וערב בבלד</div>
-          <div class="day-weather">טריאסט, 30&#176; ביום | בערב בבלד, 12&#176; בלילה | מערת Postojna בדרך: 10&#176; בפנים, סיור שעה וחצי. רוב הסיור ברכבת, אחריה הליכה 1.5 ק"מ עם מקטע תלול - מי שמתקשה יכול לסייר ברכבת בלבד (להזמין מראש, 50% הנחה לנגישות). תביאו לרכב קפוצ'ון, מעיל דק, מכנסיים ארוכים ונעליים סגורות.</div>
         </div>
       </div>
       <div class="day-body">
@@ -1734,7 +1639,6 @@
           <span class="day-number">יום 5</span>
           <h2>אגם בלד - יום מלא</h2>
           <div class="day-meta">סירת Pletna לאי, בריכות ומגלשות בחוף הטירה, ומגלשת שטראזה</div>
-          <div class="day-weather">בלד, 30&#176; ביום, 15&#176; בלילה | קיצי - בגד ים, כובע, נעלי ספורט סגורות למגלשה</div>
         </div>
       </div>
       <div class="day-body">
@@ -1819,7 +1723,6 @@
           <span class="day-number">יום 6</span>
           <h2>יום טיול מבלד - שלוש אופציות</h2>
           <div class="day-meta">טירת בלד בבוקר | אחה"צ: רפטינג/זיפליין (אקשן) או רדוביצה (שאר הקבוצה) | ערב חגיגי</div>
-          <div class="day-weather">בלד, 31&#176; ביום, 18&#176; בלילה | בערב ליד האגם קפוצ'ון מספיק</div>
         </div>
       </div>
       <div class="day-body">
@@ -1884,7 +1787,6 @@
           <span class="day-number">יום 7</span>
           <h2>חזרה ללובליאנה</h2>
           <div class="day-meta">שוק, שיט על הנהר, Metelkova, ארוחת פרידה</div>
-          <div class="day-weather">לובליאנה, 34&#176; ביום, 19&#176; בלילה | חם - כובעים ומים</div>
         </div>
       </div>
       <div class="day-body">
@@ -1978,7 +1880,6 @@
           <span class="day-number">יום 8 - נפרדים</span>
           <h2>פרידה + טיסה הביתה</h2>
           <div class="day-meta">החזרת רכבים, טיסה - חלק מהמשפחה ממשיכים</div>
-          <div class="day-weather">לובליאנה, 38&#176; ביום - חם מאוד, לשתות הרבה</div>
         </div>
       </div>
       <div class="day-body">
@@ -2098,7 +1999,6 @@
           <span class="day-number">יום 1</span>
           <h2>WOOP! עד הסוף</h2>
           <div class="day-meta">WOOP! לובליאנה | לינה בצֶלֶה</div>
-          <div class="day-weather">מקורה וממוזג — לא מושפע ממזג האוויר. ערב: נסיעה קצרה מזרחה.</div>
         </div>
       </div>
       <div class="day-body">
@@ -2132,7 +2032,6 @@
           <span class="day-number">יום 2</span>
           <h2>Rogla + פְּטוּי</h2>
           <div class="day-meta">Rogla בבוקר, פְּטוּי אחה"צ | לינה ליד Rogla</div>
-          <div class="day-weather">פוהוריה — סיכון סופות אחה"צ, לכן Rogla בבוקר. פְּטוּי אחה"צ (הרבה קפה מקורה אם יורד).</div>
         </div>
       </div>
       <div class="day-body">
@@ -2197,7 +2096,6 @@
           <span class="day-number">יום 3</span>
           <h2>אל Terme Čatež</h2>
           <div class="day-meta">פְּטוּי → Terme Čatež עד 14:00</div>
-          <div class="day-weather">צ'אטז' חם ~30&#176; — משם מתחילים ימי הטרמה.</div>
         </div>
       </div>
       <div class="day-body">
